@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PayMyBill - Cash Your Check, Get Your Card</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <!-- App Container -->
+    <div id="app" class="app-container">
+        <!-- Loading Screen -->
+        <div id="loading-screen" class="screen">
+            <div class="loading-spinner"></div>
+        </div>
+
+        <!-- Welcome Screen -->
+        <div id="welcome-screen" class="screen active">
+            <div class="screen-content">
+                <div class="logo-container">
+                    <div class="app-logo">
+                        <span class="material-icons">account_balance_wallet</span>
+                    </div>
+                    <h1 class="app-title">PayMyBill</h1>
+                    <p class="app-tagline" data-i18n="welcome.tagline">Cash your check, get your card instantly</p>
+                </div>
+
+                <div class="language-selector">
+                    <label for="language-select" data-i18n="welcome.selectLanguage">Select Language</label>
+                    <div class="custom-select">
+                        <select id="language-select">
+                            <option value="en">English</option>
+                            <option value="es">Español</option>
+                            <option value="ph">Filipino</option>
+                            <option value="yo">Yorùbá</option>
+                        </select>
+                        <span class="material-icons">expand_more</span>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary btn-large" id="get-started-btn" data-i18n="welcome.getStarted">
+                    Get Started
+                </button>
+
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <span class="material-icons">check_circle</span>
+                        <span data-i18n="welcome.feature1">No bank account needed</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="material-icons">check_circle</span>
+                        <span data-i18n="welcome.feature2">Get paid in minutes</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="material-icons">check_circle</span>
+                        <span data-i18n="welcome.feature3">Virtual card instantly</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- KYC Upload Screen -->
+        <div id="kyc-screen" class="screen">
+            <div class="screen-header">
+                <button class="btn-icon" id="kyc-back-btn">
+                    <span class="material-icons">arrow_back</span>
+                </button>
+                <h2 data-i18n="kyc.title">Verify Your Identity</h2>
+                <div class="header-spacer"></div>
+            </div>
+
+            <div class="screen-content">
+                <div class="progress-bar">
+                    <div class="progress-step active">
+                        <div class="step-circle">1</div>
+                        <span data-i18n="kyc.step1">Passport</span>
+                    </div>
+                    <div class="progress-line"></div>
+                    <div class="progress-step">
+                        <div class="step-circle">2</div>
+                        <span data-i18n="kyc.step2">Selfie</span>
+                    </div>
+                </div>
+
+                <div class="kyc-content" id="passport-upload">
+                    <div class="info-box">
+                        <span class="material-icons">info</span>
+                        <p data-i18n="kyc.passportInfo">Take a clear photo of your passport photo page</p>
+                    </div>
+
+                    <div class="upload-area" id="passport-drop-zone">
+                        <span class="material-icons">cloud_upload</span>
+                        <p data-i18n="kyc.uploadPassport">Tap to upload passport</p>
+                        <input type="file" id="passport-input" accept="image/*" capture="environment" hidden>
+                    </div>
+
+                    <div class="preview-container" id="passport-preview" style="display: none;">
+                        <img id="passport-img" src="" alt="Passport preview">
+                        <button class="btn-icon btn-remove" id="passport-remove">
+                            <span class="material-icons">close</span>
+                        </button>
+                    </div>
+
+                    <button class="btn btn-primary btn-large" id="passport-continue" disabled data-i18n="common.continue">
+                        Continue
+                    </button>
+                </div>
+
+                <div class="kyc-content" id="selfie-capture" style="display: none;">
+                    <div class="info-box">
+                        <span class="material-icons">info</span>
+                        <p data-i18n="kyc.selfieInfo">Take a selfie to verify your identity</p>
+                    </div>
+
+                    <div class="upload-area" id="selfie-drop-zone">
+                        <span class="material-icons">face</span>
+                        <p data-i18n="kyc.takeSelfie">Tap to take selfie</p>
+                        <input type="file" id="selfie-input" accept="image/*" capture="user" hidden>
+                    </div>
+
+                    <div class="preview-container" id="selfie-preview" style="display: none;">
+                        <img id="selfie-img" src="" alt="Selfie preview">
+                        <button class="btn-icon btn-remove" id="selfie-remove">
+                            <span class="material-icons">close</span>
+                        </button>
+                    </div>
+
+                    <button class="btn btn-primary btn-large" id="selfie-submit" disabled data-i18n="kyc.submitVerification">
+                        Submit Verification
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard Screen -->
+        <div id="dashboard-screen" class="screen">
+            <div class="screen-header dashboard-header">
+                <div class="user-greeting">
+                    <h2 data-i18n="dashboard.welcome">Welcome back</h2>
+                    <p class="user-name">Chris</p>
+                </div>
+                <button class="btn-icon" id="settings-btn">
+                    <span class="material-icons">settings</span>
+                </button>
+            </div>
+
+            <div class="screen-content">
+                <div class="balance-card">
+                    <div class="balance-header">
+                        <span data-i18n="dashboard.availableBalance">Available Balance</span>
+                        <button class="btn-icon-sm" id="toggle-balance">
+                            <span class="material-icons">visibility</span>
+                        </button>
+                    </div>
+                    <div class="balance-amount" id="balance-display">
+                        $1,234.56
+                    </div>
+                    <div class="balance-hidden" id="balance-hidden" style="display: none;">
+                        ••••••
+                    </div>
+                </div>
+
+                <div class="virtual-card-preview" id="card-preview">
+                    <div class="card-front">
+                        <div class="card-chip"></div>
+                        <div class="card-number">•••• •••• •••• 4532</div>
+                        <div class="card-details">
+                            <div>
+                                <div class="card-label" data-i18n="card.cardHolder">Card Holder</div>
+                                <div class="card-value">CHRIS SQUIRE</div>
+                            </div>
+                            <div>
+                                <div class="card-label" data-i18n="card.expires">Expires</div>
+                                <div class="card-value">12/26</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quick-actions">
+                    <button class="action-btn" id="cash-check-btn">
+                        <span class="material-icons">add_a_photo</span>
+                        <span data-i18n="dashboard.cashCheck">Cash a Check</span>
+                    </button>
+                    <button class="action-btn" id="view-card-btn">
+                        <span class="material-icons">credit_card</span>
+                        <span data-i18n="dashboard.viewCard">View Card</span>
+                    </button>
+                    <button class="action-btn" id="pay-bill-btn">
+                        <span class="material-icons">receipt</span>
+                        <span data-i18n="dashboard.payBill">Pay a Bill</span>
+                    </button>
+                </div>
+
+                <div class="section-header">
+                    <h3 data-i18n="dashboard.recentActivity">Recent Activity</h3>
+                    <button class="btn-text" id="view-all-btn" data-i18n="common.viewAll">View All</button>
+                </div>
+
+                <div class="transaction-list" id="recent-transactions">
+                    <!-- Transactions will be populated here -->
+                </div>
+            </div>
+
+            <!-- Bottom Navigation -->
+            <nav class="bottom-nav">
+                <button class="nav-item active">
+                    <span class="material-icons">home</span>
+                    <span data-i18n="nav.home">Home</span>
+                </button>
+                <button class="nav-item" id="nav-transactions">
+                    <span class="material-icons">receipt_long</span>
+                    <span data-i18n="nav.activity">Activity</span>
+                </button>
+                <button class="nav-item" id="nav-card">
+                    <span class="material-icons">credit_card</span>
+                    <span data-i18n="nav.card">Card</span>
+                </button>
+                <button class="nav-item" id="nav-profile">
+                    <span class="material-icons">person</span>
+                    <span data-i18n="nav.profile">Profile</span>
+                </button>
+            </nav>
+        </div>
+
+        <!-- Cash Check Screen -->
+        <div id="check-screen" class="screen">
+            <div class="screen-header">
+                <button class="btn-icon" id="check-back-btn">
+                    <span class="material-icons">arrow_back</span>
+                </button>
+                <h2 data-i18n="check.title">Cash a Check</h2>
+                <div class="header-spacer"></div>
+            </div>
+
+            <div class="screen-content">
+                <div class="progress-bar">
+                    <div class="progress-step active" id="check-step-1">
+                        <div class="step-circle">1</div>
+                        <span data-i18n="check.front">Front</span>
+                    </div>
+                    <div class="progress-line"></div>
+                    <div class="progress-step" id="check-step-2">
+                        <div class="step-circle">2</div>
+                        <span data-i18n="check.back">Back</span>
+                    </div>
+                    <div class="progress-line"></div>
+                    <div class="progress-step" id="check-step-3">
+                        <div class="step-circle">3</div>
+                        <span data-i18n="check.confirm">Confirm</span>
+                    </div>
+                </div>
+
+                <div class="check-capture-content" id="check-front-capture">
+                    <div class="info-box">
+                        <span class="material-icons">info</span>
+                        <p data-i18n="check.frontInfo">Take a photo of the front of your check</p>
+                    </div>
+
+                    <div class="upload-area">
+                        <span class="material-icons">add_a_photo</span>
+                        <p data-i18n="check.captureFront">Capture Check Front</p>
+                        <input type="file" id="check-front-input" accept="image/*" capture="environment" hidden>
+                    </div>
+
+                    <div class="preview-container" id="check-front-preview" style="display: none;">
+                        <img id="check-front-img" src="" alt="Check front">
+                        <button class="btn-icon btn-remove" id="check-front-remove">
+                            <span class="material-icons">close</span>
+                        </button>
+                    </div>
+
+                    <button class="btn btn-primary btn-large" id="check-front-continue" disabled data-i18n="common.continue">
+                        Continue
+                    </button>
+                </div>
+
+                <div class="check-capture-content" id="check-back-capture" style="display: none;">
+                    <div class="info-box">
+                        <span class="material-icons">info</span>
+                        <p data-i18n="check.backInfo">Take a photo of the back of your check</p>
+                    </div>
+
+                    <div class="upload-area">
+                        <span class="material-icons">add_a_photo</span>
+                        <p data-i18n="check.captureBack">Capture Check Back</p>
+                        <input type="file" id="check-back-input" accept="image/*" capture="environment" hidden>
+                    </div>
+
+                    <div class="preview-container" id="check-back-preview" style="display: none;">
+                        <img id="check-back-img" src="" alt="Check back">
+                        <button class="btn-icon btn-remove" id="check-back-remove">
+                            <span class="material-icons">close</span>
+                        </button>
+                    </div>
+
+                    <button class="btn btn-primary btn-large" id="check-back-continue" disabled data-i18n="common.continue">
+                        Continue
+                    </button>
+                </div>
+
+                <div class="check-capture-content" id="check-confirm" style="display: none;">
+                    <div class="info-box success">
+                        <span class="material-icons">check_circle</span>
+                        <p data-i18n="check.confirmInfo">Review your check details</p>
+                    </div>
+
+                    <div class="check-details-card">
+                        <div class="detail-row">
+                            <span data-i18n="check.amount">Check Amount</span>
+                            <strong>$850.00</strong>
+                        </div>
+                        <div class="detail-row">
+                            <span data-i18n="check.processingTime">Processing Time</span>
+                            <strong>2-3 minutes</strong>
+                        </div>
+                        <div class="detail-row">
+                            <span data-i18n="check.fee">Processing Fee</span>
+                            <strong>$5.00</strong>
+                        </div>
+                        <div class="detail-row total">
+                            <span data-i18n="check.youReceive">You'll Receive</span>
+                            <strong class="amount-highlight">$845.00</strong>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary btn-large" id="check-submit" data-i18n="check.submitCheck">
+                        Submit Check
+                    </button>
+                </div>
+
+                <div class="check-capture-content" id="check-processing" style="display: none;">
+                    <div class="processing-animation">
+                        <div class="processing-spinner"></div>
+                        <h3 data-i18n="check.processing">Processing Your Check</h3>
+                        <p data-i18n="check.processingMessage">This usually takes 2-3 minutes</p>
+                    </div>
+
+                    <div class="processing-steps">
+                        <div class="processing-step completed">
+                            <span class="material-icons">check_circle</span>
+                            <span data-i18n="check.stepValidating">Validating check images</span>
+                        </div>
+                        <div class="processing-step active">
+                            <div class="step-spinner"></div>
+                            <span data-i18n="check.stepVerifying">Verifying funds</span>
+                        </div>
+                        <div class="processing-step">
+                            <span class="material-icons">radio_button_unchecked</span>
+                            <span data-i18n="check.stepDepositing">Depositing to account</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Virtual Card Screen -->
+        <div id="card-screen" class="screen">
+            <div class="screen-header">
+                <button class="btn-icon" id="card-back-btn">
+                    <span class="material-icons">arrow_back</span>
+                </button>
+                <h2 data-i18n="card.title">My Card</h2>
+                <div class="header-spacer"></div>
+            </div>
+
+            <div class="screen-content">
+                <div class="card-full">
+                    <div class="card-chip"></div>
+                    <div class="card-number-full">
+                        <span id="card-pan-display">•••• •••• •••• 4532</span>
+                        <button class="btn-icon-sm" id="reveal-pan">
+                            <span class="material-icons">visibility</span>
+                        </button>
+                    </div>
+                    <div class="card-details-full">
+                        <div>
+                            <div class="card-label" data-i18n="card.cardHolder">Card Holder</div>
+                            <div class="card-value">CHRIS SQUIRE</div>
+                        </div>
+                        <div>
+                            <div class="card-label" data-i18n="card.expires">Expires</div>
+                            <div class="card-value" id="card-expiry-display">••/••</div>
+                        </div>
+                        <div>
+                            <div class="card-label">CVV</div>
+                            <div class="card-value" id="card-cvv-display">•••</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-actions">
+                    <button class="card-action-btn">
+                        <span class="material-icons">apple</span>
+                        <span>Apple Pay</span>
+                    </button>
+                    <button class="card-action-btn">
+                        <span class="material-icons">account_balance_wallet</span>
+                        <span>Google Pay</span>
+                    </button>
+                </div>
+
+                <div class="card-controls">
+                    <div class="control-item">
+                        <div class="control-info">
+                            <span class="material-icons">lock</span>
+                            <div>
+                                <div class="control-title" data-i18n="card.freezeCard">Freeze Card</div>
+                                <div class="control-description" data-i18n="card.freezeDescription">Temporarily disable transactions</div>
+                            </div>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="card-freeze-toggle">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+
+                    <button class="control-btn" id="card-limits-btn">
+                        <div class="control-info">
+                            <span class="material-icons">trending_up</span>
+                            <div>
+                                <div class="control-title" data-i18n="card.spendingLimits">Spending Limits</div>
+                                <div class="control-description">$500/day</div>
+                            </div>
+                        </div>
+                        <span class="material-icons">chevron_right</span>
+                    </button>
+
+                    <button class="control-btn" id="card-pin-btn">
+                        <div class="control-info">
+                            <span class="material-icons">pin</span>
+                            <div>
+                                <div class="control-title" data-i18n="card.changePin">Change PIN</div>
+                                <div class="control-description" data-i18n="card.changePinDescription">Update your card PIN</div>
+                            </div>
+                        </div>
+                        <span class="material-icons">chevron_right</span>
+                    </button>
+                </div>
+            </div>
+
+            <nav class="bottom-nav">
+                <button class="nav-item" id="nav-home-2">
+                    <span class="material-icons">home</span>
+                    <span data-i18n="nav.home">Home</span>
+                </button>
+                <button class="nav-item" id="nav-transactions-2">
+                    <span class="material-icons">receipt_long</span>
+                    <span data-i18n="nav.activity">Activity</span>
+                </button>
+                <button class="nav-item active">
+                    <span class="material-icons">credit_card</span>
+                    <span data-i18n="nav.card">Card</span>
+                </button>
+                <button class="nav-item" id="nav-profile-2">
+                    <span class="material-icons">person</span>
+                    <span data-i18n="nav.profile">Profile</span>
+                </button>
+            </nav>
+        </div>
+
+        <!-- Transactions Screen -->
+        <div id="transactions-screen" class="screen">
+            <div class="screen-header">
+                <button class="btn-icon" id="transactions-back-btn">
+                    <span class="material-icons">arrow_back</span>
+                </button>
+                <h2 data-i18n="transactions.title">Activity</h2>
+                <button class="btn-icon" id="filter-btn">
+                    <span class="material-icons">filter_list</span>
+                </button>
+            </div>
+
+            <div class="screen-content">
+                <div class="filter-chips">
+                    <button class="chip active" data-filter="all" data-i18n="transactions.all">All</button>
+                    <button class="chip" data-filter="pending" data-i18n="transactions.pending">Pending</button>
+                    <button class="chip" data-filter="completed" data-i18n="transactions.completed">Completed</button>
+                    <button class="chip" data-filter="failed" data-i18n="transactions.failed">Failed</button>
+                </div>
+
+                <div class="transaction-list-full" id="all-transactions">
+                    <!-- Transactions populated by JS -->
+                </div>
+            </div>
+
+            <nav class="bottom-nav">
+                <button class="nav-item" id="nav-home-3">
+                    <span class="material-icons">home</span>
+                    <span data-i18n="nav.home">Home</span>
+                </button>
+                <button class="nav-item active">
+                    <span class="material-icons">receipt_long</span>
+                    <span data-i18n="nav.activity">Activity</span>
+                </button>
+                <button class="nav-item" id="nav-card-3">
+                    <span class="material-icons">credit_card</span>
+                    <span data-i18n="nav.card">Card</span>
+                </button>
+                <button class="nav-item" id="nav-profile-3">
+                    <span class="material-icons">person</span>
+                    <span data-i18n="nav.profile">Profile</span>
+                </button>
+            </nav>
+        </div>
+
+        <!-- Bill Pay Screen -->
+        <div id="billpay-screen" class="screen">
+            <div class="screen-header">
+                <button class="btn-icon" id="billpay-back-btn">
+                    <span class="material-icons">arrow_back</span>
+                </button>
+                <h2 data-i18n="billpay.title">Pay a Bill</h2>
+                <div class="header-spacer"></div>
+            </div>
+
+            <div class="screen-content">
+                <div class="form-group">
+                    <label data-i18n="billpay.selectBiller">Select Biller</label>
+                    <div class="custom-select">
+                        <select id="biller-select">
+                            <option value="" data-i18n="billpay.chooseBiller">Choose a biller</option>
+                            <option value="electric">Electric Company</option>
+                            <option value="water">Water Utility</option>
+                            <option value="internet">Internet Provider</option>
+                            <option value="phone">Phone Company</option>
+                        </select>
+                        <span class="material-icons">expand_more</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label data-i18n="billpay.accountNumber">Account Number</label>
+                    <input type="text" class="form-input" placeholder="123456789" id="account-number-input">
+                </div>
+
+                <div class="form-group">
+                    <label data-i18n="billpay.amount">Amount</label>
+                    <div class="input-with-prefix">
+                        <span class="input-prefix">$</span>
+                        <input type="number" class="form-input" placeholder="0.00" id="billpay-amount-input">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label data-i18n="billpay.paymentDate">Payment Date</label>
+                    <input type="date" class="form-input" id="payment-date-input">
+                </div>
+
+                <div class="info-box">
+                    <span class="material-icons">info</span>
+                    <p data-i18n="billpay.processingInfo">Payments typically process within 1-2 business days</p>
+                </div>
+
+                <button class="btn btn-primary btn-large" id="submit-payment-btn" data-i18n="billpay.submitPayment">
+                    Submit Payment
+                </button>
+            </div>
+        </div>
+
+        <!-- Profile/Settings Screen -->
+        <div id="profile-screen" class="screen">
+            <div class="screen-header">
+                <button class="btn-icon" id="profile-back-btn">
+                    <span class="material-icons">arrow_back</span>
+                </button>
+                <h2 data-i18n="profile.title">Profile & Settings</h2>
+                <div class="header-spacer"></div>
+            </div>
+
+            <div class="screen-content">
+                <div class="profile-header">
+                    <div class="profile-avatar">
+                        <span class="material-icons">person</span>
+                    </div>
+                    <div class="profile-info">
+                        <h3>Chris Squire</h3>
+                        <p>chris@example.com</p>
+                    </div>
+                </div>
+
+                <div class="settings-section">
+                    <h4 data-i18n="profile.personalInfo">Personal Information</h4>
+                    <button class="settings-item">
+                        <div class="settings-item-content">
+                            <span class="material-icons">badge</span>
+                            <span data-i18n="profile.verificationDocuments">Verification Documents</span>
+                        </div>
+                        <span class="material-icons">chevron_right</span>
+                    </button>
+                    <button class="settings-item">
+                        <div class="settings-item-content">
+                            <span class="material-icons">email</span>
+                            <span data-i18n="profile.contactInfo">Contact Information</span>
+                        </div>
+                        <span class="material-icons">chevron_right</span>
+                    </button>
+                </div>
+
+                <div class="settings-section">
+                    <h4 data-i18n="profile.preferences">Preferences</h4>
+                    <button class="settings-item" id="language-settings-btn">
+                        <div class="settings-item-content">
+                            <span class="material-icons">language</span>
+                            <span data-i18n="profile.language">Language</span>
+                        </div>
+                        <div class="settings-item-value">
+                            <span id="current-language-display">English</span>
+                            <span class="material-icons">chevron_right</span>
+                        </div>
+                    </button>
+                    <button class="settings-item">
+                        <div class="settings-item-content">
+                            <span class="material-icons">notifications</span>
+                            <span data-i18n="profile.notifications">Notifications</span>
+                        </div>
+                        <span class="material-icons">chevron_right</span>
+                    </button>
+                </div>
+
+                <div class="settings-section">
+                    <h4 data-i18n="profile.security">Security</h4>
+                    <button class="settings-item">
+                        <div class="settings-item-content">
+                            <span class="material-icons">lock</span>
+                            <span data-i18n="profile.changePassword">Change Password</span>
+                        </div>
+                        <span class="material-icons">chevron_right</span>
+                    </button>
+                    <button class="settings-item">
+                        <div class="settings-item-content">
+                            <span class="material-icons">fingerprint</span>
+                            <span data-i18n="profile.biometric">Biometric Login</span>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </button>
+                </div>
+
+                <div class="settings-section">
+                    <h4 data-i18n="profile.support">Support</h4>
+                    <button class="settings-item">
+                        <div class="settings-item-content">
+                            <span class="material-icons">help</span>
+                            <span data-i18n="profile.helpCenter">Help Center</span>
+                        </div>
+                        <span class="material-icons">chevron_right</span>
+                    </button>
+                    <button class="settings-item">
+                        <div class="settings-item-content">
+                            <span class="material-icons">chat</span>
+                            <span data-i18n="profile.contactSupport">Contact Support</span>
+                        </div>
+                        <span class="material-icons">chevron_right</span>
+                    </button>
+                </div>
+
+                <button class="btn btn-secondary" data-i18n="profile.signOut">
+                    Sign Out
+                </button>
+            </div>
+
+            <nav class="bottom-nav">
+                <button class="nav-item" id="nav-home-4">
+                    <span class="material-icons">home</span>
+                    <span data-i18n="nav.home">Home</span>
+                </button>
+                <button class="nav-item" id="nav-transactions-4">
+                    <span class="material-icons">receipt_long</span>
+                    <span data-i18n="nav.activity">Activity</span>
+                </button>
+                <button class="nav-item" id="nav-card-4">
+                    <span class="material-icons">credit_card</span>
+                    <span data-i18n="nav.card">Card</span>
+                </button>
+                <button class="nav-item active">
+                    <span class="material-icons">person</span>
+                    <span data-i18n="nav.profile">Profile</span>
+                </button>
+            </nav>
+        </div>
+
+        <!-- Success Modal -->
+        <div id="success-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-icon success">
+                    <span class="material-icons">check_circle</span>
+                </div>
+                <h3 id="success-title" data-i18n="modal.success">Success!</h3>
+                <p id="success-message" data-i18n="modal.successMessage">Your action was completed successfully</p>
+                <button class="btn btn-primary" id="success-modal-close" data-i18n="common.close">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="i18n.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
