@@ -1,0 +1,13 @@
+# Wrangler configuration for PayMyBill
+# This file configures Cloudflare Pages deployment
+
+name = "paymybill"
+compatibility_date = "2024-12-06"
+
+# Pages configuration
+pages_build_output_dir = "."
+
+[env.production]
+name = "paymybill"
+route = ""
+workers_dev = false
