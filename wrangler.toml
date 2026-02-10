@@ -1,7 +1,7 @@
-# Wrangler configuration for PayMyBill
+# Wrangler configuration for CheckPay
 # This file configures Cloudflare Pages deployment
 
-name = "paymybill"
+name = "checkpay"
 compatibility_date = "2024-12-06"
 
 # Pages configuration - deploy everything in current directory

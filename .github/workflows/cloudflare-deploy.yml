@@ -24,7 +24,7 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: paymybill
+          projectName: checkpay
           directory: .
           # No build command needed for static HTML
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}

@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# PayMyBill - Deploy to Cloudflare Pages
+# CheckPay - Deploy to Cloudflare Pages
 # This script deploys the app directly to Cloudflare using the API
 
 set -e  # Exit on error
 
-echo "🚀 Deploying PayMyBill to Cloudflare Pages..."
+echo "🚀 Deploying CheckPay to Cloudflare Pages..."
 echo ""
 
 # Load environment variables
