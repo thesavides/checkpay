@@ -1,6 +1,6 @@
-// PayMyBill - Main Application Logic
+// CheckPay - Main Application Logic
 
-const PayMyBillApp = {
+const CheckPayApp = {
     currentScreen: 'welcome-screen',
     userData: {},
     
@@ -145,13 +145,8 @@ const PayMyBillApp = {
     
     // Submit KYC
     submitKYC: function() {
-        // Simulate API call
-        this.showLoadingScreen();
-        
-        setTimeout(() => {
-            this.showScreen('dashboard-screen');
-            this.showSuccessModal(i18n.t('kyc.title'), i18n.t('modal.successMessage'));
-        }, 2000);
+        this.showScreen('dashboard-screen');
+        this.showSuccessModal(i18n.t('kyc.title'), i18n.t('modal.successMessage'));
     },
     
     // Dashboard handlers
@@ -395,28 +390,217 @@ const PayMyBillApp = {
         });
     },
     
+    // Bill pay biller data by state and utility type
+    billerData: {
+        electric: {
+            CA: ['Pacific Gas & Electric (PG&E)', 'Southern California Edison', 'San Diego Gas & Electric'],
+            NY: ['Con Edison', 'National Grid NY', 'NYSEG'],
+            TX: ['TXU Energy', 'Reliant Energy', 'Direct Energy TX'],
+            FL: ['Florida Power & Light', 'Duke Energy FL', 'Tampa Electric'],
+            IL: ['ComEd (Commonwealth Edison)', 'Ameren Illinois'],
+            PA: ['PECO Energy', 'PPL Electric', 'Duquesne Light'],
+            GA: ['Georgia Power', 'Savannah Electric'],
+            OH: ['Ohio Edison', 'AEP Ohio', 'Duke Energy OH'],
+            NJ: ['PSE&G', 'JCP&L', 'Atlantic City Electric'],
+            WA: ['Puget Sound Energy', 'Seattle City Light'],
+            _default: ['Local Electric Company']
+        },
+        gas: {
+            CA: ['SoCalGas', 'PG&E Gas'],
+            NY: ['National Grid Gas', 'Con Edison Gas', 'KeySpan Energy'],
+            TX: ['Atmos Energy TX', 'CenterPoint Energy'],
+            FL: ['TECO Peoples Gas', 'Florida City Gas'],
+            IL: ['Nicor Gas', 'Peoples Gas Chicago'],
+            PA: ['Columbia Gas PA', 'UGI Utilities'],
+            _default: ['Local Gas Company']
+        },
+        water: {
+            CA: ['LA Dept of Water & Power', 'East Bay MUD', 'San Jose Water Co'],
+            NY: ['NYC Water Board', 'Suffolk County Water Authority'],
+            TX: ['Dallas Water Utilities', 'San Antonio Water System'],
+            FL: ['Miami-Dade Water & Sewer', 'JEA Jacksonville'],
+            _default: ['Local Water Utility']
+        },
+        internet: {
+            _default: ['Comcast / Xfinity', 'AT&T Internet', 'Spectrum (Charter)', 'Verizon Fios', 'T-Mobile Home Internet', 'CenturyLink / Lumen']
+        },
+        phone: {
+            _default: ['AT&T Wireless', 'Verizon Wireless', 'T-Mobile', 'Cricket Wireless', 'Metro by T-Mobile', 'Boost Mobile']
+        },
+        cable: {
+            _default: ['Comcast / Xfinity TV', 'DirecTV', 'DISH Network', 'Spectrum TV', 'Cox Communications']
+        },
+        trash: {
+            _default: ['Waste Management', 'Republic Services', 'Local Municipal Trash Service']
+        },
+        insurance: {
+            _default: ['State Farm', 'Geico', 'Progressive', 'Allstate', 'USAA', 'Liberty Mutual']
+        }
+    },
+
     // Bill pay handlers
     setupBillPayHandlers: function() {
+        // Back button
         document.getElementById('billpay-back-btn')?.addEventListener('click', () => {
             this.showScreen('dashboard-screen');
+            this.resetBillPayFlow();
         });
-        
-        document.getElementById('submit-payment-btn')?.addEventListener('click', () => {
+
+        // State and utility type selectors populate billers
+        document.getElementById('state-select')?.addEventListener('change', () => this.updateBillerOptions());
+        document.getElementById('utility-type-select')?.addEventListener('change', () => this.updateBillerOptions());
+
+        // Biller selection enables continue
+        document.getElementById('biller-select')?.addEventListener('change', () => {
+            const state = document.getElementById('state-select').value;
+            const utility = document.getElementById('utility-type-select').value;
             const biller = document.getElementById('biller-select').value;
-            const amount = document.getElementById('billpay-amount-input').value;
-            
-            if (!biller || !amount) {
-                alert('Please fill in all fields');
-                return;
-            }
-            
-            this.showLoadingScreen();
-            
-            setTimeout(() => {
-                this.showScreen('dashboard-screen');
-                this.showSuccessModal('Payment Submitted', 'Your payment has been scheduled successfully.');
-            }, 2000);
+            document.getElementById('billpay-to-details').disabled = !(state && utility && biller);
         });
+
+        // Step 1 -> Step 2
+        document.getElementById('billpay-to-details')?.addEventListener('click', () => {
+            const billerName = document.getElementById('biller-select').selectedOptions[0].text;
+            document.getElementById('selected-biller-name').textContent = billerName;
+            document.getElementById('billpay-select-biller').style.display = 'none';
+            document.getElementById('billpay-enter-details').style.display = 'block';
+            document.getElementById('billpay-step-2').classList.add('active');
+        });
+
+        // Enable review button when required fields filled
+        const detailInputs = ['account-number-input', 'billpay-amount-input'];
+        detailInputs.forEach(id => {
+            document.getElementById(id)?.addEventListener('input', () => {
+                const account = document.getElementById('account-number-input').value;
+                const amount = document.getElementById('billpay-amount-input').value;
+                document.getElementById('billpay-to-review').disabled = !(account && amount);
+            });
+        });
+
+        // Step 2 -> Step 3 (Review)
+        document.getElementById('billpay-to-review')?.addEventListener('click', () => {
+            this.populateBillPayReview();
+            document.getElementById('billpay-enter-details').style.display = 'none';
+            document.getElementById('billpay-review').style.display = 'block';
+            document.getElementById('billpay-step-3').classList.add('active');
+        });
+
+        // Step 3 -> Step 4 (Checkout)
+        document.getElementById('billpay-to-checkout')?.addEventListener('click', () => {
+            const amount = document.getElementById('billpay-amount-input').value;
+            const formatted = '$' + parseFloat(amount).toFixed(2);
+            document.getElementById('checkout-amount').textContent = formatted;
+            document.getElementById('checkout-pay-label').textContent = 'Pay ' + formatted;
+            document.getElementById('billpay-review').style.display = 'none';
+            document.getElementById('billpay-checkout').style.display = 'block';
+            document.getElementById('billpay-step-4').classList.add('active');
+        });
+
+        // Checkout pay button -> Confirmation
+        document.getElementById('checkout-pay-btn')?.addEventListener('click', () => {
+            this.processBillPayment();
+        });
+
+        // Done button -> Dashboard
+        document.getElementById('billpay-done-btn')?.addEventListener('click', () => {
+            this.showScreen('dashboard-screen');
+            this.resetBillPayFlow();
+        });
+
+        // Search reference number button
+        document.getElementById('search-reference-btn')?.addEventListener('click', () => {
+            // Auto-fill a demo reference number
+            document.getElementById('reference-number-input').value = 'REF-' + Math.random().toString(36).substr(2, 8).toUpperCase();
+        });
+    },
+
+    // Update biller options based on state and utility type
+    updateBillerOptions: function() {
+        const state = document.getElementById('state-select').value;
+        const utility = document.getElementById('utility-type-select').value;
+        const billerSelect = document.getElementById('biller-select');
+
+        // Reset biller dropdown
+        billerSelect.innerHTML = '<option value="">Choose a biller</option>';
+        document.getElementById('billpay-to-details').disabled = true;
+
+        if (!utility) return;
+
+        const utilityBillers = this.billerData[utility] || {};
+        const billers = utilityBillers[state] || utilityBillers._default || ['Local Provider'];
+
+        billers.forEach(biller => {
+            const option = document.createElement('option');
+            option.value = biller.toLowerCase().replace(/[^a-z0-9]/g, '-');
+            option.textContent = biller;
+            billerSelect.appendChild(option);
+        });
+    },
+
+    // Populate the review screen with entered data
+    populateBillPayReview: function() {
+        const stateSelect = document.getElementById('state-select');
+        const utilitySelect = document.getElementById('utility-type-select');
+        const billerSelect = document.getElementById('biller-select');
+        const amount = document.getElementById('billpay-amount-input').value;
+        const account = document.getElementById('account-number-input').value;
+        const reference = document.getElementById('reference-number-input').value || 'N/A';
+
+        document.getElementById('review-biller').textContent = billerSelect.selectedOptions[0].text;
+        document.getElementById('review-state').textContent = stateSelect.selectedOptions[0].text;
+        document.getElementById('review-utility').textContent = utilitySelect.selectedOptions[0].text;
+        document.getElementById('review-account').textContent = account;
+        document.getElementById('review-reference').textContent = reference;
+        document.getElementById('review-amount').textContent = '$' + parseFloat(amount).toFixed(2);
+    },
+
+    // Process the bill payment (mock)
+    processBillPayment: function() {
+        const billerSelect = document.getElementById('biller-select');
+        const amount = document.getElementById('billpay-amount-input').value;
+        const reference = document.getElementById('reference-number-input').value || 'N/A';
+
+        // Generate a transaction ID
+        const txnId = 'TXN-' + Date.now().toString(36).toUpperCase();
+
+        // Populate confirmation
+        document.getElementById('confirm-biller').textContent = billerSelect.selectedOptions[0].text;
+        document.getElementById('confirm-amount').textContent = '$' + parseFloat(amount).toFixed(2);
+        document.getElementById('confirm-reference').textContent = reference;
+        document.getElementById('confirm-txn-id').textContent = txnId;
+        document.getElementById('confirm-date').textContent = new Date().toLocaleDateString('en-US', {
+            year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit'
+        });
+
+        // Show confirmation
+        document.getElementById('billpay-checkout').style.display = 'none';
+        document.getElementById('billpay-confirmation').style.display = 'block';
+    },
+
+    // Reset bill pay flow
+    resetBillPayFlow: function() {
+        // Reset all steps to hidden except step 1
+        document.getElementById('billpay-select-biller').style.display = 'block';
+        document.getElementById('billpay-enter-details').style.display = 'none';
+        document.getElementById('billpay-review').style.display = 'none';
+        document.getElementById('billpay-checkout').style.display = 'none';
+        document.getElementById('billpay-confirmation').style.display = 'none';
+
+        // Reset progress steps
+        document.querySelectorAll('#billpay-progress .progress-step').forEach((step, i) => {
+            if (i === 0) step.classList.add('active');
+            else step.classList.remove('active');
+        });
+
+        // Reset form fields
+        document.getElementById('state-select').value = '';
+        document.getElementById('utility-type-select').value = '';
+        document.getElementById('biller-select').innerHTML = '<option value="">Choose a biller</option>';
+        document.getElementById('account-number-input').value = '';
+        document.getElementById('billpay-amount-input').value = '';
+        document.getElementById('reference-number-input').value = '';
+        document.getElementById('billpay-to-details').disabled = true;
+        document.getElementById('billpay-to-review').disabled = true;
     },
     
     // Profile handlers
@@ -570,8 +754,8 @@ document.getElementById('success-modal')?.addEventListener('click', (e) => {
 // Initialize app when DOM is ready
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
-        PayMyBillApp.init();
+        CheckPayApp.init();
     });
 } else {
-    PayMyBillApp.init();
+    CheckPayApp.init();
 }
