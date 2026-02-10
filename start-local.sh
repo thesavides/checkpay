@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# PayMyBill Local Development Server
+# CheckPay Local Development Server
 # This script starts a local web server for testing
 
-echo "🚀 Starting PayMyBill local development server..."
+echo "🚀 Starting CheckPay local development server..."
 echo ""
 echo "📁 Working directory: $(pwd)"
 echo ""

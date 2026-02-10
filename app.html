@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PayMyBill - Cash Your Check, Get Your Card</title>
+    <title>CheckPay - Cash Your Check, Get Your Card</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,7 +25,7 @@
                     <div class="app-logo">
                         <span class="material-icons">account_balance_wallet</span>
                     </div>
-                    <h1 class="app-title">PayMyBill</h1>
+                    <h1 class="app-title">CheckPay</h1>
                     <p class="app-tagline" data-i18n="welcome.tagline">Cash your check, get your card instantly</p>
                 </div>
 
@@ -519,46 +519,277 @@
             </div>
 
             <div class="screen-content">
-                <div class="form-group">
-                    <label data-i18n="billpay.selectBiller">Select Biller</label>
-                    <div class="custom-select">
-                        <select id="biller-select">
-                            <option value="" data-i18n="billpay.chooseBiller">Choose a biller</option>
-                            <option value="electric">Electric Company</option>
-                            <option value="water">Water Utility</option>
-                            <option value="internet">Internet Provider</option>
-                            <option value="phone">Phone Company</option>
-                        </select>
-                        <span class="material-icons">expand_more</span>
+                <div class="progress-bar" id="billpay-progress">
+                    <div class="progress-step active" id="billpay-step-1">
+                        <div class="step-circle">1</div>
+                        <span>Biller</span>
+                    </div>
+                    <div class="progress-line"></div>
+                    <div class="progress-step" id="billpay-step-2">
+                        <div class="step-circle">2</div>
+                        <span>Details</span>
+                    </div>
+                    <div class="progress-line"></div>
+                    <div class="progress-step" id="billpay-step-3">
+                        <div class="step-circle">3</div>
+                        <span>Review</span>
+                    </div>
+                    <div class="progress-line"></div>
+                    <div class="progress-step" id="billpay-step-4">
+                        <div class="step-circle">4</div>
+                        <span>Pay</span>
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label data-i18n="billpay.accountNumber">Account Number</label>
-                    <input type="text" class="form-input" placeholder="123456789" id="account-number-input">
+                <!-- Step 1: Select State, Utility Type, and Biller -->
+                <div class="billpay-step-content" id="billpay-select-biller">
+                    <div class="form-group">
+                        <label data-i18n="billpay.selectState">Select State</label>
+                        <div class="custom-select">
+                            <select id="state-select">
+                                <option value="">Choose your state</option>
+                                <option value="AL">Alabama</option>
+                                <option value="AZ">Arizona</option>
+                                <option value="CA">California</option>
+                                <option value="CO">Colorado</option>
+                                <option value="CT">Connecticut</option>
+                                <option value="FL">Florida</option>
+                                <option value="GA">Georgia</option>
+                                <option value="IL">Illinois</option>
+                                <option value="MA">Massachusetts</option>
+                                <option value="MI">Michigan</option>
+                                <option value="MN">Minnesota</option>
+                                <option value="NJ">New Jersey</option>
+                                <option value="NY">New York</option>
+                                <option value="NC">North Carolina</option>
+                                <option value="OH">Ohio</option>
+                                <option value="PA">Pennsylvania</option>
+                                <option value="TX">Texas</option>
+                                <option value="VA">Virginia</option>
+                                <option value="WA">Washington</option>
+                            </select>
+                            <span class="material-icons">expand_more</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label data-i18n="billpay.utilityType">Utility Type</label>
+                        <div class="custom-select">
+                            <select id="utility-type-select">
+                                <option value="">Choose utility type</option>
+                                <option value="electric">Electricity</option>
+                                <option value="gas">Gas</option>
+                                <option value="water">Water & Sewer</option>
+                                <option value="internet">Internet</option>
+                                <option value="phone">Phone / Mobile</option>
+                                <option value="cable">Cable / TV</option>
+                                <option value="trash">Trash & Recycling</option>
+                                <option value="insurance">Insurance</option>
+                            </select>
+                            <span class="material-icons">expand_more</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label data-i18n="billpay.selectBiller">Select Biller</label>
+                        <div class="custom-select">
+                            <select id="biller-select">
+                                <option value="" data-i18n="billpay.chooseBiller">Choose a biller</option>
+                            </select>
+                            <span class="material-icons">expand_more</span>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary btn-large" id="billpay-to-details" disabled>
+                        Continue
+                    </button>
                 </div>
 
-                <div class="form-group">
-                    <label data-i18n="billpay.amount">Amount</label>
-                    <div class="input-with-prefix">
-                        <span class="input-prefix">$</span>
-                        <input type="number" class="form-input" placeholder="0.00" id="billpay-amount-input">
+                <!-- Step 2: Enter Payment Details -->
+                <div class="billpay-step-content" id="billpay-enter-details" style="display: none;">
+                    <div class="selected-biller-badge" id="selected-biller-badge">
+                        <span class="material-icons">business</span>
+                        <span id="selected-biller-name">-</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label data-i18n="billpay.accountNumber">Account Number</label>
+                        <input type="text" class="form-input" placeholder="Enter your account number" id="account-number-input">
+                    </div>
+
+                    <div class="form-group">
+                        <label data-i18n="billpay.amount">Amount</label>
+                        <div class="input-with-prefix">
+                            <span class="input-prefix">$</span>
+                            <input type="number" class="form-input" placeholder="0.00" id="billpay-amount-input" step="0.01">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label data-i18n="billpay.referenceNumber">Reference Number</label>
+                        <div class="input-with-action">
+                            <input type="text" class="form-input" placeholder="Enter or search reference #" id="reference-number-input">
+                            <button class="btn-icon input-action-btn" id="search-reference-btn" title="Search reference">
+                                <span class="material-icons">search</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary btn-large" id="billpay-to-review" disabled>
+                        Review Payment
+                    </button>
+                </div>
+
+                <!-- Step 3: Payment Review -->
+                <div class="billpay-step-content" id="billpay-review" style="display: none;">
+                    <div class="info-box success">
+                        <span class="material-icons">check_circle</span>
+                        <p>Review your payment details before proceeding</p>
+                    </div>
+
+                    <div class="check-details-card">
+                        <div class="detail-row">
+                            <span>Biller</span>
+                            <strong id="review-biller">-</strong>
+                        </div>
+                        <div class="detail-row">
+                            <span>State</span>
+                            <strong id="review-state">-</strong>
+                        </div>
+                        <div class="detail-row">
+                            <span>Utility Type</span>
+                            <strong id="review-utility">-</strong>
+                        </div>
+                        <div class="detail-row">
+                            <span>Account Number</span>
+                            <strong id="review-account">-</strong>
+                        </div>
+                        <div class="detail-row">
+                            <span>Reference</span>
+                            <strong id="review-reference">-</strong>
+                        </div>
+                        <div class="detail-row total">
+                            <span>Payment Amount</span>
+                            <strong class="amount-highlight" id="review-amount">$0.00</strong>
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <span class="material-icons">info</span>
+                        <p data-i18n="billpay.processingInfo">Payments typically process within 1-2 business days</p>
+                    </div>
+
+                    <button class="btn btn-primary btn-large" id="billpay-to-checkout">
+                        Proceed to Payment
+                    </button>
+                </div>
+
+                <!-- Step 4: Stripe-style Credit Card Checkout -->
+                <div class="billpay-step-content" id="billpay-checkout" style="display: none;">
+                    <div class="checkout-container">
+                        <div class="checkout-header">
+                            <div class="checkout-logo">
+                                <span class="material-icons">lock</span>
+                                <span>Secure Payment</span>
+                            </div>
+                            <div class="checkout-amount" id="checkout-amount">$0.00</div>
+                        </div>
+
+                        <div class="checkout-card-preview" id="checkout-card-preview">
+                            <div class="mini-card">
+                                <div class="mini-card-chip"></div>
+                                <div class="mini-card-number" id="checkout-card-display">•••• •••• •••• 4532</div>
+                                <div class="mini-card-name">CHRIS SQUIRE</div>
+                            </div>
+                        </div>
+
+                        <div class="checkout-form">
+                            <div class="form-group">
+                                <label>Card Number</label>
+                                <div class="card-input-wrapper">
+                                    <span class="material-icons card-input-icon">credit_card</span>
+                                    <input type="text" class="form-input card-number-input" id="checkout-card-number" placeholder="4532 7689 3421 9876" maxlength="19" value="4532 7689 3421 9876">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Expiry</label>
+                                    <input type="text" class="form-input" id="checkout-expiry" placeholder="MM/YY" maxlength="5" value="12/26">
+                                </div>
+                                <div class="form-group">
+                                    <label>CVV</label>
+                                    <div class="card-input-wrapper">
+                                        <input type="text" class="form-input" id="checkout-cvv" placeholder="•••" maxlength="4" value="847">
+                                        <span class="material-icons card-input-icon-right">help_outline</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Name on Card</label>
+                                <input type="text" class="form-input" id="checkout-name" placeholder="Full name" value="CHRIS SQUIRE">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Billing ZIP Code</label>
+                                <input type="text" class="form-input" id="checkout-zip" placeholder="12345" maxlength="5" value="10001">
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary btn-large checkout-pay-btn" id="checkout-pay-btn">
+                            <span class="material-icons">lock</span>
+                            <span id="checkout-pay-label">Pay $0.00</span>
+                        </button>
+
+                        <div class="checkout-footer">
+                            <span class="material-icons">verified_user</span>
+                            <span>Secured by CheckPay</span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label data-i18n="billpay.paymentDate">Payment Date</label>
-                    <input type="date" class="form-input" id="payment-date-input">
-                </div>
+                <!-- Step 5: Payment Confirmation -->
+                <div class="billpay-step-content" id="billpay-confirmation" style="display: none;">
+                    <div class="confirmation-container">
+                        <div class="confirmation-icon">
+                            <span class="material-icons">check_circle</span>
+                        </div>
+                        <h3>Payment Successful</h3>
+                        <p class="confirmation-subtitle">Your payment is being processed</p>
 
-                <div class="info-box">
-                    <span class="material-icons">info</span>
-                    <p data-i18n="billpay.processingInfo">Payments typically process within 1-2 business days</p>
-                </div>
+                        <div class="confirmation-card">
+                            <div class="detail-row">
+                                <span>Biller</span>
+                                <strong id="confirm-biller">-</strong>
+                            </div>
+                            <div class="detail-row">
+                                <span>Amount Paid</span>
+                                <strong id="confirm-amount">$0.00</strong>
+                            </div>
+                            <div class="detail-row">
+                                <span>Reference</span>
+                                <strong id="confirm-reference">-</strong>
+                            </div>
+                            <div class="detail-row">
+                                <span>Status</span>
+                                <strong class="status-pending">Pending</strong>
+                            </div>
+                            <div class="detail-row">
+                                <span>Transaction ID</span>
+                                <strong id="confirm-txn-id">-</strong>
+                            </div>
+                            <div class="detail-row">
+                                <span>Date</span>
+                                <strong id="confirm-date">-</strong>
+                            </div>
+                        </div>
 
-                <button class="btn btn-primary btn-large" id="submit-payment-btn" data-i18n="billpay.submitPayment">
-                    Submit Payment
-                </button>
+                        <button class="btn btn-primary btn-large" id="billpay-done-btn">
+                            Back to Dashboard
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
 

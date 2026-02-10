@@ -1,4 +1,4 @@
-// PayMyBill - Internationalization System
+// CheckPay - Internationalization System
 // Modular i18n architecture for easy language expansion
 
 const i18n = {
@@ -77,13 +77,21 @@ const i18n = {
             },
             billpay: {
                 title: 'Pay a Bill',
+                selectState: 'Select State',
+                utilityType: 'Utility Type',
                 selectBiller: 'Select Biller',
                 chooseBiller: 'Choose a biller',
                 accountNumber: 'Account Number',
                 amount: 'Amount',
+                referenceNumber: 'Reference Number',
                 paymentDate: 'Payment Date',
                 processingInfo: 'Payments typically process within 1-2 business days',
-                submitPayment: 'Submit Payment'
+                submitPayment: 'Submit Payment',
+                reviewPayment: 'Review Payment',
+                proceedToPayment: 'Proceed to Payment',
+                paymentSuccessful: 'Payment Successful',
+                paymentProcessing: 'Your payment is being processed',
+                backToDashboard: 'Back to Dashboard'
             },
             profile: {
                 title: 'Profile & Settings',
@@ -193,13 +201,21 @@ const i18n = {
             },
             billpay: {
                 title: 'Pagar una Factura',
+                selectState: 'Seleccionar Estado',
+                utilityType: 'Tipo de Servicio',
                 selectBiller: 'Seleccionar Proveedor',
                 chooseBiller: 'Elige un proveedor',
                 accountNumber: 'Número de Cuenta',
                 amount: 'Monto',
+                referenceNumber: 'Número de Referencia',
                 paymentDate: 'Fecha de Pago',
                 processingInfo: 'Los pagos suelen procesarse en 1-2 días hábiles',
-                submitPayment: 'Enviar Pago'
+                submitPayment: 'Enviar Pago',
+                reviewPayment: 'Revisar Pago',
+                proceedToPayment: 'Proceder al Pago',
+                paymentSuccessful: 'Pago Exitoso',
+                paymentProcessing: 'Tu pago está siendo procesado',
+                backToDashboard: 'Volver al Inicio'
             },
             profile: {
                 title: 'Perfil y Configuración',
@@ -309,13 +325,21 @@ const i18n = {
             },
             billpay: {
                 title: 'Magbayad ng Bill',
+                selectState: 'Pumili ng Estado',
+                utilityType: 'Uri ng Utility',
                 selectBiller: 'Pumili ng Biller',
                 chooseBiller: 'Pumili ng biller',
                 accountNumber: 'Numero ng Account',
                 amount: 'Halaga',
+                referenceNumber: 'Numero ng Reperensya',
                 paymentDate: 'Petsa ng Pagbabayad',
                 processingInfo: 'Karaniwang pinoproseso ang mga pagbabayad sa loob ng 1-2 araw ng negosyo',
-                submitPayment: 'Isumite ang Pagbabayad'
+                submitPayment: 'Isumite ang Pagbabayad',
+                reviewPayment: 'Suriin ang Pagbabayad',
+                proceedToPayment: 'Magpatuloy sa Pagbabayad',
+                paymentSuccessful: 'Matagumpay ang Pagbabayad',
+                paymentProcessing: 'Pinoproseso ang iyong pagbabayad',
+                backToDashboard: 'Bumalik sa Dashboard'
             },
             profile: {
                 title: 'Profile at Mga Setting',
@@ -425,13 +449,21 @@ const i18n = {
             },
             billpay: {
                 title: 'San Iwe-owo',
+                selectState: 'Yan Ipinlẹ',
+                utilityType: 'Iru Iṣẹ',
                 selectBiller: 'Yan Olugba Iwe-owo',
                 chooseBiller: 'Yan olugba iwe-owo',
                 accountNumber: 'Nọmba Akaun',
                 amount: 'Iye Owo',
+                referenceNumber: 'Nọmba Itọkasi',
                 paymentDate: 'Ọjọ Sisanwo',
                 processingInfo: 'Sisanwo maa ngba ọjọ iṣowo 1-2',
-                submitPayment: 'Fi Sisanwo ranṣẹ'
+                submitPayment: 'Fi Sisanwo ranṣẹ',
+                reviewPayment: 'Ṣayẹwo Sisanwo',
+                proceedToPayment: 'Tẹsiwaju si Sisanwo',
+                paymentSuccessful: 'Sisanwo ti Ṣaṣeyọri',
+                paymentProcessing: 'Sisanwo rẹ nṣiṣẹ',
+                backToDashboard: 'Pada si Ile'
             },
             profile: {
                 title: 'Profaili ati Eto',
@@ -474,7 +506,7 @@ const i18n = {
     
     // Initialize i18n system
     init: function(defaultLanguage = 'en') {
-        this.currentLanguage = localStorage.getItem('paymybill-language') || defaultLanguage;
+        this.currentLanguage = localStorage.getItem('checkpay-language') || defaultLanguage;
         this.translations = this.locales[this.currentLanguage];
         this.updateUI();
     },
@@ -484,7 +516,7 @@ const i18n = {
         if (this.locales[languageCode]) {
             this.currentLanguage = languageCode;
             this.translations = this.locales[languageCode];
-            localStorage.setItem('paymybill-language', languageCode);
+            localStorage.setItem('checkpay-language', languageCode);
             this.updateUI();
             return true;
         }
