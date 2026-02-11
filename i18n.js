@@ -9,7 +9,7 @@ const i18n = {
     locales: {
         en: {
             welcome: {
-                tagline: 'Cash your check, get your card instantly',
+                tagline: 'Clear your payroll check, get your card instantly',
                 selectLanguage: 'Select Language',
                 getStarted: 'Get an Account',
                 signIn: 'Already have an account? Sign In',
@@ -187,7 +187,7 @@ const i18n = {
 
         es: {
             welcome: {
-                tagline: 'Cobra tu cheque, obt\u00e9n tu tarjeta al instante',
+                tagline: 'Deposita tu cheque de nómina, obtén tu tarjeta al instante',
                 selectLanguage: 'Seleccionar Idioma',
                 getStarted: 'Obtener una Cuenta',
                 signIn: '\u00bfYa tienes cuenta? Iniciar Sesi\u00f3n',
@@ -365,7 +365,7 @@ const i18n = {
 
         ph: {
             welcome: {
-                tagline: 'I-cash ang iyong tseke, kumuha ng card agad',
+                tagline: 'I-clear ang iyong payroll check, kumuha ng card agad',
                 selectLanguage: 'Pumili ng Wika',
                 getStarted: 'Kumuha ng Account',
                 signIn: 'May account ka na? Mag-sign In',
@@ -543,7 +543,7 @@ const i18n = {
 
         yo: {
             welcome: {
-                tagline: 'Gba \u1e63\u1eb9ki r\u1eb9, gba kaadi r\u1eb9 l\u1eb9\u1e63\u1eb9k\u1eb9\u1e63\u1eb9',
+                tagline: 'Gba owó ṣẹki oṣù rẹ, gba kaadi rẹ lẹṣẹkẹṣẹ',
                 selectLanguage: 'Yan Ede',
                 getStarted: 'Gba Akaun',
                 signIn: 'Ni akaun t\u1eb9l\u1eb9? W\u1ecdl\u00e9',

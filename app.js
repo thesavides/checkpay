@@ -8,7 +8,18 @@ const CheckPayApp = {
     // Initialize the application
     init: function() {
         this.setupEventListeners();
-        this.showScreen('welcome-screen');
+
+        // Check URL parameters for sign-in routing
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('mode') === 'signin') {
+            this.isAuthenticated = true;
+            this.userData.fullName = 'Chris Squire';
+            this.userData.itinLast4 = '7890';
+            this.setupDashboard('returning');
+            this.showScreen('dashboard-screen');
+        } else {
+            this.showScreen('welcome-screen');
+        }
     },
 
     // Setup all event listeners
@@ -28,6 +39,7 @@ const CheckPayApp = {
             this.isAuthenticated = true;
             this.userData.itinLast4 = '7890';
             this.userData.fullName = 'Chris Squire';
+            this.setupDashboard('returning');
             this.showScreen('dashboard-screen');
         });
 
@@ -865,6 +877,43 @@ const CheckPayApp = {
                 });
             });
         });
+    },
+
+    // ==========================================
+    // Dashboard Setup
+    // ==========================================
+
+    setupDashboard: function(mode) {
+        if (mode === 'returning') {
+            // Returning user — has balance, active card, transactions
+            document.getElementById('balance-display').textContent = '$1,234.56';
+            document.getElementById('header-available-balance').textContent = '$1,234.56';
+            document.getElementById('header-pending-balance').textContent = '$850.00';
+            document.querySelector('.user-name').textContent = 'Chris';
+
+            // Update card preview to active state
+            const cardPreview = document.getElementById('card-preview');
+            if (cardPreview) {
+                cardPreview.querySelector('.card-front').innerHTML = `
+                    <div class="card-chip"></div>
+                    <div class="card-number">\u2022\u2022\u2022\u2022 \u2022\u2022\u2022\u2022 \u2022\u2022\u2022\u2022 4532</div>
+                    <div class="card-details">
+                        <div>
+                            <div class="card-label" data-i18n="card.cardHolder">Card Holder</div>
+                            <div class="card-value">CHRIS SQUIRE</div>
+                        </div>
+                        <div>
+                            <div class="card-label" data-i18n="card.expires">Expires</div>
+                            <div class="card-value">12/26</div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            // Load transaction history
+            this.loadMockTransactions();
+        }
+        // 'new' mode — dashboard HTML already shows $0.00, pending card, empty transactions
     },
 
     // ==========================================
