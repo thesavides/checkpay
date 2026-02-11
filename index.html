@@ -22,6 +22,10 @@
             --accent: #FF6B6B;
         }
 
+        html, body {
+            overflow-x: hidden;
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
             line-height: 1.6;
@@ -554,7 +558,8 @@
                 gap: 1rem;
             }
 
-            .nav-links a:not(.cta-button) {
+            .nav-links a:not(.cta-button),
+            .nav-links .language-select {
                 display: none;
             }
 
@@ -605,6 +610,28 @@
             .languages h2,
             .cta-section h2 {
                 font-size: 2rem;
+            }
+
+            .features,
+            .how-it-works,
+            .languages,
+            .faq-section,
+            .cta-section {
+                padding: 4rem 1.25rem;
+            }
+
+            .faq-question {
+                font-size: 0.95rem;
+                padding: 1rem 1.25rem;
+            }
+
+            .faq-answer {
+                padding: 0 1.25rem 1rem;
+            }
+
+            .language-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
             }
         }
 
@@ -671,7 +698,7 @@
                 <a href="#get-started" class="cta-button">Start Now</a>
                 <a href="#how-it-works" class="cta-secondary">Learn More</a>
             </div>
-            <div style="margin-top: 2rem; display: flex; gap: 2rem; color: #666;">
+            <div class="hero-stats" style="margin-top: 2rem; display: flex; gap: 2rem; color: #666; flex-wrap: wrap;">
                 <div>
                     <div style="font-size: 2rem; font-weight: 700; color: var(--primary);">2-3 min</div>
                     <div style="font-size: 0.9rem;">Processing Time</div>

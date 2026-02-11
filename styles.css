@@ -28,15 +28,18 @@ body {
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
 }
 
 .app-container {
+    width: 100%;
     max-width: 480px;
     margin: 0 auto;
     background: var(--white);
     min-height: 100vh;
     position: relative;
     box-shadow: 0 0 20px var(--shadow);
+    overflow-x: hidden;
 }
 
 /* Screen Management */
@@ -1073,10 +1076,11 @@ input:checked + .toggle-slider:before {
 .bottom-nav {
     position: fixed;
     bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0;
+    right: 0;
     width: 100%;
     max-width: 480px;
+    margin: 0 auto;
     display: flex;
     background: var(--white);
     border-top: 1px solid var(--border-color);
@@ -1419,17 +1423,60 @@ input:checked + .toggle-slider:before {
 
 /* Responsive Design */
 @media (max-width: 380px) {
+    .screen-content {
+        padding: 16px;
+        padding-bottom: 80px;
+    }
+
     .quick-actions {
         grid-template-columns: 1fr;
     }
-    
+
     .action-btn {
         flex-direction: row;
         justify-content: flex-start;
         text-align: left;
     }
-    
+
     .card-actions {
+        grid-template-columns: 1fr;
+    }
+
+    .card-number-full {
+        font-size: 18px;
+    }
+
+    .card-full {
+        padding: 24px 16px;
+    }
+
+    .card-details-full {
+        gap: 16px;
+    }
+
+    .balance-amount {
+        font-size: 28px;
+    }
+
+    .progress-step span {
+        font-size: 10px;
+    }
+
+    .step-circle {
+        width: 32px;
+        height: 32px;
+        font-size: 14px;
+    }
+
+    .checkout-amount {
+        font-size: 20px;
+    }
+
+    .mini-card {
+        width: 100%;
+    }
+
+    .form-row {
         grid-template-columns: 1fr;
     }
 }
@@ -1459,10 +1506,11 @@ input:checked + .toggle-slider:before {
 .balance-header-bar {
     position: fixed;
     top: 0;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0;
+    right: 0;
     width: 100%;
     max-width: 480px;
+    margin: 0 auto;
     z-index: 101;
     display: flex;
     align-items: center;
