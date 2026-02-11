@@ -383,9 +383,11 @@ const CheckPayApp = {
 
         // Deposit timeline done button
         document.getElementById('deposit-done-btn')?.addEventListener('click', () => {
+            // Move funds from pending to available
+            this.setupDashboard('returning');
             this.showScreen('dashboard-screen');
             this.showSuccessModal(
-                i18n.t('check.title') || 'Cash a Check',
+                i18n.t('deposit.clearedTitle') || 'Check Deposited',
                 i18n.t('deposit.clearedMessage') || 'Your check has been deposited. Funds are now available!'
             );
             this.resetCheckFlow();
@@ -466,6 +468,9 @@ const CheckPayApp = {
         // Hide progress bar during timeline view
         const progressBar = document.getElementById('check-progress');
         if (progressBar) progressBar.style.display = 'none';
+
+        // Update pending balance to reflect the check amount
+        document.getElementById('header-pending-balance').textContent = '$850.00';
 
         const now = new Date();
         const formatTime = (d) => d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
