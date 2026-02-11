@@ -467,6 +467,78 @@
             opacity: 1;
         }
 
+        /* FAQ Section */
+        .faq-section {
+            padding: 6rem 2rem;
+            background: #f8f9fa;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            transition: box-shadow 0.3s;
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-item[open] {
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-question {
+            padding: 1.25rem 1.5rem;
+            font-weight: 600;
+            font-size: 1.05rem;
+            color: var(--secondary);
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question::-webkit-details-marker {
+            display: none;
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: var(--primary);
+            transition: transform 0.3s;
+            flex-shrink: 0;
+            margin-left: 1rem;
+        }
+
+        .faq-item[open] .faq-question::after {
+            content: '−';
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem 1.25rem;
+        }
+
+        .faq-answer p {
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
         /* Responsive */
         @media (max-width: 968px) {
             .hero {
@@ -573,7 +645,7 @@
             <div class="nav-links">
                 <a href="#features">Features</a>
                 <a href="#how-it-works">How It Works</a>
-                <a href="#languages">Languages</a>
+                <a href="#faq">FAQ</a>
                 <select class="language-select" id="language-selector">
                     <option value="en">🇬🇧 English</option>
                     <option value="es">🇪🇸 Español</option>
@@ -770,6 +842,88 @@
         </div>
     </section>
 
+    <!-- FAQ Section -->
+    <section class="faq-section" id="faq">
+        <div class="faq-container">
+            <div class="section-header">
+                <h2>Frequently Asked Questions</h2>
+                <p>Everything you need to know about CheckPay.</p>
+            </div>
+
+            <div class="faq-grid">
+                <details class="faq-item">
+                    <summary class="faq-question">What is CheckPay?</summary>
+                    <div class="faq-answer">
+                        <p>CheckPay is a secure way to deposit checks, receive funds, and pay bills without standing in line at a check-cashing store or bank. Deposit checks from your phone, get a virtual card to spend your money, and pay bills online.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-question">Do I need a Social Security Number (SSN)?</summary>
+                    <div class="faq-answer">
+                        <p>No. CheckPay supports ITIN-based identity verification. You are not required to have an SSN to open an account or deposit checks.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-question">What do I need to create an account?</summary>
+                    <div class="faq-answer">
+                        <p>To open your account, you will need a valid government-issued ID, your ITIN (if applicable), your residential address, and a quick selfie verification. This information is required to verify your identity and open your account securely.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-question">Why do I need to verify my identity?</summary>
+                    <div class="faq-answer">
+                        <p>U.S. banks are required to verify the identity of account holders and check depositors. This protects you from fraud and ensures your funds are processed safely. Identity verification replaces the in-person ID checks you would normally go through at a check-cashing store.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-question">Is my information shared with immigration authorities?</summary>
+                    <div class="faq-answer">
+                        <p>No. Your information is encrypted, used only for identity verification and deposit processing, and shared only with required banking and clearing partners. Your information is not used for immigration enforcement purposes.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-question">Why do I have to confirm my identity again when depositing a check?</summary>
+                    <div class="faq-answer">
+                        <p>When you deposit a check, the clearing bank must confirm that the check belongs to you and the deposit is legitimate. This is called Secure Deposit Confirmation. It replaces the in-person verification you would normally complete at a physical location.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-question">Is this eye-tracking or surveillance?</summary>
+                    <div class="faq-answer">
+                        <p>No. Selfie verification checks that a real person is making the deposit. It is not tracking you beyond that moment and is not used for monitoring or surveillance. It is used strictly for deposit security.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-question">How long does it take to receive funds?</summary>
+                    <div class="faq-answer">
+                        <p>You will see the deposit status in your app: Submitted, Under Review, Accepted, Pending, and Cleared. Once cleared, funds move from "Pending" to "Available" in your balance. Processing time depends on the clearing bank and check type.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-question">Are there fees?</summary>
+                    <div class="faq-answer">
+                        <p>Fees may apply to check deposit processing, check clearing, bill payments, and certain transfers. All fees are displayed before you confirm a transaction. There are no hidden charges.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-question">Is my money safe?</summary>
+                    <div class="faq-answer">
+                        <p>Funds are processed through regulated banking partners. Your deposits go through a U.S. clearing bank or assigned financial partner. Your data is encrypted and protected with bank-level security.</p>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
     <!-- CTA Section -->
     <section class="cta-section" id="get-started">
         <h2>Ready to Get Started?</h2>
@@ -784,7 +938,7 @@
             <div class="footer-links">
                 <a href="#features">Features</a>
                 <a href="#how-it-works">How It Works</a>
-                <a href="#languages">Languages</a>
+                <a href="#faq">FAQ</a>
                 <a href="#">Privacy Policy</a>
                 <a href="#">Terms of Service</a>
                 <a href="#">Support</a>

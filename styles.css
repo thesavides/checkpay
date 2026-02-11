@@ -265,6 +265,14 @@ body {
     font-weight: 600;
     cursor: pointer;
     padding: 8px;
+    text-decoration: none;
+}
+
+.home-link {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 24px;
+    color: var(--text-secondary);
 }
 
 .btn-remove {
