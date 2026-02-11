@@ -788,6 +788,11 @@ const CheckPayApp = {
         document.getElementById('language-settings-btn')?.addEventListener('click', () => {
             this.openLanguageModal();
         });
+
+        // Sign out → go to landing page
+        document.getElementById('sign-out-btn')?.addEventListener('click', () => {
+            window.location.href = 'index.html';
+        });
     },
 
     // ==========================================

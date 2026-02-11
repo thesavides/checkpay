@@ -92,6 +92,18 @@
             font-size: 0.9rem;
         }
 
+        .sign-in-link {
+            padding: 0.6rem 1.2rem;
+            border: 2px solid var(--primary);
+            border-radius: 8px;
+            color: var(--primary) !important;
+            font-weight: 600;
+        }
+
+        .sign-in-link:hover {
+            background: rgba(0, 150, 136, 0.08);
+        }
+
         .cta-button {
             padding: 0.75rem 1.5rem;
             background: var(--primary);
@@ -564,7 +576,7 @@
                 gap: 1rem;
             }
 
-            .nav-links a:not(.cta-button),
+            .nav-links a:not(.cta-button):not(.sign-in-link),
             .nav-links .language-select {
                 display: none;
             }
@@ -685,6 +697,7 @@
                     <option value="ph">🇵🇭 Filipino</option>
                     <option value="yo">🇳🇬 Yorùbá</option>
                 </select>
+                <a href="app.html" class="sign-in-link">Sign In</a>
                 <a href="app.html" class="cta-button">Get Started</a>
             </div>
         </nav>
