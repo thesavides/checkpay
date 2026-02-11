@@ -1575,11 +1575,11 @@ input:checked + .toggle-slider:before {
 
 /* Push content down when balance header is visible */
 .app-container.has-balance-header .screen {
-    padding-top: 64px;
+    padding-top: 80px;
 }
 
 .app-container.has-balance-header .screen .screen-header {
-    top: 64px;
+    top: 80px;
 }
 
 /* Reassurance Banner */
