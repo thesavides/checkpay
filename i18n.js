@@ -11,7 +11,7 @@ const i18n = {
             welcome: {
                 tagline: 'Cash your check, get your card instantly',
                 selectLanguage: 'Select Language',
-                getStarted: 'Get Started',
+                getStarted: 'Get an Account',
                 signIn: 'Already have an account? Sign In',
                 feature1: 'No bank account needed',
                 feature2: 'Get paid in minutes',
@@ -184,7 +184,7 @@ const i18n = {
             welcome: {
                 tagline: 'Cobra tu cheque, obt\u00e9n tu tarjeta al instante',
                 selectLanguage: 'Seleccionar Idioma',
-                getStarted: 'Comenzar',
+                getStarted: 'Obtener una Cuenta',
                 signIn: '\u00bfYa tienes cuenta? Iniciar Sesi\u00f3n',
                 feature1: 'No necesitas cuenta bancaria',
                 feature2: 'Te pagan en minutos',
@@ -357,7 +357,7 @@ const i18n = {
             welcome: {
                 tagline: 'I-cash ang iyong tseke, kumuha ng card agad',
                 selectLanguage: 'Pumili ng Wika',
-                getStarted: 'Magsimula',
+                getStarted: 'Kumuha ng Account',
                 signIn: 'May account ka na? Mag-sign In',
                 feature1: 'Hindi kailangan ng bank account',
                 feature2: 'Bayad sa loob ng ilang minuto',
@@ -530,7 +530,7 @@ const i18n = {
             welcome: {
                 tagline: 'Gba \u1e63\u1eb9ki r\u1eb9, gba kaadi r\u1eb9 l\u1eb9\u1e63\u1eb9k\u1eb9\u1e63\u1eb9',
                 selectLanguage: 'Yan Ede',
-                getStarted: 'B\u1eb9r\u1eb9',
+                getStarted: 'Gba Akaun',
                 signIn: 'Ni akaun t\u1eb9l\u1eb9? W\u1ecdl\u00e9',
                 feature1: 'Ko nilo akaun banki',
                 feature2: 'Gba owo laarin i\u1e63\u1eb9ju di\u1eb9',
