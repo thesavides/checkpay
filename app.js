@@ -535,6 +535,27 @@ const CheckPayApp = {
                 this.showSuccessModal('Card Unfrozen', 'Your card is now active.');
             }
         });
+
+        // Request physical card
+        document.getElementById('request-physical-btn')?.addEventListener('click', () => {
+            document.getElementById('physical-card-modal').classList.add('active');
+        });
+
+        document.getElementById('physical-card-modal-close')?.addEventListener('click', () => {
+            document.getElementById('physical-card-modal').classList.remove('active');
+        });
+
+        document.getElementById('physical-card-modal')?.addEventListener('click', (e) => {
+            if (e.target.id === 'physical-card-modal') {
+                document.getElementById('physical-card-modal').classList.remove('active');
+            }
+        });
+
+        document.getElementById('physical-card-form')?.addEventListener('submit', (e) => {
+            e.preventDefault();
+            document.getElementById('physical-card-modal').classList.remove('active');
+            this.showSuccessModal('Card Requested', 'Your physical card will arrive in 7-10 business days.');
+        });
     },
 
     // ==========================================

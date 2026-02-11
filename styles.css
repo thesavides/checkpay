@@ -1844,3 +1844,47 @@ input:checked + .toggle-slider:before {
     font-size: 18px;
     color: var(--primary-color);
 }
+
+/* Physical Card Request Modal */
+.modal-subtitle {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.address-form .form-group {
+    margin-bottom: 14px;
+}
+
+.address-form .form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+}
+
+.address-form input,
+.address-form select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+    font-size: 15px;
+    font-family: inherit;
+    transition: border-color 0.3s;
+    background: var(--white);
+}
+
+.address-form input:focus,
+.address-form select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.address-form .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}

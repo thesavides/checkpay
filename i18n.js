@@ -111,7 +111,12 @@ const i18n = {
                 freezeDescription: 'Temporarily disable transactions',
                 spendingLimits: 'Spending Limits',
                 changePin: 'Change PIN',
-                changePinDescription: 'Update your card PIN'
+                changePinDescription: 'Update your card PIN',
+                requestPhysicalCard: 'Request Physical Card',
+                requestPhysicalCardDescription: 'Get a card for ATM withdrawals',
+                physicalCardModalTitle: 'Request Physical Card',
+                physicalCardModalSubtitle: 'Verify your mailing address to receive your card.',
+                requestCardBtn: 'Request Card'
             },
             transactions: {
                 title: 'Activity',
@@ -284,7 +289,12 @@ const i18n = {
                 freezeDescription: 'Desactivar transacciones temporalmente',
                 spendingLimits: 'L\u00edmites de Gasto',
                 changePin: 'Cambiar PIN',
-                changePinDescription: 'Actualizar tu PIN de tarjeta'
+                changePinDescription: 'Actualizar tu PIN de tarjeta',
+                requestPhysicalCard: 'Solicitar Tarjeta Física',
+                requestPhysicalCardDescription: 'Obtener una tarjeta para retiros en cajeros',
+                physicalCardModalTitle: 'Solicitar Tarjeta Física',
+                physicalCardModalSubtitle: 'Verifica tu dirección postal para recibir tu tarjeta.',
+                requestCardBtn: 'Solicitar Tarjeta'
             },
             transactions: {
                 title: 'Actividad',
@@ -457,7 +467,12 @@ const i18n = {
                 freezeDescription: 'Pansamantalang i-disable ang mga transaksyon',
                 spendingLimits: 'Mga Limitasyon sa Paggastos',
                 changePin: 'Palitan ang PIN',
-                changePinDescription: 'I-update ang iyong PIN ng card'
+                changePinDescription: 'I-update ang iyong PIN ng card',
+                requestPhysicalCard: 'Mag-request ng Physical Card',
+                requestPhysicalCardDescription: 'Kumuha ng card para sa ATM withdrawals',
+                physicalCardModalTitle: 'Mag-request ng Physical Card',
+                physicalCardModalSubtitle: 'I-verify ang iyong mailing address para matanggap ang card.',
+                requestCardBtn: 'I-request ang Card'
             },
             transactions: {
                 title: 'Aktibidad',
@@ -630,7 +645,12 @@ const i18n = {
                 freezeDescription: 'Da i\u1e63owo duro fun igba di\u1eb9',
                 spendingLimits: 'Opin Lilo Owo',
                 changePin: 'Yipada PIN',
-                changePinDescription: '\u1e62e imudojuiw\u1ecdn PIN kaadi r\u1eb9'
+                changePinDescription: 'Ṣe imudojuiwọn PIN kaadi rẹ',
+                requestPhysicalCard: 'Beere fun Kaadi Gidi',
+                requestPhysicalCardDescription: 'Gba kaadi fun yiyọ owo ni ATM',
+                physicalCardModalTitle: 'Beere fun Kaadi Gidi',
+                physicalCardModalSubtitle: 'Jẹrisi adirẹsi ifiranṣẹ rẹ lati gba kaadi rẹ.',
+                requestCardBtn: 'Beere fun Kaadi'
             },
             transactions: {
                 title: 'I\u1e63\u1eb9',
