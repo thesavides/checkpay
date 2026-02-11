@@ -109,7 +109,7 @@ git commit -m "Your descriptive commit message here"
 **Good commit messages:**
 - ✅ "Add Spanish translations for bill pay screen"
 - ✅ "Fix mobile navigation menu styling"
-- ✅ "Update check cashing fee display"
+- ✅ "Update check clearing fee display"
 
 **Bad commit messages:**
 - ❌ "Updates"
@@ -154,7 +154,7 @@ Once deployed:
 5. Test all critical flows:
    - Language switching
    - KYC verification
-   - Check cashing
+   - Check clearing
    - Navigation
 
 ## Testing Checklist

@@ -13,7 +13,7 @@ A multilingual check-to-card wallet web app targeting ITIN-based users (immigran
 ```
 /Users/chrissavides/checkpay/
 ├── index.html                  # Marketing/landing page (self-contained CSS & JS, FAQ, responsive)
-├── app.html                    # Main app (all screens: welcome, KYC-A, dashboard, check cashing w/ KYC-B, card, bill pay, profile)
+├── app.html                    # Main app (all screens: welcome, KYC-A, dashboard, check clearing w/ KYC-B, card, bill pay, profile)
 ├── app.js                      # App logic & state management (~1003 lines)
 ├── styles.css                  # App styles (used by app.html, ~1968 lines)
 ├── i18n.js                     # Internationalization — English, Spanish, Filipino, Yoruba (~859 lines)
@@ -40,7 +40,7 @@ A multilingual check-to-card wallet web app targeting ITIN-based users (immigran
 ### Technology Partners (Production)
 | Partner | Role | Integration Point |
 |---------|------|-------------------|
-| **RDC Provider** (e.g. Ingo Money) | Remote Deposit Capture — check image processing, validation, and clearing | Check cashing flow (Steps 1-2: front/back capture, Step 4: submit & timeline) |
+| **RDC Provider** (e.g. Ingo Money) | Remote Deposit Capture — check image processing, validation, and clearing | Check clearing flow (Steps 1-2: front/back capture, Step 4: submit & timeline) |
 | **KYC Provider** | Identity verification per sponsor bank & issuing bank requirements | KYC-A (account setup) and KYC-B (per-deposit). May require split/asynchronous KYC |
 | **TabaPay** | Bill payments via Mastercard Bill Pay rails | Bill pay flow |
 | **Stripe** | Card payments for bill payment and future services | Bill pay checkout, future payment services |
@@ -89,9 +89,9 @@ KYC is driven by the sponsor bank and issuing bank requirements. In production, 
    - Step 2: Government ID upload (passport/ID photo)
    - Step 3: Selfie capture (liveness verification)
    - Step 4: Provisioning animation (verify identity → create virtual card → activate wallet)
-3. **Dashboard** — balance card with bank disclaimer, virtual card preview with issuer badge, quick actions (cash check, view card, pay bill), recent transactions
+3. **Dashboard** — balance card with bank disclaimer, virtual card preview with issuer badge, quick actions (clear check, view card, pay bill), recent transactions
 4. **Persistent Balance Header** — fixed bar showing Available + Pending + "Funds held by Horizon Card Bank" disclaimer
-5. **Cash Check** — 4-step flow:
+5. **Clear Check** — 4-step flow:
    - Step 1: Capture check front
    - Step 2: Capture check back
    - Step 3: **KYC-B (Secure Deposit Confirmation)** — selfie verification, ITIN last-4 confirmation, "payable to me" checkbox, endorsement instructions
@@ -121,7 +121,7 @@ KYC is driven by the sponsor bank and issuing bank requirements. In production, 
 | **Purpose** | Activate account + virtual card | Protect individual deposit |
 | **Steps** | Personal info → ID → Selfie → Provisioning | Selfie → ITIN confirm → Payable checkbox → Endorsement |
 | **Messaging** | "One-time setup to activate your account" | "Required by the clearing bank to protect your deposit" |
-| **Location** | Standalone KYC screen | Embedded in check cashing flow (step 3 of 4) |
+| **Location** | Standalone KYC screen | Embedded in check clearing flow (step 3 of 4) |
 | **T&C** | Checkbox on Step 1 (Terms & Conditions + Privacy Policy) | Checkbox on Step 4 confirm (Deposit Terms) |
 | **Production driver** | Sponsor bank + issuing bank requirements (possibly split synchronous KYC) | Sponsor bank + RDC provider requirements |
 
@@ -242,7 +242,7 @@ git push origin main        # Auto-deploys to Cloudflare Pages
 - ✅ Two user journeys working (new signup + returning sign-in)
 - ✅ Dynamic balance flow (pending → cleared)
 - ✅ Bank partner disclaimers at all key touchpoints
-- ✅ T&C checkboxes on signup and check cashing
+- ✅ T&C checkboxes on signup and check clearing
 - ✅ FAQ with 12 questions including bank partners and cash withdrawal
 - ✅ Mobile responsive (968px, 640px, 480px, 380px breakpoints)
 - ✅ 4-language support (en, es, ph, yo)

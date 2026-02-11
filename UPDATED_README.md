@@ -106,7 +106,7 @@ python -m http.server 8000
 1. Show **index.html** to introduce PayMyBill
 2. Click through to **app.html** to demo functionality
 3. Switch languages to show internationalization
-4. Complete a check cashing flow
+4. Complete a check clearing flow
 
 ### For Development
 1. Customize **index.html** for marketing

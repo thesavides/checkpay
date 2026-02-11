@@ -115,7 +115,7 @@ Welcome Screen (Language Selector)
 KYC Verification (Passport + Selfie)
     ↓
 Dashboard (Main Hub)
-    ├─→ Check Cashing Flow
+    ├─→ Check Clearing Flow
     ├─→ Virtual Card Screen
     ├─→ Bill Payment Screen
     ├─→ Transaction History
@@ -348,7 +348,7 @@ Desktop:  1024px+   (Max-width: 480px container)
 ### Core Features
 - [x] Multi-language support (4 languages)
 - [x] KYC verification flow
-- [x] Check cashing with image upload
+- [x] Check clearing with image upload
 - [x] Virtual card display
 - [x] Bill payment form
 - [x] Transaction history

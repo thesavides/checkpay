@@ -46,7 +46,7 @@ python -m http.server 8000
 ### ✅ Complete Features
 - **Multi-language**: English, Spanish, Filipino, Yoruba (easy to add more)
 - **KYC Flow**: Passport + selfie verification
-- **Check Cashing**: Front/back image upload with processing
+- **Check Clearing**: Front/back image upload with processing
 - **Virtual Card**: Full card display with security features
 - **Bill Pay**: Complete payment form
 - **Transactions**: History with filtering
@@ -64,7 +64,7 @@ python -m http.server 8000
 1. Welcome + Language Selector
 2. KYC Verification (2 steps)
 3. Dashboard (main hub)
-4. Check Cashing (3 steps)
+4. Check Clearing (3 steps)
 5. Virtual Card Details
 6. Transaction History
 7. Bill Payment
@@ -183,7 +183,7 @@ The app includes **4 complete languages**:
 - Recent transactions
 - Bottom navigation
 
-### 4️⃣ **Cash a Check**
+### 4️⃣ **Clear a Check**
 - Upload front image
 - Upload back image
 - Review and confirm

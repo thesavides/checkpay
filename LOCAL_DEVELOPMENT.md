@@ -59,7 +59,7 @@ Then open: http://localhost:8000
 - Test all functionality:
   - ✅ Language switching
   - ✅ KYC flow
-  - ✅ Check cashing
+  - ✅ Check clearing
   - ✅ Navigation
   - ✅ Forms
   - ✅ Mobile view (use browser dev tools)

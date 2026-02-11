@@ -1,12 +1,12 @@
 # PayMyBill - Multilingual Check-to-Card Wallet App
 
-A production-quality, responsive web application that allows users to cash checks, receive virtual debit cards, and make payments. Built with vanilla JavaScript and full internationalization support.
+A production-quality, responsive web application that allows users to clear checks, receive virtual debit cards, and make payments. Built with vanilla JavaScript and full internationalization support.
 
 ## 🌟 Features
 
 - **✅ Multi-language Support**: English, Spanish, Filipino/Tagalog, and Yoruba
 - **📸 KYC Verification**: Passport and selfie verification flow
-- **💰 Check Cashing**: Upload and cash checks with real-time processing
+- **💰 Check Clearing**: Upload and clear checks with real-time processing
 - **💳 Virtual Cards**: Instant virtual debit card issuance
 - **🧾 Bill Payments**: Pay bills directly from your wallet
 - **📊 Transaction History**: View and filter all transactions
@@ -170,7 +170,7 @@ All translations follow a hierarchical structure:
         // Dashboard screen translations
     },
     check: {
-        // Check cashing translations
+        // Check clearing translations
     },
     card: {
         // Virtual card translations
@@ -265,7 +265,7 @@ Then add RTL-specific CSS:
 - Recent transaction list
 - Bottom navigation
 
-### 4. Check Cashing
+### 4. Check Clearing
 - 3-step process (front, back, confirm)
 - Image capture with preview
 - Processing status with animation

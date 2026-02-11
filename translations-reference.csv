@@ -42,14 +42,14 @@ check.stepDepositing,Depositing to account,Depositando en cuenta,Dinideposito sa
 check.stepValidating,Validating check images,Validando imágenes del cheque,Vina-validate ang mga larawan ng tseke,Nṣe idanimọ aworan ṣẹki
 check.stepVerifying,Verifying funds,Verificando fondos,Vine-verify ang mga pondo,Nṣayẹwo owo
 check.submitCheck,Submit Check,Enviar Cheque,Isumite ang Tseke,Fi Ṣẹki ranṣẹ
-check.title,Cash a Check,Cobrar un Cheque,Mag-cash ng Tseke,Gba Ṣẹki
+check.title,Clear a Check,Compensar un Cheque,Mag-clear ng Tseke,Fi Ṣẹki kalẹ
 check.verify,Verify,Verificar,I-verify,Ṣayẹwo
 check.youReceive,You'll Receive,Recibirás,Makakatanggap Ka ng,Iwọ Yoo Gba
 checkVerify.endorseDetail,"Sign the back of your check and write ""For mobile deposit only - CheckPay""","Firma el reverso de tu cheque y escribe ""Solo para depósito móvil - CheckPay""","Pirmahan ang likod ng iyong tseke at isulat ""For mobile deposit only - CheckPay""","Fi owo si ẹhin ṣẹki rẹ ki o kọ ""Fun ifipamọ foonu nikan - CheckPay"""
 checkVerify.endorseTitle,Endorsement Required,Endoso Requerido,Kailangan ng Endorso,Ifowosi Nilo
 checkVerify.itinConfirm,ITIN ending in,ITIN que termina en,ITIN na nagtatapos sa,ITIN ti o pari ni
 checkVerify.payableToMe,This check is payable to me,Este cheque es pagadero a mí,Ang tsekeng ito ay nakapangalan sa akin,A kọ ṣẹki yii si orukọ mi
-checkVerify.replacesLine,This replaces standing in line at a check cashing store,Esto reemplaza hacer fila en una tienda de cobro de cheques,Kapalit ito ng pagpila sa tindahan ng pag-cash ng tseke,Eyi ropo diduro ni ila ni ile igba-owo ṣẹki
+checkVerify.replacesLine,This replaces standing in line at a check clearing store,Esto reemplaza hacer fila en una tienda de compensación de cheques,Kapalit ito ng pagpila sa tindahan ng pag-clear ng tseke,Eyi ropo diduro ni ila ni ile iṣẹ-ṣẹki
 checkVerify.subtitle,Required by the clearing bank to protect your deposit,Requerido por el banco para proteger tu depósito,Kinakailangan ng clearing bank para protektahan ang iyong deposito,Banki nilo eyi lati daabo bo ifipamọ rẹ
 checkVerify.takeSelfie,Tap to confirm identity,Toca para confirmar identidad,Pindutin para kumpirmahin ang pagkakakilanlan,Tẹ lati jẹrisi idanimọ
 checkVerify.title,Secure Deposit Confirmation,Confirmación Segura de Depósito,Secure na Kumpirmasyon ng Deposito,Ijẹriṣi Ifipamọ Aabo
@@ -60,7 +60,7 @@ common.delete,Delete,Eliminar,Tanggalin,Paare
 common.save,Save,Guardar,I-save,Fipamọ
 common.viewAll,View All,Ver Todas,Tingnan Lahat,Wo Gbogbo
 dashboard.availableBalance,Available Balance,Saldo Disponible,Available na Balanse,Iye Owo to Wa
-dashboard.cashCheck,Cash a Check,Cobrar un Cheque,Mag-cash ng Tseke,Gba Ṣẹki
+dashboard.cashCheck,Clear a Check,Compensar un Cheque,Mag-clear ng Tseke,Fi Ṣẹki kalẹ
 dashboard.payBill,Pay a Bill,Pagar una Factura,Magbayad ng Bill,San Iwe-owo
 dashboard.recentActivity,Recent Activity,Actividad Reciente,Kamakailang Aktibidad,Iṣẹ Laipe
 dashboard.viewCard,View Card,Ver Tarjeta,Tingnan ang Card,Wo Kaadi

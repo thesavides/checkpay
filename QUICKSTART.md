@@ -44,7 +44,7 @@ http://localhost:8000
 - View your balance (tap the eye icon to hide/show)
 - See your virtual card
 - Try the quick actions:
-  - **Cash a Check**: Upload front and back images
+  - **Clear a Check**: Upload front and back images
   - **View Card**: See full card details
   - **Pay a Bill**: Fill out the payment form
 
@@ -61,8 +61,8 @@ Use the bottom navigation bar to switch between:
 - Toggle balance visibility with the eye icon
 - Watch the balance update after check deposits
 
-### Check Cashing
-1. Click "Cash a Check"
+### Check Clearing
+1. Click "Clear a Check"
 2. Upload front image
 3. Upload back image
 4. Review and confirm
@@ -152,7 +152,7 @@ KYC Verification
     ↓ Submit
 Dashboard
     ↓ Multiple Options:
-    ├─→ Cash Check → Upload → Process → Success
+    ├─→ Clear Check → Upload → Process → Success
     ├─→ View Card → Card Details → Controls
     ├─→ Pay Bill → Form → Submit → Success
     ├─→ Activity → Filter Transactions

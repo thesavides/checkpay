@@ -49,7 +49,7 @@ const CheckPayApp = {
         // Dashboard
         this.setupDashboardHandlers();
 
-        // Check cashing
+        // Check clearing
         this.setupCheckHandlers();
 
         // Card screen
@@ -282,7 +282,7 @@ const CheckPayApp = {
     },
 
     // ==========================================
-    // Check Cashing (4 steps with KYC-B)
+    // Check Clearing (4 steps with KYC-B)
     // ==========================================
 
     setupCheckHandlers: function() {

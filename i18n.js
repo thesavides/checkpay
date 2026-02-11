@@ -51,7 +51,7 @@ const i18n = {
             dashboard: {
                 welcome: 'Welcome back',
                 availableBalance: 'Available Balance',
-                cashCheck: 'Cash a Check',
+                cashCheck: 'Clear a Check',
                 viewCard: 'View Card',
                 payBill: 'Pay a Bill',
                 recentActivity: 'Recent Activity'
@@ -60,7 +60,7 @@ const i18n = {
                 pendingBalance: 'Pending'
             },
             check: {
-                title: 'Cash a Check',
+                title: 'Clear a Check',
                 front: 'Front',
                 back: 'Back',
                 verify: 'Verify',
@@ -85,7 +85,7 @@ const i18n = {
             checkVerify: {
                 title: 'Secure Deposit Confirmation',
                 subtitle: 'Required by the clearing bank to protect your deposit',
-                replacesLine: 'This replaces standing in line at a check cashing store',
+                replacesLine: 'This replaces standing in line at a check clearing store',
                 takeSelfie: 'Tap to confirm identity',
                 itinConfirm: 'ITIN ending in',
                 payableToMe: 'This check is payable to me',
@@ -229,7 +229,7 @@ const i18n = {
             dashboard: {
                 welcome: 'Bienvenido de nuevo',
                 availableBalance: 'Saldo Disponible',
-                cashCheck: 'Cobrar un Cheque',
+                cashCheck: 'Compensar un Cheque',
                 viewCard: 'Ver Tarjeta',
                 payBill: 'Pagar una Factura',
                 recentActivity: 'Actividad Reciente'
@@ -238,7 +238,7 @@ const i18n = {
                 pendingBalance: 'Pendiente'
             },
             check: {
-                title: 'Cobrar un Cheque',
+                title: 'Compensar un Cheque',
                 front: 'Frente',
                 back: 'Reverso',
                 verify: 'Verificar',
@@ -263,7 +263,7 @@ const i18n = {
             checkVerify: {
                 title: 'Confirmaci\u00f3n Segura de Dep\u00f3sito',
                 subtitle: 'Requerido por el banco para proteger tu dep\u00f3sito',
-                replacesLine: 'Esto reemplaza hacer fila en una tienda de cobro de cheques',
+                replacesLine: 'Esto reemplaza hacer fila en una tienda de compensación de cheques',
                 takeSelfie: 'Toca para confirmar identidad',
                 itinConfirm: 'ITIN que termina en',
                 payableToMe: 'Este cheque es pagadero a m\u00ed',
@@ -407,7 +407,7 @@ const i18n = {
             dashboard: {
                 welcome: 'Maligayang pagbabalik',
                 availableBalance: 'Available na Balanse',
-                cashCheck: 'Mag-cash ng Tseke',
+                cashCheck: 'Mag-clear ng Tseke',
                 viewCard: 'Tingnan ang Card',
                 payBill: 'Magbayad ng Bill',
                 recentActivity: 'Kamakailang Aktibidad'
@@ -416,7 +416,7 @@ const i18n = {
                 pendingBalance: 'Nakabinbin'
             },
             check: {
-                title: 'Mag-cash ng Tseke',
+                title: 'Mag-clear ng Tseke',
                 front: 'Harapan',
                 back: 'Likod',
                 verify: 'I-verify',
@@ -441,7 +441,7 @@ const i18n = {
             checkVerify: {
                 title: 'Secure na Kumpirmasyon ng Deposito',
                 subtitle: 'Kinakailangan ng clearing bank para protektahan ang iyong deposito',
-                replacesLine: 'Kapalit ito ng pagpila sa tindahan ng pag-cash ng tseke',
+                replacesLine: 'Kapalit ito ng pagpila sa tindahan ng pag-clear ng tseke',
                 takeSelfie: 'Pindutin para kumpirmahin ang pagkakakilanlan',
                 itinConfirm: 'ITIN na nagtatapos sa',
                 payableToMe: 'Ang tsekeng ito ay nakapangalan sa akin',
@@ -585,7 +585,7 @@ const i18n = {
             dashboard: {
                 welcome: 'Kaabo pada',
                 availableBalance: 'Iye Owo to Wa',
-                cashCheck: 'Gba \u1e62\u1eb9ki',
+                cashCheck: 'Fi \u1e62\u1eb9ki kal\u1eb9',
                 viewCard: 'Wo Kaadi',
                 payBill: 'San Iwe-owo',
                 recentActivity: 'I\u1e63\u1eb9 Laipe'
@@ -594,7 +594,7 @@ const i18n = {
                 pendingBalance: 'Nduro'
             },
             check: {
-                title: 'Gba \u1e62\u1eb9ki',
+                title: 'Fi \u1e62\u1eb9ki kal\u1eb9',
                 front: 'Iwaju',
                 back: '\u1eb8hin',
                 verify: '\u1e62ay\u1eb9wo',
@@ -619,7 +619,7 @@ const i18n = {
             checkVerify: {
                 title: 'Ijeri\u1e63i Ifipam\u1ecd Aabo',
                 subtitle: 'Banki nilo eyi lati daabo bo ifipam\u1ecd r\u1eb9',
-                replacesLine: 'Eyi ropo diduro ni ila ni ile igba-owo \u1e63\u1eb9ki',
+                replacesLine: 'Eyi ropo diduro ni ila ni ile i\u1e63\u1eb9-\u1e63\u1eb9ki',
                 takeSelfie: 'T\u1eb9 lati j\u1eb9risi idanim\u1ecd',
                 itinConfirm: 'ITIN ti o pari ni',
                 payableToMe: 'A k\u1ecd \u1e63\u1eb9ki yii si oruk\u1ecd mi',

@@ -91,7 +91,7 @@ Landing Page                    Welcome Screen
 | Pending Balance | $0.00 |
 | Balance Header | $0.00 / $0.00 + "Funds held by Horizon Card Bank" |
 | Card Preview | Masked (••••), "Pending" badge, "Pending Activation" |
-| Transactions | "No transactions yet. Cash a check to get started." |
+| Transactions | "No transactions yet. Clear a check to get started." |
 
 ### KYC-A Details
 
@@ -162,16 +162,16 @@ The welcome screen also has an **"Already have an account? Sign In"** button tha
 
 ---
 
-## Journey 3: Cash a Check (Payroll Check Clearing)
+## Journey 3: Clear a Check (Payroll Check Clearing)
 
 ### Entry Point
-Dashboard → Click **"Cash a Check"** quick action
+Dashboard → Click **"Clear a Check"** quick action
 
 ### Flow
 
 ```
 Dashboard
-[Cash a Check] ──────────────────► Check Flow Step 1/4
+[Clear a Check] ──────────────────► Check Flow Step 1/4
                                    ┌──────────────────┐
                                    | Capture Check     |
                                    | FRONT             |──── Production: RDC partner
@@ -251,7 +251,7 @@ Dashboard
 | Deposit cleared → Back to Dashboard | **$1,234.56** | $850.00 | `setupDashboard('returning')` called |
 
 ### KYC-B Details (Step 3)
-KYC-B is a per-deposit verification embedded within the check cashing flow. Unlike KYC-A (one-time account setup), KYC-B is required every time the user deposits a check.
+KYC-B is a per-deposit verification embedded within the check clearing flow. Unlike KYC-A (one-time account setup), KYC-B is required every time the user deposits a check.
 
 **Required elements:**
 - Selfie/liveness capture (confirms the person depositing is the account holder)
@@ -259,7 +259,7 @@ KYC-B is a per-deposit verification embedded within the check cashing flow. Unli
 - "This check is payable to me" checkbox
 - Endorsement instructions: "Sign the back of the check and write: For mobile deposit only - CheckPay"
 
-**Messaging:** "Required by the clearing bank to protect your deposit" / "This replaces standing in line at a check cashing store"
+**Messaging:** "Required by the clearing bank to protect your deposit" / "This replaces standing in line at a check clearing store"
 
 ### Check Confirm Details (Step 4)
 | Field | Value |
@@ -483,7 +483,7 @@ Language preference is saved in `localStorage` as `checkpay-language` and persis
               ┌───────┘   |   └───────┐        |   |
               ▼           ▼           ▼        |   |
         ┌──────────┐ ┌─────────┐ ┌──────────┐  |   |
-        | Cash     | | View    | | Pay      |  |   |
+        | Clear    | | View    | | Pay      |  |   |
         | Check    | | Card    | | Bill     |  |   |
         | (4 steps)| | + Link  | | (4 steps)|  |   |
         |          | | + Phys. | |          |  |   |
