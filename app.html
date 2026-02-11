@@ -60,10 +60,16 @@
                     </div>
                 </div>
 
-                <a href="index.html" class="btn-text home-link">
-                    <span class="material-icons" style="font-size: 18px; vertical-align: middle; margin-right: 4px;">arrow_back</span>
-                    Back to Home
-                </a>
+                <div class="welcome-footer-links">
+                    <a href="index.html" class="btn-text home-link">
+                        <span class="material-icons" style="font-size: 18px; vertical-align: middle; margin-right: 4px;">arrow_back</span>
+                        Back to Home
+                    </a>
+                    <button class="btn-text home-link" id="welcome-language-btn">
+                        <span class="material-icons" style="font-size: 18px; vertical-align: middle; margin-right: 4px;">language</span>
+                        Language
+                    </button>
+                </div>
             </div>
         </div>
 
@@ -138,7 +144,7 @@
                         <label data-i18n="kyc.zip">ZIP Code</label>
                         <input type="text" class="form-input" id="kyc-zip-input" maxlength="5" placeholder="90001">
                     </div>
-                    <button class="btn btn-primary btn-large" id="kyc-info-continue" disabled data-i18n="common.continue">
+                    <button class="btn btn-primary btn-large" id="kyc-info-continue" data-i18n="common.continue">
                         Continue
                     </button>
                 </div>
@@ -160,7 +166,7 @@
 
                     <span class="form-hint" data-i18n="kyc.encryptedNote">Your documents are encrypted end-to-end</span>
 
-                    <button class="btn btn-primary btn-large" id="passport-continue" disabled data-i18n="common.continue">
+                    <button class="btn btn-primary btn-large" id="passport-continue" data-i18n="common.continue">
                         Continue
                     </button>
                 </div>
@@ -180,7 +186,7 @@
                         </button>
                     </div>
 
-                    <button class="btn btn-primary btn-large" id="selfie-submit" disabled data-i18n="kyc.submitVerification">
+                    <button class="btn btn-primary btn-large" id="selfie-submit" data-i18n="kyc.submitVerification">
                         Submit Verification
                     </button>
                 </div>
@@ -349,7 +355,7 @@
                         </button>
                     </div>
 
-                    <button class="btn btn-primary btn-large" id="check-front-continue" disabled data-i18n="common.continue">
+                    <button class="btn btn-primary btn-large" id="check-front-continue" data-i18n="common.continue">
                         Continue
                     </button>
                 </div>
@@ -369,7 +375,7 @@
                         </button>
                     </div>
 
-                    <button class="btn btn-primary btn-large" id="check-back-continue" disabled data-i18n="common.continue">
+                    <button class="btn btn-primary btn-large" id="check-back-continue" data-i18n="common.continue">
                         Continue
                     </button>
                 </div>
@@ -428,7 +434,7 @@
                         </div>
                     </div>
 
-                    <button class="btn btn-primary btn-large" id="check-verify-continue" disabled data-i18n="common.continue">
+                    <button class="btn btn-primary btn-large" id="check-verify-continue" data-i18n="common.continue">
                         Continue
                     </button>
                 </div>
@@ -763,7 +769,7 @@
                         </div>
                     </div>
 
-                    <button class="btn btn-primary btn-large" id="billpay-to-details" disabled>
+                    <button class="btn btn-primary btn-large" id="billpay-to-details">
                         Continue
                     </button>
                 </div>
@@ -798,7 +804,7 @@
                         </div>
                     </div>
 
-                    <button class="btn btn-primary btn-large" id="billpay-to-review" disabled>
+                    <button class="btn btn-primary btn-large" id="billpay-to-review">
                         Review Payment
                     </button>
                 </div>
