@@ -464,6 +464,22 @@ body {
     letter-spacing: 4px;
 }
 
+.card-pending-badge {
+    background: #FFE082;
+    color: #5D4037;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 4px 10px;
+    border-radius: 6px;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 32px 16px;
+}
+
 /* Virtual Card Preview */
 .virtual-card-preview {
     margin-bottom: 24px;

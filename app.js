@@ -8,7 +8,6 @@ const CheckPayApp = {
     // Initialize the application
     init: function() {
         this.setupEventListeners();
-        this.loadMockTransactions();
         this.showScreen('welcome-screen');
     },
 

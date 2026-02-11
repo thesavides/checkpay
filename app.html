@@ -20,12 +20,12 @@
         <div id="balance-header" class="balance-header-bar" style="display: none;">
             <div class="balance-header-item">
                 <span class="balance-header-label" data-i18n="dashboard.availableBalance">Available</span>
-                <span class="balance-header-amount" id="header-available-balance">$1,234.56</span>
+                <span class="balance-header-amount" id="header-available-balance">$0.00</span>
             </div>
             <div class="balance-header-divider"></div>
             <div class="balance-header-item">
                 <span class="balance-header-label" data-i18n="balance.pendingBalance">Pending</span>
-                <span class="balance-header-amount pending" id="header-pending-balance">$850.00</span>
+                <span class="balance-header-amount pending" id="header-pending-balance">$0.00</span>
             </div>
         </div>
 
@@ -240,7 +240,7 @@
                         </button>
                     </div>
                     <div class="balance-amount" id="balance-display">
-                        $1,234.56
+                        $0.00
                     </div>
                     <div class="balance-hidden" id="balance-hidden" style="display: none;">
                         ••••••
@@ -249,16 +249,19 @@
 
                 <div class="virtual-card-preview" id="card-preview">
                     <div class="card-front">
-                        <div class="card-chip"></div>
-                        <div class="card-number">•••• •••• •••• 4532</div>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div class="card-chip"></div>
+                            <span class="card-pending-badge">Pending</span>
+                        </div>
+                        <div class="card-number">•••• •••• •••• ••••</div>
                         <div class="card-details">
                             <div>
                                 <div class="card-label" data-i18n="card.cardHolder">Card Holder</div>
-                                <div class="card-value">CHRIS SQUIRE</div>
+                                <div class="card-value">YOUR NAME</div>
                             </div>
                             <div>
-                                <div class="card-label" data-i18n="card.expires">Expires</div>
-                                <div class="card-value">12/26</div>
+                                <div class="card-label">Status</div>
+                                <div class="card-value">Pending Activation</div>
                             </div>
                         </div>
                     </div>
@@ -285,7 +288,10 @@
                 </div>
 
                 <div class="transaction-list" id="recent-transactions">
-                    <!-- Transactions will be populated here -->
+                    <div class="empty-state">
+                        <span class="material-icons" style="font-size: 48px; color: var(--border-color); margin-bottom: 12px;">receipt_long</span>
+                        <p style="color: var(--text-secondary); font-size: 14px;">No transactions yet. Cash a check to get started.</p>
+                    </div>
                 </div>
             </div>
 
