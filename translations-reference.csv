@@ -1,0 +1,143 @@
+key,en,es,ph,yo
+balance.pendingBalance,Pending,Pendiente,Nakabinbin,Nduro
+billpay.accountNumber,Account Number,Número de Cuenta,Numero ng Account,Nọmba Akaun
+billpay.amount,Amount,Monto,Halaga,Iye Owo
+billpay.backToDashboard,Back to Dashboard,Volver al Inicio,Bumalik sa Dashboard,Pada si Ile
+billpay.chooseBiller,Choose a biller,Elige un proveedor,Pumili ng biller,Yan olugba iwe-owo
+billpay.paymentDate,Payment Date,Fecha de Pago,Petsa ng Pagbabayad,Ọjọ Sisanwo
+billpay.paymentProcessing,Your payment is being processed,Tu pago está siendo procesado,Pinoproseso ang iyong pagbabayad,Sisanwo rẹ nṣiṣẹ
+billpay.paymentSuccessful,Payment Successful,Pago Exitoso,Matagumpay ang Pagbabayad,Sisanwo ti Ṣaṣeyọri
+billpay.proceedToPayment,Proceed to Payment,Proceder al Pago,Magpatuloy sa Pagbabayad,Tẹsiwaju si Sisanwo
+billpay.processingInfo,"Payments typically process within 1-2 business days","Los pagos suelen procesarse en 1-2 días hábiles","Karaniwang pinoproseso ang mga pagbabayad sa loob ng 1-2 araw ng negosyo",Sisanwo maa ngba ọjọ iṣowo 1-2
+billpay.referenceNumber,Reference Number,Número de Referencia,Numero ng Reperensya,Nọmba Itọkasi
+billpay.reviewPayment,Review Payment,Revisar Pago,Suriin ang Pagbabayad,Ṣayẹwo Sisanwo
+billpay.selectBiller,Select Biller,Seleccionar Proveedor,Pumili ng Biller,Yan Olugba Iwe-owo
+billpay.selectState,Select State,Seleccionar Estado,Pumili ng Estado,Yan Ipinlẹ
+billpay.submitPayment,Submit Payment,Enviar Pago,Isumite ang Pagbabayad,Fi Sisanwo ranṣẹ
+billpay.title,Pay a Bill,Pagar una Factura,Magbayad ng Bill,San Iwe-owo
+billpay.utilityType,Utility Type,Tipo de Servicio,Uri ng Utility,Iru Iṣẹ
+card.cardHolder,Card Holder,Titular de la Tarjeta,May-ari ng Card,Eni to ni Kaadi
+card.changePin,Change PIN,Cambiar PIN,Palitan ang PIN,Yipada PIN
+card.changePinDescription,Update your card PIN,Actualizar tu PIN de tarjeta,I-update ang iyong PIN ng card,Ṣe imudojuiwọn PIN kaadi rẹ
+card.expires,Expires,Vence,Mag-e-expire,Yoo Pari
+card.freezeCard,Freeze Card,Congelar Tarjeta,I-freeze ang Card,Da Kaadi Duro
+card.freezeDescription,Temporarily disable transactions,Desactivar transacciones temporalmente,Pansamantalang i-disable ang mga transaksyon,Da iṣowo duro fun igba diẹ
+card.spendingLimits,Spending Limits,Límites de Gasto,Mga Limitasyon sa Paggastos,Opin Lilo Owo
+card.title,My Card,Mi Tarjeta,Ang Aking Card,Kaadi Mi
+check.amount,Check Amount,Monto del Cheque,Halaga ng Tseke,Iye Ṣẹki
+check.back,Back,Reverso,Likod,Ẹhin
+check.backInfo,Take a photo of the back of your check,Toma una foto del reverso de tu cheque,Kumuha ng larawan ng likod ng iyong tseke,Ya aworan ẹhin ṣẹki rẹ
+check.captureBack,Capture Check Back,Capturar Reverso del Cheque,Kunan ang Likod ng Tseke,Ya Ẹhin Ṣẹki
+check.captureFront,Capture Check Front,Capturar Frente del Cheque,Kunan ang Harapan ng Tseke,Ya Iwaju Ṣẹki
+check.confirm,Confirm,Confirmar,Kumpirmahin,Jẹrisi
+check.confirmInfo,Review your check details,Revisa los detalles de tu cheque,Suriin ang detalye ng iyong tseke,Ṣayẹwo alaye ṣẹki rẹ
+check.fee,Processing Fee,Tarifa de Procesamiento,Bayad sa Pagproseso,Owo Ṣiṣẹ
+check.front,Front,Frente,Harapan,Iwaju
+check.frontInfo,Take a photo of the front of your check,Toma una foto del frente de tu cheque,Kumuha ng larawan ng harapan ng iyong tseke,Ya aworan iwaju ṣẹki rẹ
+check.processing,Processing Your Check,Procesando tu Cheque,Pinoproseso ang Iyong Tseke,Nṣiṣẹ Ṣẹki Rẹ
+check.processingMessage,This usually takes 2-3 minutes,Esto suele tomar 2-3 minutos,Karaniwang tumatagal ito ng 2-3 minuto,Eyi maa ngba iṣẹju 2-3
+check.processingTime,Processing Time,Tiempo de Procesamiento,Oras ng Pagproseso,Akoko Ṣiṣẹ
+check.saferMessage,"Safer than standing in line. Your deposit is protected.","Más seguro que hacer fila. Tu depósito está protegido.","Mas ligtas kaysa pumila. Protektado ang iyong deposito.","O ni aabo ju lati duro ni ila lo. Ifipamọ rẹ wa ni aabo."
+check.stepDepositing,Depositing to account,Depositando en cuenta,Dinideposito sa account,Nfi sinu akaun
+check.stepValidating,Validating check images,Validando imágenes del cheque,Vina-validate ang mga larawan ng tseke,Nṣe idanimọ aworan ṣẹki
+check.stepVerifying,Verifying funds,Verificando fondos,Vine-verify ang mga pondo,Nṣayẹwo owo
+check.submitCheck,Submit Check,Enviar Cheque,Isumite ang Tseke,Fi Ṣẹki ranṣẹ
+check.title,Cash a Check,Cobrar un Cheque,Mag-cash ng Tseke,Gba Ṣẹki
+check.verify,Verify,Verificar,I-verify,Ṣayẹwo
+check.youReceive,You'll Receive,Recibirás,Makakatanggap Ka ng,Iwọ Yoo Gba
+checkVerify.endorseDetail,"Sign the back of your check and write ""For mobile deposit only - CheckPay""","Firma el reverso de tu cheque y escribe ""Solo para depósito móvil - CheckPay""","Pirmahan ang likod ng iyong tseke at isulat ""For mobile deposit only - CheckPay""","Fi owo si ẹhin ṣẹki rẹ ki o kọ ""Fun ifipamọ foonu nikan - CheckPay"""
+checkVerify.endorseTitle,Endorsement Required,Endoso Requerido,Kailangan ng Endorso,Ifowosi Nilo
+checkVerify.itinConfirm,ITIN ending in,ITIN que termina en,ITIN na nagtatapos sa,ITIN ti o pari ni
+checkVerify.payableToMe,This check is payable to me,Este cheque es pagadero a mí,Ang tsekeng ito ay nakapangalan sa akin,A kọ ṣẹki yii si orukọ mi
+checkVerify.replacesLine,This replaces standing in line at a check cashing store,Esto reemplaza hacer fila en una tienda de cobro de cheques,Kapalit ito ng pagpila sa tindahan ng pag-cash ng tseke,Eyi ropo diduro ni ila ni ile igba-owo ṣẹki
+checkVerify.subtitle,Required by the clearing bank to protect your deposit,Requerido por el banco para proteger tu depósito,Kinakailangan ng clearing bank para protektahan ang iyong deposito,Banki nilo eyi lati daabo bo ifipamọ rẹ
+checkVerify.takeSelfie,Tap to confirm identity,Toca para confirmar identidad,Pindutin para kumpirmahin ang pagkakakilanlan,Tẹ lati jẹrisi idanimọ
+checkVerify.title,Secure Deposit Confirmation,Confirmación Segura de Depósito,Secure na Kumpirmasyon ng Deposito,Ijẹriṣi Ifipamọ Aabo
+common.cancel,Cancel,Cancelar,Kanselahin,Fagilee
+common.close,Close,Cerrar,Isara,Tiipa
+common.continue,Continue,Continuar,Magpatuloy,Tẹsiwaju
+common.delete,Delete,Eliminar,Tanggalin,Paare
+common.save,Save,Guardar,I-save,Fipamọ
+common.viewAll,View All,Ver Todas,Tingnan Lahat,Wo Gbogbo
+dashboard.availableBalance,Available Balance,Saldo Disponible,Available na Balanse,Iye Owo to Wa
+dashboard.cashCheck,Cash a Check,Cobrar un Cheque,Mag-cash ng Tseke,Gba Ṣẹki
+dashboard.payBill,Pay a Bill,Pagar una Factura,Magbayad ng Bill,San Iwe-owo
+dashboard.recentActivity,Recent Activity,Actividad Reciente,Kamakailang Aktibidad,Iṣẹ Laipe
+dashboard.viewCard,View Card,Ver Tarjeta,Tingnan ang Card,Wo Kaadi
+dashboard.welcome,Welcome back,Bienvenido de nuevo,Maligayang pagbabalik,Kaabo pada
+deposit.accepted,Accepted,Aceptado,Tinanggap,Ti Gba
+deposit.backToDashboard,Back to Dashboard,Volver al Inicio,Bumalik sa Dashboard,Pada si Ile
+deposit.cleared,Cleared,Compensado,Na-clear,Ti pari
+deposit.clearedMessage,Your check has been deposited. Funds are now available!,¡Tu cheque ha sido depositado. Los fondos ya están disponibles!,Naideposito na ang iyong tseke. Available na ang mga pondo!,A ti fi ṣẹki rẹ pamọ. Owo ti wa!
+deposit.pending,Pending (Clearing),Pendiente (Compensando),Nakabinbin (Kini-clear),Nduro (Nsisan)
+deposit.submitted,Submitted,Enviado,Naisumite,Ti Fi Ranṣẹ
+deposit.subtitle,Track your check as it processes,Sigue tu cheque mientras se procesa,Subaybayan ang iyong tseke habang pinoproseso,Tẹle ṣẹki rẹ bi a ṣe nṣiṣẹ
+deposit.title,Deposit Status,Estado del Depósito,Status ng Deposito,Ipo Ifipamọ
+deposit.underReview,Under Review,En Revisión,Sinusuri,Abẹwo
+kyc.accountReady,Account Ready!,¡Cuenta Lista!,Handa na ang Account!,Akaun Ti Ṣetan!
+kyc.accountReadyMessage,Your account is set up and your virtual card is ready to use.,Tu cuenta está configurada y tu tarjeta virtual está lista para usar.,Na-set up na ang iyong account at handa na ang iyong virtual card.,Akaun rẹ ti setan ati kaadi foju rẹ setan lati lo.
+kyc.address,Street Address,Dirección,Address ng Kalye,Adirẹsẹ
+kyc.city,City,Ciudad,Lungsod,Ìlú
+kyc.dob,Date of Birth,Fecha de Nacimiento,Petsa ng Kapanganakan,Ọjọ Ìbí
+kyc.encryptedNote,Your documents are encrypted end-to-end,Tus documentos están encriptados de extremo a extremo,Ang iyong mga dokumento ay naka-encrypt mula dulo hanggang dulo,Awọn iwe rẹ wa ni aabo lati ibẹrẹ de opin
+kyc.fullName,Full Legal Name,Nombre Legal Completo,Buong Legal na Pangalan,Orukọ Ofin Ni Kikun
+kyc.itin,ITIN (Individual Taxpayer ID),ITIN (Número de Identificación Fiscal),ITIN (Individual Taxpayer ID),ITIN (Nọmba Idanimọ Owo-ori)
+kyc.itinHint,"Used only for deposit processing. Never shared.","Usado solo para procesamiento de depósitos. Nunca se comparte.","Ginagamit lang para sa pagproseso ng deposito. Hindi ibinabahagi.","A lo fun ṣiṣẹ ifipamọ nikan. A ko pin fun ẹnikeni."
+kyc.passportInfo,Take a clear photo of your passport photo page,Toma una foto clara de la página de foto de tu pasaporte,Kumuha ng malinaw na larawan ng pahina ng litrato ng iyong pasaporte,Ya aworan ti o han kedere ti oju-iwe aworan iwe-irinna rẹ
+kyc.provisioning,Setting Up Your Account,Configurando Tu Cuenta,Isineset-up ang Iyong Account,Nṣeto Akaun Rẹ
+kyc.provisioningMessage,Creating your virtual card and wallet...,Creando tu tarjeta virtual y billetera...,Ginagawa ang iyong virtual card at wallet...,Nṣẹda kaadi foju ati apamọwo rẹ...
+kyc.reassurance,"One-time setup to activate your account. Your data is encrypted and protected.","Configuración única para activar tu cuenta. Tus datos están encriptados y protegidos.","Isang beses lang na setup para i-activate ang iyong account. Ang iyong data ay naka-encrypt at protektado.","Eto ẹẹkan lati mu akaun rẹ ṣiṣẹ. Data rẹ wa ni aabo."
+kyc.selfieInfo,Take a selfie to verify your identity,Toma una selfie para verificar tu identidad,Kumuha ng selfie upang i-verify ang iyong pagkakakilanlan,Ya foti ara rẹ lati ṣe idanimọ rẹ
+kyc.state,State,Estado,Estado,Ipinlẹ
+kyc.step1,Passport,Pasaporte,Pasaporte,Iwe-irinna
+kyc.step2,Selfie,Selfie,Selfie,Foti ara ẹni
+kyc.stepActivating,Activating wallet,Activando billetera,Ina-activate ang wallet,Nmu apamọwo ṣiṣẹ
+kyc.stepCreatingCard,Creating virtual card,Creando tarjeta virtual,Ginagawa ang virtual card,Nṣẹda kaadi foju
+kyc.stepId,ID,ID,ID,ID
+kyc.stepInfo,Info,Info,Info,Alaye
+kyc.stepSelfie,Selfie,Selfie,Selfie,Foti
+kyc.stepSetup,Setup,Config,Setup,Eto
+kyc.stepVerifyingId,Verifying identity,Verificando identidad,Vine-verify ang pagkakakilanlan,Nṣe idanimọ
+kyc.submitVerification,Submit Verification,Enviar Verificación,Isumite ang Verification,Fi Idanimọ ranṣẹ
+kyc.takeSelfie,Tap to take selfie,Toca para tomar selfie,Pindutin para kumuha ng selfie,Tẹ lati ya foti ara ẹni
+kyc.title,Account Verification,Verificación de Cuenta,Pag-verify ng Account,Ṣe Idanimọ Akaun
+kyc.uploadPassport,Tap to upload government ID,Toca para subir identificación,Pindutin para mag-upload ng ID,Tẹ lati gbejade ID
+kyc.zip,ZIP Code,Código Postal,ZIP Code,Koodu Póòsítì
+modal.error,Error,Error,Error,Aṣiṣe
+modal.errorMessage,"Something went wrong. Please try again.","Algo salió mal. Por favor, inténtalo de nuevo.",May nangyaring mali. Pakisubukan muli.,Nkan kan ṣẹlẹ. Jọwọ gbiyanju lẹẹkansi.
+modal.success,Success!,¡Éxito!,Tagumpay!,Aṣeyọri!
+modal.successMessage,Your action was completed successfully,Tu acción se completó exitosamente,Matagumpay na nakumpleto ang iyong aksyon,Iṣẹ rẹ ti pari ni aṣeyọri
+nav.activity,Activity,Actividad,Aktibidad,Iṣẹ
+nav.card,Card,Tarjeta,Card,Kaadi
+nav.home,Home,Inicio,Home,Ile
+nav.profile,Profile,Perfil,Profile,Profaili
+profile.biometric,Biometric Login,Inicio de Sesión Biométrico,Biometric Login,Wiwọle Biometric
+profile.changePassword,Change Password,Cambiar Contraseña,Palitan ang Password,Yi Ọrọigbaniwole Pada
+profile.contactInfo,Contact Information,Información de Contacto,Impormasyon sa Pakikipag-ugnayan,Alaye Olubasọrọ
+profile.contactSupport,Contact Support,Contactar Soporte,Makipag-ugnayan sa Suporta,Kan si Atilẹyin
+profile.helpCenter,Help Center,Centro de Ayuda,Help Center,Ile-iṣẹ Iranlọwọ
+profile.language,Language,Idioma,Wika,Ede
+profile.notifications,Notifications,Notificaciones,Mga Notification,Awọn Iwifun
+profile.personalInfo,Personal Information,Información Personal,Personal na Impormasyon,Alaye Ti ara ẹni
+profile.preferences,Preferences,Preferencias,Mga Kagustuhan,Awọn Ayanfẹ
+profile.security,Security,Seguridad,Seguridad,Aabo
+profile.selectLanguage,Select Language,Seleccionar Idioma,Pumili ng Wika,Yan Ede
+profile.signOut,Sign Out,Cerrar Sesión,Mag-sign Out,Jade
+profile.support,Support,Soporte,Suporta,Atilẹyin
+profile.title,Profile & Settings,Perfil y Configuración,Profile at Mga Setting,Profaili ati Eto
+profile.verificationDocuments,Verification Documents,Documentos de Verificación,Mga Dokumento ng Verification,Awọn Iwe Idanimọ
+transactions.accountTopup,Account Top-up,Recarga de Cuenta,Pag-top-up ng Account,Fikun Akaun
+transactions.all,All,Todas,Lahat,Gbogbo
+transactions.billPayment,Bill Payment,Pago de Factura,Pagbabayad ng Bill,Sisanwo Iwe-owo
+transactions.checkDeposit,Check Deposit,Depósito de Cheque,Deposito ng Tseke,Ifipamọ Ṣẹki
+transactions.completed,Completed,Completadas,Nakumpleto,Ti pari
+transactions.failed,Failed,Fallidas,Nabigo,Ti kuna
+transactions.pending,Pending,Pendientes,Nakabinbin,Nduro
+transactions.title,Activity,Actividad,Aktibidad,Iṣẹ
+welcome.feature1,No bank account needed,No necesitas cuenta bancaria,Hindi kailangan ng bank account,Ko nilo akaun banki
+welcome.feature2,Get paid in minutes,Te pagan en minutos,Bayad sa loob ng ilang minuto,Gba owo laarin iṣẹju diẹ
+welcome.feature3,Virtual card instantly,Tarjeta virtual al instante,Virtual card kaagad,Kaadi foju lẹṣẹkẹṣẹ
+welcome.getStarted,Get Started,Comenzar,Magsimula,Bẹrẹ
+welcome.selectLanguage,Select Language,Seleccionar Idioma,Pumili ng Wika,Yan Ede
+welcome.signIn,Already have an account? Sign In,¿Ya tienes cuenta? Iniciar Sesión,May account ka na? Mag-sign In,Ni akaun tẹlẹ? Wọlé
+welcome.tagline,"Cash your check, get your card instantly","Cobra tu cheque, obtén tu tarjeta al instante","I-cash ang iyong tseke, kumuha ng card agad","Gba ṣẹki rẹ, gba kaadi rẹ lẹṣẹkẹṣẹ"

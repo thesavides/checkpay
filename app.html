@@ -13,6 +13,19 @@
 <body>
     <!-- App Container -->
     <div id="app" class="app-container">
+        <!-- Persistent Balance Header (shown post-authentication) -->
+        <div id="balance-header" class="balance-header-bar" style="display: none;">
+            <div class="balance-header-item">
+                <span class="balance-header-label" data-i18n="dashboard.availableBalance">Available</span>
+                <span class="balance-header-amount" id="header-available-balance">$1,234.56</span>
+            </div>
+            <div class="balance-header-divider"></div>
+            <div class="balance-header-item">
+                <span class="balance-header-label" data-i18n="balance.pendingBalance">Pending</span>
+                <span class="balance-header-amount pending" id="header-pending-balance">$850.00</span>
+            </div>
+        </div>
+
         <!-- Loading Screen -->
         <div id="loading-screen" class="screen">
             <div class="loading-spinner"></div>
@@ -29,21 +42,12 @@
                     <p class="app-tagline" data-i18n="welcome.tagline">Cash your check, get your card instantly</p>
                 </div>
 
-                <div class="language-selector">
-                    <label for="language-select" data-i18n="welcome.selectLanguage">Select Language</label>
-                    <div class="custom-select">
-                        <select id="language-select">
-                            <option value="en">English</option>
-                            <option value="es">Español</option>
-                            <option value="ph">Filipino</option>
-                            <option value="yo">Yorùbá</option>
-                        </select>
-                        <span class="material-icons">expand_more</span>
-                    </div>
-                </div>
-
                 <button class="btn btn-primary btn-large" id="get-started-btn" data-i18n="welcome.getStarted">
                     Get Started
+                </button>
+
+                <button class="btn-text" id="sign-in-link" data-i18n="welcome.signIn">
+                    Already have an account? Sign In
                 </button>
 
                 <div class="feature-list">
@@ -63,59 +67,106 @@
             </div>
         </div>
 
-        <!-- KYC Upload Screen -->
+        <!-- Account Verification Screen (KYC-A) -->
         <div id="kyc-screen" class="screen">
             <div class="screen-header">
                 <button class="btn-icon" id="kyc-back-btn">
                     <span class="material-icons">arrow_back</span>
                 </button>
-                <h2 data-i18n="kyc.title">Verify Your Identity</h2>
+                <h2 data-i18n="kyc.title">Account Verification</h2>
                 <div class="header-spacer"></div>
             </div>
 
             <div class="screen-content">
                 <div class="progress-bar">
-                    <div class="progress-step active">
+                    <div class="progress-step active" id="kyc-step-1">
                         <div class="step-circle">1</div>
-                        <span data-i18n="kyc.step1">Passport</span>
+                        <span data-i18n="kyc.stepInfo">Info</span>
                     </div>
                     <div class="progress-line"></div>
-                    <div class="progress-step">
+                    <div class="progress-step" id="kyc-step-2">
                         <div class="step-circle">2</div>
-                        <span data-i18n="kyc.step2">Selfie</span>
+                        <span data-i18n="kyc.stepId">ID</span>
+                    </div>
+                    <div class="progress-line"></div>
+                    <div class="progress-step" id="kyc-step-3">
+                        <div class="step-circle">3</div>
+                        <span data-i18n="kyc.stepSelfie">Selfie</span>
+                    </div>
+                    <div class="progress-line"></div>
+                    <div class="progress-step" id="kyc-step-4">
+                        <div class="step-circle">4</div>
+                        <span data-i18n="kyc.stepSetup">Setup</span>
                     </div>
                 </div>
 
-                <div class="kyc-content" id="passport-upload">
-                    <div class="info-box">
-                        <span class="material-icons">info</span>
-                        <p data-i18n="kyc.passportInfo">Take a clear photo of your passport photo page</p>
-                    </div>
+                <div class="reassurance-banner">
+                    <span class="material-icons">verified_user</span>
+                    <p data-i18n="kyc.reassurance">One-time setup to activate your account. Your data is encrypted and protected.</p>
+                </div>
 
+                <!-- Step 1: Personal Information -->
+                <div class="kyc-content" id="kyc-personal-info">
+                    <div class="form-group">
+                        <label data-i18n="kyc.fullName">Full Legal Name</label>
+                        <input type="text" class="form-input" id="kyc-name-input" placeholder="As it appears on your ID">
+                    </div>
+                    <div class="form-group">
+                        <label data-i18n="kyc.dob">Date of Birth</label>
+                        <input type="date" class="form-input" id="kyc-dob-input">
+                    </div>
+                    <div class="form-group">
+                        <label data-i18n="kyc.itin">ITIN (Individual Taxpayer ID)</label>
+                        <input type="text" class="form-input" id="kyc-itin-input" placeholder="9XX-XX-XXXX" maxlength="11">
+                        <span class="form-hint" data-i18n="kyc.itinHint">Used only for deposit processing. Never shared.</span>
+                    </div>
+                    <div class="form-group">
+                        <label data-i18n="kyc.address">Street Address</label>
+                        <input type="text" class="form-input" id="kyc-address-input" placeholder="123 Main St">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label data-i18n="kyc.city">City</label>
+                            <input type="text" class="form-input" id="kyc-city-input">
+                        </div>
+                        <div class="form-group">
+                            <label data-i18n="kyc.state">State</label>
+                            <input type="text" class="form-input" id="kyc-state-input" maxlength="2" placeholder="CA">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label data-i18n="kyc.zip">ZIP Code</label>
+                        <input type="text" class="form-input" id="kyc-zip-input" maxlength="5" placeholder="90001">
+                    </div>
+                    <button class="btn btn-primary btn-large" id="kyc-info-continue" disabled data-i18n="common.continue">
+                        Continue
+                    </button>
+                </div>
+
+                <!-- Step 2: Government ID Upload -->
+                <div class="kyc-content" id="passport-upload" style="display: none;">
                     <div class="upload-area" id="passport-drop-zone">
                         <span class="material-icons">cloud_upload</span>
-                        <p data-i18n="kyc.uploadPassport">Tap to upload passport</p>
+                        <p data-i18n="kyc.uploadPassport">Tap to upload government ID</p>
                         <input type="file" id="passport-input" accept="image/*" capture="environment" hidden>
                     </div>
 
                     <div class="preview-container" id="passport-preview" style="display: none;">
-                        <img id="passport-img" src="" alt="Passport preview">
+                        <img id="passport-img" src="" alt="ID preview">
                         <button class="btn-icon btn-remove" id="passport-remove">
                             <span class="material-icons">close</span>
                         </button>
                     </div>
+
+                    <span class="form-hint" data-i18n="kyc.encryptedNote">Your documents are encrypted end-to-end</span>
 
                     <button class="btn btn-primary btn-large" id="passport-continue" disabled data-i18n="common.continue">
                         Continue
                     </button>
                 </div>
 
+                <!-- Step 3: Selfie Verification -->
                 <div class="kyc-content" id="selfie-capture" style="display: none;">
-                    <div class="info-box">
-                        <span class="material-icons">info</span>
-                        <p data-i18n="kyc.selfieInfo">Take a selfie to verify your identity</p>
-                    </div>
-
                     <div class="upload-area" id="selfie-drop-zone">
                         <span class="material-icons">face</span>
                         <p data-i18n="kyc.takeSelfie">Tap to take selfie</p>
@@ -132,6 +183,29 @@
                     <button class="btn btn-primary btn-large" id="selfie-submit" disabled data-i18n="kyc.submitVerification">
                         Submit Verification
                     </button>
+                </div>
+
+                <!-- Step 4: Account Provisioning -->
+                <div class="kyc-content" id="kyc-provisioning" style="display: none;">
+                    <div class="processing-animation">
+                        <div class="processing-spinner"></div>
+                        <h3 data-i18n="kyc.provisioning">Setting Up Your Account</h3>
+                        <p data-i18n="kyc.provisioningMessage">Creating your virtual card and wallet...</p>
+                    </div>
+                    <div class="processing-steps">
+                        <div class="processing-step completed">
+                            <span class="material-icons">check_circle</span>
+                            <span data-i18n="kyc.stepVerifyingId">Verifying identity</span>
+                        </div>
+                        <div class="processing-step active">
+                            <div class="step-spinner"></div>
+                            <span data-i18n="kyc.stepCreatingCard">Creating virtual card</span>
+                        </div>
+                        <div class="processing-step">
+                            <span class="material-icons">radio_button_unchecked</span>
+                            <span data-i18n="kyc.stepActivating">Activating wallet</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -238,7 +312,7 @@
             </div>
 
             <div class="screen-content">
-                <div class="progress-bar">
+                <div class="progress-bar" id="check-progress">
                     <div class="progress-step active" id="check-step-1">
                         <div class="step-circle">1</div>
                         <span data-i18n="check.front">Front</span>
@@ -251,16 +325,17 @@
                     <div class="progress-line"></div>
                     <div class="progress-step" id="check-step-3">
                         <div class="step-circle">3</div>
+                        <span data-i18n="check.verify">Verify</span>
+                    </div>
+                    <div class="progress-line"></div>
+                    <div class="progress-step" id="check-step-4">
+                        <div class="step-circle">4</div>
                         <span data-i18n="check.confirm">Confirm</span>
                     </div>
                 </div>
 
+                <!-- Step 1: Front capture -->
                 <div class="check-capture-content" id="check-front-capture">
-                    <div class="info-box">
-                        <span class="material-icons">info</span>
-                        <p data-i18n="check.frontInfo">Take a photo of the front of your check</p>
-                    </div>
-
                     <div class="upload-area">
                         <span class="material-icons">add_a_photo</span>
                         <p data-i18n="check.captureFront">Capture Check Front</p>
@@ -279,12 +354,8 @@
                     </button>
                 </div>
 
+                <!-- Step 2: Back capture -->
                 <div class="check-capture-content" id="check-back-capture" style="display: none;">
-                    <div class="info-box">
-                        <span class="material-icons">info</span>
-                        <p data-i18n="check.backInfo">Take a photo of the back of your check</p>
-                    </div>
-
                     <div class="upload-area">
                         <span class="material-icons">add_a_photo</span>
                         <p data-i18n="check.captureBack">Capture Check Back</p>
@@ -303,12 +374,67 @@
                     </button>
                 </div>
 
-                <div class="check-capture-content" id="check-confirm" style="display: none;">
-                    <div class="info-box success">
-                        <span class="material-icons">check_circle</span>
-                        <p data-i18n="check.confirmInfo">Review your check details</p>
+                <!-- Step 3: Secure Deposit Confirmation (KYC-B) -->
+                <div class="check-capture-content" id="check-verify" style="display: none;">
+                    <div class="kyc-b-header">
+                        <h3 data-i18n="checkVerify.title">Secure Deposit Confirmation</h3>
+                        <p class="kyc-b-subtitle" data-i18n="checkVerify.subtitle">Required by the clearing bank to protect your deposit</p>
                     </div>
 
+                    <div class="reassurance-banner">
+                        <span class="material-icons">swap_horiz</span>
+                        <p data-i18n="checkVerify.replacesLine">This replaces standing in line at a check cashing store</p>
+                    </div>
+
+                    <!-- Selfie/liveness confirmation -->
+                    <div class="verify-section">
+                        <div class="upload-area" id="check-selfie-zone">
+                            <span class="material-icons">face</span>
+                            <p data-i18n="checkVerify.takeSelfie">Tap to confirm identity</p>
+                            <input type="file" id="check-selfie-input" accept="image/*" capture="user" hidden>
+                        </div>
+                        <div class="preview-container" id="check-selfie-preview" style="display: none;">
+                            <img id="check-selfie-img" src="" alt="Selfie confirmation">
+                            <button class="btn-icon btn-remove" id="check-selfie-remove">
+                                <span class="material-icons">close</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- ITIN last 4 confirmation -->
+                    <div class="verify-section">
+                        <div class="itin-confirm-box">
+                            <span class="material-icons">badge</span>
+                            <div>
+                                <p data-i18n="checkVerify.itinConfirm">ITIN ending in</p>
+                                <strong id="check-itin-last4">****</strong>
+                            </div>
+                            <span class="material-icons" style="color: var(--success); margin-left: auto;">check_circle</span>
+                        </div>
+                    </div>
+
+                    <!-- Checkbox: check is payable to me -->
+                    <label class="checkbox-row">
+                        <input type="checkbox" id="check-payable-checkbox">
+                        <span data-i18n="checkVerify.payableToMe">This check is payable to me</span>
+                    </label>
+
+                    <!-- Endorsement instructions -->
+                    <div class="endorsement-instructions">
+                        <span class="material-icons">edit</span>
+                        <div>
+                            <p data-i18n="checkVerify.endorseTitle"><strong>Endorsement Required</strong></p>
+                            <p class="endorsement-detail" data-i18n="checkVerify.endorseDetail">Sign the back of your check and write "For mobile deposit only - CheckPay"</p>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary btn-large" id="check-verify-continue" disabled data-i18n="common.continue">
+                        Continue
+                    </button>
+                </div>
+
+                <!-- Step 4: Confirm details -->
+                <div class="check-capture-content" id="check-confirm" style="display: none;">
                     <div class="check-details-card">
                         <div class="detail-row">
                             <span data-i18n="check.amount">Check Amount</span>
@@ -328,31 +454,68 @@
                         </div>
                     </div>
 
+                    <div class="reassurance-banner" style="margin-top: 16px;">
+                        <span class="material-icons">shield</span>
+                        <p data-i18n="check.saferMessage">Safer than standing in line. Your deposit is protected.</p>
+                    </div>
+
                     <button class="btn btn-primary btn-large" id="check-submit" data-i18n="check.submitCheck">
                         Submit Check
                     </button>
                 </div>
 
+                <!-- Deposit Timeline -->
                 <div class="check-capture-content" id="check-processing" style="display: none;">
-                    <div class="processing-animation">
-                        <div class="processing-spinner"></div>
-                        <h3 data-i18n="check.processing">Processing Your Check</h3>
-                        <p data-i18n="check.processingMessage">This usually takes 2-3 minutes</p>
-                    </div>
+                    <div class="deposit-timeline">
+                        <h3 data-i18n="deposit.title">Deposit Status</h3>
+                        <p class="deposit-subtitle" data-i18n="deposit.subtitle">Track your check as it processes</p>
 
-                    <div class="processing-steps">
-                        <div class="processing-step completed">
-                            <span class="material-icons">check_circle</span>
-                            <span data-i18n="check.stepValidating">Validating check images</span>
+                        <div class="timeline-container">
+                            <div class="timeline-item completed" id="timeline-submitted">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-content">
+                                    <span class="timeline-label" data-i18n="deposit.submitted">Submitted</span>
+                                    <span class="timeline-time" id="timeline-submitted-time"></span>
+                                </div>
+                            </div>
+                            <div class="timeline-item active" id="timeline-review">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-content">
+                                    <span class="timeline-label" data-i18n="deposit.underReview">Under Review</span>
+                                    <span class="timeline-time" id="timeline-review-time"></span>
+                                </div>
+                            </div>
+                            <div class="timeline-item" id="timeline-accepted">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-content">
+                                    <span class="timeline-label" data-i18n="deposit.accepted">Accepted</span>
+                                    <span class="timeline-time" id="timeline-accepted-time"></span>
+                                </div>
+                            </div>
+                            <div class="timeline-item" id="timeline-pending">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-content">
+                                    <span class="timeline-label" data-i18n="deposit.pending">Pending (Clearing)</span>
+                                    <span class="timeline-time" id="timeline-pending-time"></span>
+                                </div>
+                            </div>
+                            <div class="timeline-item" id="timeline-cleared">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-content">
+                                    <span class="timeline-label" data-i18n="deposit.cleared">Cleared</span>
+                                    <span class="timeline-time" id="timeline-cleared-time"></span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="processing-step active">
-                            <div class="step-spinner"></div>
-                            <span data-i18n="check.stepVerifying">Verifying funds</span>
+
+                        <div class="deposit-amount-card">
+                            <span data-i18n="check.amount">Check Amount</span>
+                            <strong>$850.00</strong>
                         </div>
-                        <div class="processing-step">
-                            <span class="material-icons">radio_button_unchecked</span>
-                            <span data-i18n="check.stepDepositing">Depositing to account</span>
-                        </div>
+
+                        <button class="btn btn-primary btn-large" id="deposit-done-btn" style="display: none;" data-i18n="deposit.backToDashboard">
+                            Back to Dashboard
+                        </button>
                     </div>
                 </div>
             </div>
@@ -642,11 +805,6 @@
 
                 <!-- Step 3: Payment Review -->
                 <div class="billpay-step-content" id="billpay-review" style="display: none;">
-                    <div class="info-box success">
-                        <span class="material-icons">check_circle</span>
-                        <p>Review your payment details before proceeding</p>
-                    </div>
-
                     <div class="check-details-card">
                         <div class="detail-row">
                             <span>Biller</span>
@@ -672,11 +830,6 @@
                             <span>Payment Amount</span>
                             <strong class="amount-highlight" id="review-amount">$0.00</strong>
                         </div>
-                    </div>
-
-                    <div class="info-box">
-                        <span class="material-icons">info</span>
-                        <p data-i18n="billpay.processingInfo">Payments typically process within 1-2 business days</p>
                     </div>
 
                     <button class="btn btn-primary btn-large" id="billpay-to-checkout">
@@ -926,6 +1079,32 @@
                 <h3 id="success-title" data-i18n="modal.success">Success!</h3>
                 <p id="success-message" data-i18n="modal.successMessage">Your action was completed successfully</p>
                 <button class="btn btn-primary" id="success-modal-close" data-i18n="common.close">Close</button>
+            </div>
+        </div>
+
+        <!-- Language Picker Modal -->
+        <div id="language-modal" class="modal">
+            <div class="modal-content">
+                <h3 data-i18n="profile.selectLanguage">Select Language</h3>
+                <div class="language-picker-list">
+                    <button class="language-option" data-lang="en">
+                        <span>English</span>
+                        <span class="material-icons lang-check" style="display:none;">check</span>
+                    </button>
+                    <button class="language-option" data-lang="es">
+                        <span>Espa&#241;ol</span>
+                        <span class="material-icons lang-check" style="display:none;">check</span>
+                    </button>
+                    <button class="language-option" data-lang="ph">
+                        <span>Filipino</span>
+                        <span class="material-icons lang-check" style="display:none;">check</span>
+                    </button>
+                    <button class="language-option" data-lang="yo">
+                        <span>Yor&#249;b&#225;</span>
+                        <span class="material-icons lang-check" style="display:none;">check</span>
+                    </button>
+                </div>
+                <button class="btn btn-primary" id="language-modal-close" data-i18n="common.close">Close</button>
             </div>
         </div>
     </div>

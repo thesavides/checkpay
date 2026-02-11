@@ -3,79 +3,123 @@
 const CheckPayApp = {
     currentScreen: 'welcome-screen',
     userData: {},
-    
+    isAuthenticated: false,
+
     // Initialize the application
     init: function() {
         this.setupEventListeners();
         this.loadMockTransactions();
         this.showScreen('welcome-screen');
     },
-    
+
     // Setup all event listeners
     setupEventListeners: function() {
-        // Language selector
-        document.getElementById('language-select')?.addEventListener('change', (e) => {
-            i18n.setLanguage(e.target.value);
-        });
-        
         // Welcome screen
         document.getElementById('get-started-btn')?.addEventListener('click', () => {
             this.showScreen('kyc-screen');
         });
-        
+
+        // Sign in link (demo shortcut — skips KYC)
+        document.getElementById('sign-in-link')?.addEventListener('click', () => {
+            this.isAuthenticated = true;
+            this.userData.itinLast4 = '7890';
+            this.userData.fullName = 'Chris Squire';
+            this.showScreen('dashboard-screen');
+        });
+
         // KYC screen
         this.setupKYCHandlers();
-        
+
         // Dashboard
         this.setupDashboardHandlers();
-        
+
         // Check cashing
         this.setupCheckHandlers();
-        
+
         // Card screen
         this.setupCardHandlers();
-        
+
         // Transactions
         this.setupTransactionHandlers();
-        
+
         // Bill pay
         this.setupBillPayHandlers();
-        
+
         // Profile
         this.setupProfileHandlers();
-        
+
         // Navigation
         this.setupNavigationHandlers();
+
+        // Language modal
+        this.setupLanguageModal();
     },
-    
+
     // Show a specific screen
     showScreen: function(screenId) {
         // Hide all screens
         document.querySelectorAll('.screen').forEach(screen => {
             screen.classList.remove('active');
         });
-        
+
         // Show requested screen
         const screen = document.getElementById(screenId);
         if (screen) {
             screen.classList.add('active');
             this.currentScreen = screenId;
-            
+
             // Scroll to top
             window.scrollTo(0, 0);
         }
+
+        // Show/hide persistent balance header
+        const balanceHeader = document.getElementById('balance-header');
+        const appContainer = document.getElementById('app');
+        const authenticatedScreens = [
+            'dashboard-screen', 'check-screen', 'card-screen',
+            'transactions-screen', 'billpay-screen', 'profile-screen'
+        ];
+
+        if (this.isAuthenticated && authenticatedScreens.includes(screenId)) {
+            balanceHeader.style.display = 'flex';
+            appContainer.classList.add('has-balance-header');
+        } else {
+            balanceHeader.style.display = 'none';
+            appContainer.classList.remove('has-balance-header');
+        }
     },
-    
-    // KYC handlers
+
+    // ==========================================
+    // KYC-A: Account Verification (4 steps)
+    // ==========================================
+
     setupKYCHandlers: function() {
+        // Step 1: Personal Info
+        const infoFields = ['kyc-name-input', 'kyc-dob-input', 'kyc-itin-input',
+                           'kyc-address-input', 'kyc-city-input', 'kyc-state-input', 'kyc-zip-input'];
+        const infoContinue = document.getElementById('kyc-info-continue');
+
+        infoFields.forEach(id => {
+            document.getElementById(id)?.addEventListener('input', () => {
+                const allFilled = infoFields.every(fid => {
+                    const el = document.getElementById(fid);
+                    return el && el.value.trim();
+                });
+                if (infoContinue) infoContinue.disabled = !allFilled;
+            });
+        });
+
+        infoContinue?.addEventListener('click', () => {
+            document.getElementById('kyc-personal-info').style.display = 'none';
+            document.getElementById('passport-upload').style.display = 'block';
+            document.getElementById('kyc-step-2').classList.add('active');
+        });
+
+        // Step 2: Government ID upload
         const passportInput = document.getElementById('passport-input');
         const passportDropZone = document.getElementById('passport-drop-zone');
         const passportContinue = document.getElementById('passport-continue');
-        const selfieInput = document.getElementById('selfie-input');
-        const selfieDropZone = document.getElementById('selfie-drop-zone');
-        const selfieSubmit = document.getElementById('selfie-submit');
-        
-        // Passport upload
+
         passportDropZone?.addEventListener('click', () => passportInput.click());
         passportInput?.addEventListener('change', (e) => {
             if (e.target.files[0]) {
@@ -83,19 +127,23 @@ const CheckPayApp = {
                 passportContinue.disabled = false;
             }
         });
-        
+
         document.getElementById('passport-remove')?.addEventListener('click', () => {
             this.removeUpload('passport');
             passportContinue.disabled = true;
         });
-        
+
         passportContinue?.addEventListener('click', () => {
             document.getElementById('passport-upload').style.display = 'none';
             document.getElementById('selfie-capture').style.display = 'block';
-            document.querySelectorAll('.progress-step')[1].classList.add('active');
+            document.getElementById('kyc-step-3').classList.add('active');
         });
-        
-        // Selfie upload
+
+        // Step 3: Selfie
+        const selfieInput = document.getElementById('selfie-input');
+        const selfieDropZone = document.getElementById('selfie-drop-zone');
+        const selfieSubmit = document.getElementById('selfie-submit');
+
         selfieDropZone?.addEventListener('click', () => selfieInput.click());
         selfieInput?.addEventListener('change', (e) => {
             if (e.target.files[0]) {
@@ -103,21 +151,67 @@ const CheckPayApp = {
                 selfieSubmit.disabled = false;
             }
         });
-        
+
         document.getElementById('selfie-remove')?.addEventListener('click', () => {
             this.removeUpload('selfie');
             selfieSubmit.disabled = true;
         });
-        
+
+        // Selfie submit -> Provisioning (Step 4)
         selfieSubmit?.addEventListener('click', () => {
-            this.submitKYC();
+            document.getElementById('selfie-capture').style.display = 'none';
+            document.getElementById('kyc-provisioning').style.display = 'block';
+            document.getElementById('kyc-step-4').classList.add('active');
+            this.runProvisioningAnimation();
         });
-        
+
+        // Back button
         document.getElementById('kyc-back-btn')?.addEventListener('click', () => {
             this.showScreen('welcome-screen');
         });
     },
-    
+
+    // Provisioning animation after KYC-A completes
+    runProvisioningAnimation: function() {
+        const steps = document.querySelectorAll('#kyc-provisioning .processing-step');
+
+        // Step 1 already shown as completed. Step 2 active.
+        setTimeout(() => {
+            // Complete step 2 (Creating virtual card)
+            steps[1].classList.remove('active');
+            steps[1].classList.add('completed');
+            steps[1].innerHTML = '<span class="material-icons">check_circle</span>' +
+                                '<span>' + (i18n.t('kyc.stepCreatingCard') || 'Creating virtual card') + '</span>';
+            // Activate step 3
+            steps[2].classList.add('active');
+            steps[2].innerHTML = '<div class="step-spinner"></div>' +
+                                '<span>' + (i18n.t('kyc.stepActivating') || 'Activating wallet') + '</span>';
+        }, 2000);
+
+        setTimeout(() => {
+            // Complete step 3
+            steps[2].classList.remove('active');
+            steps[2].classList.add('completed');
+            steps[2].innerHTML = '<span class="material-icons">check_circle</span>' +
+                                '<span>' + (i18n.t('kyc.stepActivating') || 'Activating wallet') + '</span>';
+
+            setTimeout(() => {
+                // Store user data
+                this.isAuthenticated = true;
+                const itin = document.getElementById('kyc-itin-input')?.value || '';
+                this.userData.itinLast4 = itin.slice(-4) || '7890';
+                this.userData.fullName = document.getElementById('kyc-name-input')?.value || 'Chris Squire';
+
+                // Navigate to dashboard
+                this.showScreen('dashboard-screen');
+                this.showSuccessModal(
+                    i18n.t('kyc.accountReady') || 'Account Ready!',
+                    i18n.t('kyc.accountReadyMessage') || 'Your account is set up and your virtual card is ready to use.'
+                );
+            }, 1000);
+        }, 4000);
+    },
+
     // Handle file upload and preview
     handleFileUpload: function(file, type) {
         const reader = new FileReader();
@@ -130,33 +224,30 @@ const CheckPayApp = {
         };
         reader.readAsDataURL(file);
     },
-    
+
     // Remove uploaded file
     removeUpload: function(type) {
         const preview = document.getElementById(`${type}-preview`);
         const img = document.getElementById(`${type}-img`);
         const input = document.getElementById(`${type}-input`);
-        
+
         img.src = '';
         preview.style.display = 'none';
         input.value = '';
         document.getElementById(`${type}-drop-zone`).style.display = 'flex';
     },
-    
-    // Submit KYC
-    submitKYC: function() {
-        this.showScreen('dashboard-screen');
-        this.showSuccessModal(i18n.t('kyc.title'), i18n.t('modal.successMessage'));
-    },
-    
-    // Dashboard handlers
+
+    // ==========================================
+    // Dashboard
+    // ==========================================
+
     setupDashboardHandlers: function() {
         // Balance toggle
         document.getElementById('toggle-balance')?.addEventListener('click', (e) => {
             const display = document.getElementById('balance-display');
             const hidden = document.getElementById('balance-hidden');
             const icon = e.currentTarget.querySelector('.material-icons');
-            
+
             if (display.style.display === 'none') {
                 display.style.display = 'block';
                 hidden.style.display = 'none';
@@ -167,42 +258,45 @@ const CheckPayApp = {
                 icon.textContent = 'visibility_off';
             }
         });
-        
+
         // Quick actions
         document.getElementById('cash-check-btn')?.addEventListener('click', () => {
             this.showScreen('check-screen');
         });
-        
+
         document.getElementById('view-card-btn')?.addEventListener('click', () => {
             this.showScreen('card-screen');
         });
-        
+
         document.getElementById('pay-bill-btn')?.addEventListener('click', () => {
             this.showScreen('billpay-screen');
         });
-        
+
         document.getElementById('view-all-btn')?.addEventListener('click', () => {
             this.showScreen('transactions-screen');
         });
-        
+
         document.getElementById('settings-btn')?.addEventListener('click', () => {
             this.showScreen('profile-screen');
         });
     },
-    
-    // Check cashing handlers
+
+    // ==========================================
+    // Check Cashing (4 steps with KYC-B)
+    // ==========================================
+
     setupCheckHandlers: function() {
         // Back button
         document.getElementById('check-back-btn')?.addEventListener('click', () => {
             this.showScreen('dashboard-screen');
             this.resetCheckFlow();
         });
-        
-        // Front capture
+
+        // Step 1: Front capture
         const frontInput = document.getElementById('check-front-input');
         const frontUpload = document.querySelector('#check-front-capture .upload-area');
         const frontContinue = document.getElementById('check-front-continue');
-        
+
         frontUpload?.addEventListener('click', () => frontInput.click());
         frontInput?.addEventListener('change', (e) => {
             if (e.target.files[0]) {
@@ -210,23 +304,23 @@ const CheckPayApp = {
                 frontContinue.disabled = false;
             }
         });
-        
+
         document.getElementById('check-front-remove')?.addEventListener('click', () => {
             this.removeCheckImage('front');
             frontContinue.disabled = true;
         });
-        
+
         frontContinue?.addEventListener('click', () => {
             document.getElementById('check-front-capture').style.display = 'none';
             document.getElementById('check-back-capture').style.display = 'block';
             document.getElementById('check-step-2').classList.add('active');
         });
-        
-        // Back capture
+
+        // Step 2: Back capture
         const backInput = document.getElementById('check-back-input');
         const backUpload = document.querySelector('#check-back-capture .upload-area');
         const backContinue = document.getElementById('check-back-continue');
-        
+
         backUpload?.addEventListener('click', () => backInput.click());
         backInput?.addEventListener('change', (e) => {
             if (e.target.files[0]) {
@@ -234,24 +328,88 @@ const CheckPayApp = {
                 backContinue.disabled = false;
             }
         });
-        
+
         document.getElementById('check-back-remove')?.addEventListener('click', () => {
             this.removeCheckImage('back');
             backContinue.disabled = true;
         });
-        
+
+        // Back continue -> KYC-B verify step (not confirm)
         backContinue?.addEventListener('click', () => {
             document.getElementById('check-back-capture').style.display = 'none';
-            document.getElementById('check-confirm').style.display = 'block';
+            document.getElementById('check-verify').style.display = 'block';
             document.getElementById('check-step-3').classList.add('active');
+
+            // Show ITIN last 4 from stored user data
+            const itinDisplay = document.getElementById('check-itin-last4');
+            if (itinDisplay) {
+                itinDisplay.textContent = this.userData.itinLast4
+                    ? '\u2022\u2022\u2022-\u2022\u2022-' + this.userData.itinLast4
+                    : '\u2022\u2022\u2022\u2022';
+            }
         });
-        
-        // Submit check
+
+        // Step 3: KYC-B Verify step
+        const checkSelfieInput = document.getElementById('check-selfie-input');
+        const checkSelfieZone = document.getElementById('check-selfie-zone');
+
+        checkSelfieZone?.addEventListener('click', () => checkSelfieInput.click());
+        checkSelfieInput?.addEventListener('change', (e) => {
+            if (e.target.files[0]) {
+                const reader = new FileReader();
+                reader.onload = (ev) => {
+                    document.getElementById('check-selfie-img').src = ev.target.result;
+                    document.getElementById('check-selfie-preview').style.display = 'block';
+                    document.getElementById('check-selfie-zone').style.display = 'none';
+                    this.updateCheckVerifyContinue();
+                };
+                reader.readAsDataURL(e.target.files[0]);
+            }
+        });
+
+        document.getElementById('check-selfie-remove')?.addEventListener('click', () => {
+            document.getElementById('check-selfie-img').src = '';
+            document.getElementById('check-selfie-preview').style.display = 'none';
+            document.getElementById('check-selfie-zone').style.display = 'flex';
+            document.getElementById('check-selfie-input').value = '';
+            this.updateCheckVerifyContinue();
+        });
+
+        document.getElementById('check-payable-checkbox')?.addEventListener('change', () => {
+            this.updateCheckVerifyContinue();
+        });
+
+        // Verify continue -> Confirm step
+        document.getElementById('check-verify-continue')?.addEventListener('click', () => {
+            document.getElementById('check-verify').style.display = 'none';
+            document.getElementById('check-confirm').style.display = 'block';
+            document.getElementById('check-step-4').classList.add('active');
+        });
+
+        // Step 4: Submit check
         document.getElementById('check-submit')?.addEventListener('click', () => {
             this.processCheck();
         });
+
+        // Deposit timeline done button
+        document.getElementById('deposit-done-btn')?.addEventListener('click', () => {
+            this.showScreen('dashboard-screen');
+            this.showSuccessModal(
+                i18n.t('check.title') || 'Cash a Check',
+                i18n.t('deposit.clearedMessage') || 'Your check has been deposited. Funds are now available!'
+            );
+            this.resetCheckFlow();
+        });
     },
-    
+
+    // Update KYC-B verify continue button state
+    updateCheckVerifyContinue: function() {
+        const hasSelfie = document.getElementById('check-selfie-preview')?.style.display !== 'none';
+        const isChecked = document.getElementById('check-payable-checkbox')?.checked;
+        const btn = document.getElementById('check-verify-continue');
+        if (btn) btn.disabled = !(hasSelfie && isChecked);
+    },
+
     // Handle check image upload
     handleCheckImage: function(file, side) {
         const reader = new FileReader();
@@ -263,25 +421,27 @@ const CheckPayApp = {
         };
         reader.readAsDataURL(file);
     },
-    
+
     // Remove check image
     removeCheckImage: function(side) {
         const preview = document.getElementById(`check-${side}-preview`);
         const img = document.getElementById(`check-${side}-img`);
         const input = document.getElementById(`check-${side}-input`);
-        
+
         img.src = '';
         preview.style.display = 'none';
         input.value = '';
     },
-    
+
     // Reset check flow
     resetCheckFlow: function() {
         document.getElementById('check-front-capture').style.display = 'block';
         document.getElementById('check-back-capture').style.display = 'none';
+        document.getElementById('check-verify').style.display = 'none';
         document.getElementById('check-confirm').style.display = 'none';
         document.getElementById('check-processing').style.display = 'none';
-        
+
+        // Reset progress steps
         document.querySelectorAll('#check-screen .progress-step').forEach((step, index) => {
             if (index === 0) {
                 step.classList.add('active');
@@ -289,61 +449,116 @@ const CheckPayApp = {
                 step.classList.remove('active');
             }
         });
-        
+
+        // Reset uploads
         this.removeCheckImage('front');
         this.removeCheckImage('back');
+
+        // Reset KYC-B verify step
+        const selfieImg = document.getElementById('check-selfie-img');
+        if (selfieImg) selfieImg.src = '';
+        const selfiePreview = document.getElementById('check-selfie-preview');
+        if (selfiePreview) selfiePreview.style.display = 'none';
+        const selfieZone = document.getElementById('check-selfie-zone');
+        if (selfieZone) selfieZone.style.display = 'flex';
+        const selfieInput = document.getElementById('check-selfie-input');
+        if (selfieInput) selfieInput.value = '';
+        const checkbox = document.getElementById('check-payable-checkbox');
+        if (checkbox) checkbox.checked = false;
+        const verifyBtn = document.getElementById('check-verify-continue');
+        if (verifyBtn) verifyBtn.disabled = true;
+
+        // Reset deposit timeline
+        document.querySelectorAll('#check-processing .timeline-item').forEach((item, i) => {
+            item.classList.remove('active', 'completed');
+            if (i === 0) item.classList.add('completed');
+            if (i === 1) item.classList.add('active');
+        });
+        document.querySelectorAll('#check-processing .timeline-time').forEach(el => { el.textContent = ''; });
+        const doneBtn = document.getElementById('deposit-done-btn');
+        if (doneBtn) doneBtn.style.display = 'none';
     },
-    
-    // Process check
+
+    // Process check — deposit timeline animation
     processCheck: function() {
         document.getElementById('check-confirm').style.display = 'none';
         document.getElementById('check-processing').style.display = 'block';
-        
-        // Simulate processing
-        setTimeout(() => {
-            document.querySelector('.processing-step.active').classList.remove('active');
-            document.querySelector('.processing-step.active').classList.add('completed');
-            document.querySelectorAll('.processing-step')[2].classList.add('active');
-        }, 2000);
-        
-        setTimeout(() => {
-            document.querySelector('.processing-step.active').classList.remove('active');
-            document.querySelector('.processing-step.active').classList.add('completed');
-            
+        // Hide progress bar during timeline view
+        const progressBar = document.getElementById('check-progress');
+        if (progressBar) progressBar.style.display = 'none';
+
+        const now = new Date();
+        const formatTime = (d) => d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+        // Set submitted time
+        const submittedTime = document.getElementById('timeline-submitted-time');
+        if (submittedTime) submittedTime.textContent = formatTime(now);
+
+        // Progress through stages
+        const stages = [
+            { id: 'timeline-review', delay: 2000 },
+            { id: 'timeline-accepted', delay: 4000 },
+            { id: 'timeline-pending', delay: 6000 },
+            { id: 'timeline-cleared', delay: 8000 }
+        ];
+
+        stages.forEach(({ id, delay }, index) => {
             setTimeout(() => {
-                this.showScreen('dashboard-screen');
-                this.showSuccessModal(i18n.t('check.title'), 'Check deposited successfully! Funds will be available in 2-3 minutes.');
-                this.resetCheckFlow();
-            }, 1000);
-        }, 4000);
+                const item = document.getElementById(id);
+                const timeEl = document.getElementById(id + '-time');
+
+                // Complete current active
+                const currentActive = document.querySelector('#check-processing .timeline-item.active');
+                if (currentActive) {
+                    currentActive.classList.remove('active');
+                    currentActive.classList.add('completed');
+                }
+
+                // Activate this stage
+                item.classList.add('active');
+                if (timeEl) timeEl.textContent = formatTime(new Date());
+
+                // On last stage, complete it and show done button
+                if (index === stages.length - 1) {
+                    setTimeout(() => {
+                        item.classList.remove('active');
+                        item.classList.add('completed');
+                        const doneBtn = document.getElementById('deposit-done-btn');
+                        if (doneBtn) doneBtn.style.display = 'block';
+                    }, 1500);
+                }
+            }, delay);
+        });
     },
-    
-    // Card screen handlers
+
+    // ==========================================
+    // Card Screen
+    // ==========================================
+
     setupCardHandlers: function() {
         document.getElementById('card-back-btn')?.addEventListener('click', () => {
             this.showScreen('dashboard-screen');
         });
-        
+
         // Reveal PAN
         document.getElementById('reveal-pan')?.addEventListener('click', (e) => {
             const display = document.getElementById('card-pan-display');
             const icon = e.currentTarget.querySelector('.material-icons');
-            
-            if (display.textContent.includes('••••')) {
+
+            if (display.textContent.includes('\u2022\u2022\u2022\u2022')) {
                 display.textContent = '4532 7689 3421 9876';
                 icon.textContent = 'visibility_off';
-                
-                // Auto-hide after 10 seconds
+
                 setTimeout(() => {
-                    display.textContent = '•••• •••• •••• 4532';
+                    display.textContent = '\u2022\u2022\u2022\u2022 \u2022\u2022\u2022\u2022 \u2022\u2022\u2022\u2022 4532';
                     icon.textContent = 'visibility';
                 }, 10000);
             } else {
-                display.textContent = '•••• •••• •••• 4532';
+                display.textContent = '\u2022\u2022\u2022\u2022 \u2022\u2022\u2022\u2022 \u2022\u2022\u2022\u2022 4532';
                 icon.textContent = 'visibility';
             }
         });
-        
+
         // Freeze card toggle
         document.getElementById('card-freeze-toggle')?.addEventListener('change', (e) => {
             if (e.target.checked) {
@@ -353,29 +568,30 @@ const CheckPayApp = {
             }
         });
     },
-    
-    // Transaction handlers
+
+    // ==========================================
+    // Transactions
+    // ==========================================
+
     setupTransactionHandlers: function() {
         document.getElementById('transactions-back-btn')?.addEventListener('click', () => {
             this.showScreen('dashboard-screen');
         });
-        
-        // Filter chips
+
         document.querySelectorAll('.filter-chips .chip').forEach(chip => {
             chip.addEventListener('click', (e) => {
                 document.querySelectorAll('.filter-chips .chip').forEach(c => c.classList.remove('active'));
                 e.target.classList.add('active');
-                
+
                 const filter = e.target.getAttribute('data-filter');
                 this.filterTransactions(filter);
             });
         });
     },
-    
-    // Filter transactions
+
     filterTransactions: function(filter) {
         const transactions = document.querySelectorAll('#all-transactions .transaction-item');
-        
+
         transactions.forEach(transaction => {
             if (filter === 'all') {
                 transaction.style.display = 'flex';
@@ -389,8 +605,11 @@ const CheckPayApp = {
             }
         });
     },
-    
-    // Bill pay biller data by state and utility type
+
+    // ==========================================
+    // Bill Pay
+    // ==========================================
+
     billerData: {
         electric: {
             CA: ['Pacific Gas & Electric (PG&E)', 'Southern California Edison', 'San Diego Gas & Electric'],
@@ -438,19 +657,15 @@ const CheckPayApp = {
         }
     },
 
-    // Bill pay handlers
     setupBillPayHandlers: function() {
-        // Back button
         document.getElementById('billpay-back-btn')?.addEventListener('click', () => {
             this.showScreen('dashboard-screen');
             this.resetBillPayFlow();
         });
 
-        // State and utility type selectors populate billers
         document.getElementById('state-select')?.addEventListener('change', () => this.updateBillerOptions());
         document.getElementById('utility-type-select')?.addEventListener('change', () => this.updateBillerOptions());
 
-        // Biller selection enables continue
         document.getElementById('biller-select')?.addEventListener('change', () => {
             const state = document.getElementById('state-select').value;
             const utility = document.getElementById('utility-type-select').value;
@@ -458,7 +673,6 @@ const CheckPayApp = {
             document.getElementById('billpay-to-details').disabled = !(state && utility && biller);
         });
 
-        // Step 1 -> Step 2
         document.getElementById('billpay-to-details')?.addEventListener('click', () => {
             const billerName = document.getElementById('biller-select').selectedOptions[0].text;
             document.getElementById('selected-biller-name').textContent = billerName;
@@ -467,7 +681,6 @@ const CheckPayApp = {
             document.getElementById('billpay-step-2').classList.add('active');
         });
 
-        // Enable review button when required fields filled
         const detailInputs = ['account-number-input', 'billpay-amount-input'];
         detailInputs.forEach(id => {
             document.getElementById(id)?.addEventListener('input', () => {
@@ -477,7 +690,6 @@ const CheckPayApp = {
             });
         });
 
-        // Step 2 -> Step 3 (Review)
         document.getElementById('billpay-to-review')?.addEventListener('click', () => {
             this.populateBillPayReview();
             document.getElementById('billpay-enter-details').style.display = 'none';
@@ -485,7 +697,6 @@ const CheckPayApp = {
             document.getElementById('billpay-step-3').classList.add('active');
         });
 
-        // Step 3 -> Step 4 (Checkout)
         document.getElementById('billpay-to-checkout')?.addEventListener('click', () => {
             const amount = document.getElementById('billpay-amount-input').value;
             const formatted = '$' + parseFloat(amount).toFixed(2);
@@ -496,31 +707,25 @@ const CheckPayApp = {
             document.getElementById('billpay-step-4').classList.add('active');
         });
 
-        // Checkout pay button -> Confirmation
         document.getElementById('checkout-pay-btn')?.addEventListener('click', () => {
             this.processBillPayment();
         });
 
-        // Done button -> Dashboard
         document.getElementById('billpay-done-btn')?.addEventListener('click', () => {
             this.showScreen('dashboard-screen');
             this.resetBillPayFlow();
         });
 
-        // Search reference number button
         document.getElementById('search-reference-btn')?.addEventListener('click', () => {
-            // Auto-fill a demo reference number
             document.getElementById('reference-number-input').value = 'REF-' + Math.random().toString(36).substr(2, 8).toUpperCase();
         });
     },
 
-    // Update biller options based on state and utility type
     updateBillerOptions: function() {
         const state = document.getElementById('state-select').value;
         const utility = document.getElementById('utility-type-select').value;
         const billerSelect = document.getElementById('biller-select');
 
-        // Reset biller dropdown
         billerSelect.innerHTML = '<option value="">Choose a biller</option>';
         document.getElementById('billpay-to-details').disabled = true;
 
@@ -537,7 +742,6 @@ const CheckPayApp = {
         });
     },
 
-    // Populate the review screen with entered data
     populateBillPayReview: function() {
         const stateSelect = document.getElementById('state-select');
         const utilitySelect = document.getElementById('utility-type-select');
@@ -554,16 +758,13 @@ const CheckPayApp = {
         document.getElementById('review-amount').textContent = '$' + parseFloat(amount).toFixed(2);
     },
 
-    // Process the bill payment (mock)
     processBillPayment: function() {
         const billerSelect = document.getElementById('biller-select');
         const amount = document.getElementById('billpay-amount-input').value;
         const reference = document.getElementById('reference-number-input').value || 'N/A';
 
-        // Generate a transaction ID
         const txnId = 'TXN-' + Date.now().toString(36).toUpperCase();
 
-        // Populate confirmation
         document.getElementById('confirm-biller').textContent = billerSelect.selectedOptions[0].text;
         document.getElementById('confirm-amount').textContent = '$' + parseFloat(amount).toFixed(2);
         document.getElementById('confirm-reference').textContent = reference;
@@ -572,27 +773,22 @@ const CheckPayApp = {
             year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit'
         });
 
-        // Show confirmation
         document.getElementById('billpay-checkout').style.display = 'none';
         document.getElementById('billpay-confirmation').style.display = 'block';
     },
 
-    // Reset bill pay flow
     resetBillPayFlow: function() {
-        // Reset all steps to hidden except step 1
         document.getElementById('billpay-select-biller').style.display = 'block';
         document.getElementById('billpay-enter-details').style.display = 'none';
         document.getElementById('billpay-review').style.display = 'none';
         document.getElementById('billpay-checkout').style.display = 'none';
         document.getElementById('billpay-confirmation').style.display = 'none';
 
-        // Reset progress steps
         document.querySelectorAll('#billpay-progress .progress-step').forEach((step, i) => {
             if (i === 0) step.classList.add('active');
             else step.classList.remove('active');
         });
 
-        // Reset form fields
         document.getElementById('state-select').value = '';
         document.getElementById('utility-type-select').value = '';
         document.getElementById('biller-select').innerHTML = '<option value="">Choose a biller</option>';
@@ -602,28 +798,85 @@ const CheckPayApp = {
         document.getElementById('billpay-to-details').disabled = true;
         document.getElementById('billpay-to-review').disabled = true;
     },
-    
-    // Profile handlers
+
+    // ==========================================
+    // Profile
+    // ==========================================
+
     setupProfileHandlers: function() {
         document.getElementById('profile-back-btn')?.addEventListener('click', () => {
             this.showScreen('dashboard-screen');
         });
-        
+
+        // Language button opens modal instead of navigating away
         document.getElementById('language-settings-btn')?.addEventListener('click', () => {
-            this.showScreen('welcome-screen');
+            this.openLanguageModal();
         });
     },
-    
-    // Navigation handlers
+
+    // ==========================================
+    // Language Modal
+    // ==========================================
+
+    openLanguageModal: function() {
+        const modal = document.getElementById('language-modal');
+        modal.classList.add('active');
+
+        // Mark current language as active
+        document.querySelectorAll('.language-option').forEach(btn => {
+            btn.classList.remove('active');
+            const check = btn.querySelector('.lang-check');
+            if (check) check.style.display = 'none';
+
+            if (btn.dataset.lang === i18n.currentLanguage) {
+                btn.classList.add('active');
+                if (check) check.style.display = 'inline-block';
+            }
+        });
+    },
+
+    setupLanguageModal: function() {
+        // Language option clicks
+        document.querySelectorAll('.language-option').forEach(btn => {
+            btn.addEventListener('click', () => {
+                i18n.setLanguage(btn.dataset.lang);
+
+                // Update all option states
+                document.querySelectorAll('.language-option').forEach(b => {
+                    b.classList.remove('active');
+                    const check = b.querySelector('.lang-check');
+                    if (check) check.style.display = 'none';
+                });
+                btn.classList.add('active');
+                const check = btn.querySelector('.lang-check');
+                if (check) check.style.display = 'inline-block';
+            });
+        });
+
+        // Close language modal
+        document.getElementById('language-modal-close')?.addEventListener('click', () => {
+            document.getElementById('language-modal').classList.remove('active');
+        });
+
+        document.getElementById('language-modal')?.addEventListener('click', (e) => {
+            if (e.target.id === 'language-modal') {
+                document.getElementById('language-modal').classList.remove('active');
+            }
+        });
+    },
+
+    // ==========================================
+    // Navigation
+    // ==========================================
+
     setupNavigationHandlers: function() {
-        // All navigation buttons
         const navButtons = [
             { ids: ['nav-home-2', 'nav-home-3', 'nav-home-4'], screen: 'dashboard-screen' },
             { ids: ['nav-transactions', 'nav-transactions-2', 'nav-transactions-4'], screen: 'transactions-screen' },
             { ids: ['nav-card', 'nav-card-3', 'nav-card-4'], screen: 'card-screen' },
             { ids: ['nav-profile', 'nav-profile-2', 'nav-profile-3'], screen: 'profile-screen' }
         ];
-        
+
         navButtons.forEach(({ ids, screen }) => {
             ids.forEach(id => {
                 document.getElementById(id)?.addEventListener('click', () => {
@@ -632,51 +885,29 @@ const CheckPayApp = {
             });
         });
     },
-    
-    // Load mock transactions
+
+    // ==========================================
+    // Mock Data & Utilities
+    // ==========================================
+
     loadMockTransactions: function() {
         const transactions = [
-            {
-                type: 'check',
-                title: 'Check Deposit',
-                date: new Date(Date.now() - 86400000),
-                amount: 850.00,
-                status: 'completed'
-            },
-            {
-                type: 'bill',
-                title: 'Electric Bill',
-                date: new Date(Date.now() - 172800000),
-                amount: -125.50,
-                status: 'completed'
-            },
-            {
-                type: 'topup',
-                title: 'Account Top-up',
-                date: new Date(Date.now() - 259200000),
-                amount: 500.00,
-                status: 'pending'
-            },
-            {
-                type: 'bill',
-                title: 'Internet Bill',
-                date: new Date(Date.now() - 345600000),
-                amount: -89.99,
-                status: 'completed'
-            }
+            { type: 'check', title: 'Check Deposit', date: new Date(Date.now() - 86400000), amount: 850.00, status: 'completed' },
+            { type: 'bill', title: 'Electric Bill', date: new Date(Date.now() - 172800000), amount: -125.50, status: 'completed' },
+            { type: 'topup', title: 'Account Top-up', date: new Date(Date.now() - 259200000), amount: 500.00, status: 'pending' },
+            { type: 'bill', title: 'Internet Bill', date: new Date(Date.now() - 345600000), amount: -89.99, status: 'completed' }
         ];
-        
+
         this.renderTransactions(transactions, 'recent-transactions', 3);
         this.renderTransactions(transactions, 'all-transactions');
     },
-    
-    // Render transactions
+
     renderTransactions: function(transactions, containerId, limit = null) {
         const container = document.getElementById(containerId);
         if (!container) return;
-        
+
         const transactionsToShow = limit ? transactions.slice(0, limit) : transactions;
-        
+
         container.innerHTML = transactionsToShow.map(tx => `
             <div class="transaction-item">
                 <div class="transaction-icon ${tx.type}">
@@ -684,7 +915,7 @@ const CheckPayApp = {
                 </div>
                 <div class="transaction-info">
                     <div class="transaction-title">${tx.title}</div>
-                    <div class="transaction-date">${i18n.formatDate(tx.date)} • ${i18n.formatTime(tx.date)}</div>
+                    <div class="transaction-date">${i18n.formatDate(tx.date)} \u2022 ${i18n.formatTime(tx.date)}</div>
                     <span class="transaction-status ${tx.status}">${this.capitalizeFirst(tx.status)}</span>
                 </div>
                 <div class="transaction-amount ${tx.amount > 0 ? 'positive' : 'negative'}">
@@ -693,44 +924,31 @@ const CheckPayApp = {
             </div>
         `).join('');
     },
-    
-    // Get transaction icon
+
     getTransactionIcon: function(type) {
-        const icons = {
-            check: 'check_circle',
-            bill: 'receipt',
-            topup: 'add_circle'
-        };
+        const icons = { check: 'check_circle', bill: 'receipt', topup: 'add_circle' };
         return icons[type] || 'account_balance_wallet';
     },
-    
-    // Capitalize first letter
+
     capitalizeFirst: function(str) {
         return str.charAt(0).toUpperCase() + str.slice(1);
     },
-    
-    // Show loading screen
+
     showLoadingScreen: function() {
         const loadingScreen = document.getElementById('loading-screen');
-        if (loadingScreen) {
-            loadingScreen.classList.add('active');
-        }
+        if (loadingScreen) loadingScreen.classList.add('active');
     },
-    
-    // Hide loading screen
+
     hideLoadingScreen: function() {
         const loadingScreen = document.getElementById('loading-screen');
-        if (loadingScreen) {
-            loadingScreen.classList.remove('active');
-        }
+        if (loadingScreen) loadingScreen.classList.remove('active');
     },
-    
-    // Show success modal
+
     showSuccessModal: function(title, message) {
         const modal = document.getElementById('success-modal');
         const titleEl = document.getElementById('success-title');
         const messageEl = document.getElementById('success-message');
-        
+
         if (modal && titleEl && messageEl) {
             titleEl.textContent = title;
             messageEl.textContent = message;
@@ -744,7 +962,6 @@ document.getElementById('success-modal-close')?.addEventListener('click', () => 
     document.getElementById('success-modal').classList.remove('active');
 });
 
-// Close modal on background click
 document.getElementById('success-modal')?.addEventListener('click', (e) => {
     if (e.target.id === 'success-modal') {
         document.getElementById('success-modal').classList.remove('active');

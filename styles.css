@@ -1463,3 +1463,327 @@ input:checked + .toggle-slider:before {
         --text-secondary: #000000;
     }
 }
+
+/* ==========================================
+   PHASE 1 ADDITIONS
+   ========================================== */
+
+/* Persistent Balance Header */
+.balance-header-bar {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 480px;
+    z-index: 101;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    color: var(--white);
+}
+
+.balance-header-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+}
+
+.balance-header-label {
+    font-size: 10px;
+    opacity: 0.8;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.balance-header-amount {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.balance-header-amount.pending {
+    color: #FFE082;
+}
+
+.balance-header-divider {
+    width: 1px;
+    height: 28px;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Push content down when balance header is visible */
+.app-container.has-balance-header .screen {
+    padding-top: 48px;
+}
+
+.app-container.has-balance-header .screen .screen-header {
+    top: 48px;
+}
+
+/* Reassurance Banner */
+.reassurance-banner {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding: 12px 16px;
+    background: rgba(0, 150, 136, 0.08);
+    border: 1px solid rgba(0, 150, 136, 0.2);
+    border-radius: 10px;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.reassurance-banner .material-icons {
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
+/* Form hint text */
+.form-hint {
+    display: block;
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-top: 6px;
+    margin-bottom: 12px;
+    font-style: italic;
+}
+
+/* Language Picker Modal */
+.language-picker-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 20px 0;
+    width: 100%;
+}
+
+.language-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px;
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    background: var(--white);
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.3s;
+    width: 100%;
+    text-align: left;
+    font-family: inherit;
+    color: var(--text-primary);
+}
+
+.language-option:hover,
+.language-option.active {
+    border-color: var(--primary-color);
+    background: rgba(0, 150, 136, 0.05);
+}
+
+.language-option.active .lang-check {
+    display: inline-block !important;
+    color: var(--primary-color);
+}
+
+/* KYC-B Verify Step */
+.kyc-b-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.kyc-b-header h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.kyc-b-subtitle {
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.verify-section {
+    margin-bottom: 16px;
+}
+
+.itin-confirm-box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    background: #E8F5E9;
+    border-radius: 12px;
+}
+
+.itin-confirm-box .material-icons:first-child {
+    color: var(--text-secondary);
+}
+
+.itin-confirm-box p {
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+.itin-confirm-box strong {
+    font-size: 16px;
+    color: var(--text-primary);
+}
+
+.checkbox-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 0;
+    cursor: pointer;
+    font-size: 15px;
+    margin-bottom: 12px;
+}
+
+.checkbox-row input[type="checkbox"] {
+    width: 22px;
+    height: 22px;
+    accent-color: var(--primary-color);
+    flex-shrink: 0;
+}
+
+.endorsement-instructions {
+    display: flex;
+    gap: 12px;
+    padding: 14px 16px;
+    background: #FFF3E0;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+.endorsement-instructions .material-icons {
+    flex-shrink: 0;
+    color: var(--warning);
+}
+
+.endorsement-instructions p {
+    font-size: 14px;
+    color: var(--text-primary);
+}
+
+.endorsement-detail {
+    font-size: 13px !important;
+    margin-top: 4px;
+    color: var(--text-secondary) !important;
+}
+
+/* Deposit Timeline */
+.deposit-timeline {
+    text-align: center;
+    padding: 10px 0;
+}
+
+.deposit-timeline h3 {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.deposit-subtitle {
+    color: var(--text-secondary);
+    margin-bottom: 30px;
+    font-size: 14px;
+}
+
+.timeline-container {
+    position: relative;
+    padding-left: 36px;
+    text-align: left;
+    margin-bottom: 30px;
+}
+
+.timeline-container::before {
+    content: '';
+    position: absolute;
+    left: 11px;
+    top: 12px;
+    bottom: 12px;
+    width: 2px;
+    background: var(--border-color);
+}
+
+.timeline-item {
+    position: relative;
+    padding: 14px 0 14px 20px;
+}
+
+.timeline-dot {
+    position: absolute;
+    left: -25px;
+    top: 16px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--border-color);
+    border: 3px solid var(--white);
+    box-shadow: 0 0 0 2px var(--border-color);
+}
+
+.timeline-item.completed .timeline-dot {
+    background: var(--success);
+    box-shadow: 0 0 0 2px var(--success);
+}
+
+.timeline-item.active .timeline-dot {
+    background: var(--primary-color);
+    box-shadow: 0 0 0 2px var(--primary-color);
+    animation: timelinePulse 2s infinite;
+}
+
+@keyframes timelinePulse {
+    0%, 100% { box-shadow: 0 0 0 2px var(--primary-color); }
+    50% { box-shadow: 0 0 0 6px rgba(0, 150, 136, 0.3); }
+}
+
+.timeline-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.timeline-label {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.timeline-item.completed .timeline-label {
+    color: var(--success);
+}
+
+.timeline-item.active .timeline-label {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.timeline-time {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.deposit-amount-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    background: var(--background);
+    border-radius: 12px;
+    margin-bottom: 20px;
+    font-size: 15px;
+}
+
+.deposit-amount-card strong {
+    font-size: 18px;
+    color: var(--primary-color);
+}
