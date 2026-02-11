@@ -1535,10 +1535,11 @@ input:checked + .toggle-slider:before {
     margin: 0 auto;
     z-index: 101;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
     gap: 20px;
-    padding: 10px 20px;
+    padding: 8px 20px 6px;
     background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
     color: var(--white);
 }
@@ -1574,11 +1575,11 @@ input:checked + .toggle-slider:before {
 
 /* Push content down when balance header is visible */
 .app-container.has-balance-header .screen {
-    padding-top: 48px;
+    padding-top: 64px;
 }
 
 .app-container.has-balance-header .screen .screen-header {
-    top: 48px;
+    top: 64px;
 }
 
 /* Reassurance Banner */
@@ -1887,4 +1888,81 @@ input:checked + .toggle-slider:before {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 12px;
+}
+
+/* Bank Partner Disclaimers */
+.bank-disclaimer {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: var(--text-secondary);
+    margin-top: 8px;
+    flex-wrap: wrap;
+}
+
+.bank-disclaimer-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.7);
+    width: 100%;
+    margin-top: 4px;
+    padding-top: 4px;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.bank-icon {
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+    flex-shrink: 0;
+}
+
+.bank-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--primary-color);
+    text-decoration: none;
+    padding: 10px;
+    border: 1.5px solid var(--border-color);
+    border-radius: 10px;
+    margin-bottom: 12px;
+    transition: background 0.2s;
+}
+
+.bank-link:hover {
+    background: rgba(0, 150, 136, 0.06);
+}
+
+/* Terms & Conditions Checkbox */
+.tc-checkbox {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin: 16px 0 12px;
+    cursor: pointer;
+}
+
+.tc-checkbox input[type="checkbox"] {
+    margin-top: 3px;
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    accent-color: var(--primary-color);
+}
+
+.tc-link {
+    color: var(--primary-color);
+    text-decoration: underline;
+    font-weight: 500;
 }

@@ -27,6 +27,9 @@
                 <span class="balance-header-label" data-i18n="balance.pendingBalance">Pending</span>
                 <span class="balance-header-amount pending" id="header-pending-balance">$0.00</span>
             </div>
+            <div class="bank-disclaimer-header">
+                <img src="horizon-icon.svg" class="bank-icon" alt=""> Funds held by Horizon Card Bank
+            </div>
         </div>
 
         <!-- Welcome Screen -->
@@ -147,6 +150,10 @@
                         <label data-i18n="kyc.zip">ZIP Code</label>
                         <input type="text" class="form-input" id="kyc-zip-input" maxlength="5" placeholder="90001">
                     </div>
+                    <label class="tc-checkbox">
+                        <input type="checkbox" id="kyc-tc-checkbox">
+                        <span>I agree to the <a href="#" class="tc-link">Terms &amp; Conditions</a> and <a href="#" class="tc-link">Privacy Policy</a></span>
+                    </label>
                     <button class="btn btn-primary btn-large" id="kyc-info-continue" data-i18n="common.continue">
                         Continue
                     </button>
@@ -245,6 +252,9 @@
                     <div class="balance-hidden" id="balance-hidden" style="display: none;">
                         ••••••
                     </div>
+                    <div class="bank-disclaimer">
+                        <img src="horizon-icon.svg" class="bank-icon" alt=""> Your funds are held by Horizon Card Bank
+                    </div>
                 </div>
 
                 <div class="virtual-card-preview" id="card-preview">
@@ -264,6 +274,9 @@
                                 <div class="card-value">Pending Activation</div>
                             </div>
                         </div>
+                    </div>
+                    <div class="bank-disclaimer" style="margin-top: 10px;">
+                        <img src="horizon-icon.svg" class="bank-icon" alt=""> Issued by Horizon Card Bank
                     </div>
                 </div>
 
@@ -469,11 +482,19 @@
                         </div>
                     </div>
 
-                    <div class="reassurance-banner" style="margin-top: 16px;">
+                    <div class="bank-disclaimer" style="margin-top: 12px;">
+                        <img src="clearpath-icon.svg" class="bank-icon" alt=""> Your check will be processed by ClearPath Bank
+                    </div>
+
+                    <div class="reassurance-banner" style="margin-top: 12px;">
                         <span class="material-icons">shield</span>
                         <p data-i18n="check.saferMessage">Safer than standing in line. Your deposit is protected.</p>
                     </div>
 
+                    <label class="tc-checkbox">
+                        <input type="checkbox" id="check-tc-checkbox">
+                        <span>I agree to the <a href="#" class="tc-link">Deposit Terms</a> and authorize check clearing</span>
+                    </label>
                     <button class="btn btn-primary btn-large" id="check-submit" data-i18n="check.submitCheck">
                         Submit Check
                     </button>
@@ -528,6 +549,12 @@
                             <strong>$850.00</strong>
                         </div>
 
+                        <div class="bank-disclaimer" style="margin-top: 12px; justify-content: center;">
+                            <img src="clearpath-icon.svg" class="bank-icon" alt=""> Processed by ClearPath Bank
+                            <span style="margin: 0 6px; opacity: 0.4;">•</span>
+                            <img src="horizon-icon.svg" class="bank-icon" alt=""> Card issued by Horizon Card Bank
+                        </div>
+
                         <button class="btn btn-primary btn-large" id="deposit-done-btn" style="display: none;" data-i18n="deposit.backToDashboard">
                             Back to Dashboard
                         </button>
@@ -570,6 +597,15 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="bank-disclaimer" style="text-align: center; margin-bottom: 8px;">
+                    <img src="horizon-icon.svg" class="bank-icon" alt=""> Issued by Horizon Card Bank
+                </div>
+                <a href="#" class="bank-link" id="card-issuer-link">
+                    <img src="horizon-icon.svg" class="bank-icon" alt="">
+                    Visit Horizon Card Bank
+                    <span class="material-icons" style="font-size: 14px;">open_in_new</span>
+                </a>
 
                 <div class="card-actions">
                     <button class="card-action-btn">
