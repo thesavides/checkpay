@@ -934,16 +934,6 @@ const CheckPayApp = {
         return str.charAt(0).toUpperCase() + str.slice(1);
     },
 
-    showLoadingScreen: function() {
-        const loadingScreen = document.getElementById('loading-screen');
-        if (loadingScreen) loadingScreen.classList.add('active');
-    },
-
-    hideLoadingScreen: function() {
-        const loadingScreen = document.getElementById('loading-screen');
-        if (loadingScreen) loadingScreen.classList.remove('active');
-    },
-
     showSuccessModal: function(title, message) {
         const modal = document.getElementById('success-modal');
         const titleEl = document.getElementById('success-title');
