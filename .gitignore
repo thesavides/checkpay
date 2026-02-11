@@ -9,9 +9,10 @@
 .DS_Store
 Thumbs.db
 
-# Environment
+# Environment & secrets
 .env
 .env.local
+.env.*.local
 
 # Logs
 *.log
@@ -23,3 +24,9 @@ node_modules/
 # Build outputs
 dist/
 build/
+
+# Claude Code
+.claude/
+
+# Screenshots
+Screenshots/

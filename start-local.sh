@@ -1,14 +1,17 @@
 #!/bin/bash
 
 # CheckPay Local Development Server
-# This script starts a local web server for testing
+# Usage: ./start-local.sh [port]
+
+PORT=${1:-8000}
 
 echo "🚀 Starting CheckPay local development server..."
 echo ""
 echo "📁 Working directory: $(pwd)"
 echo ""
 echo "🌐 Server will be available at:"
-echo "   http://localhost:8000"
+echo "   Landing page: http://localhost:$PORT/index.html"
+echo "   App:          http://localhost:$PORT/app.html"
 echo ""
 echo "💡 Press Ctrl+C to stop the server"
 echo ""
@@ -19,44 +22,36 @@ echo ""
 if command -v python3 &> /dev/null; then
     echo "✅ Using Python 3"
     echo ""
-    echo "📱 Open in your browser:"
-    echo "   http://localhost:8000"
-    echo ""
 
     # Open browser automatically (macOS)
     if [[ "$OSTYPE" == "darwin"* ]]; then
         echo "🌐 Opening browser..."
-        sleep 1 && open http://localhost:8000 &
+        sleep 1 && open "http://localhost:$PORT/index.html" &
     fi
 
     echo "Server log:"
     echo "---"
-    python3 -m http.server 8000
+    python3 -m http.server "$PORT"
 
 elif command -v python &> /dev/null; then
     echo "✅ Using Python"
     echo ""
-    echo "📱 Open in your browser:"
-    echo "   http://localhost:8000"
-    echo ""
 
     # Open browser automatically (macOS)
     if [[ "$OSTYPE" == "darwin"* ]]; then
         echo "🌐 Opening browser..."
-        sleep 1 && open http://localhost:8000 &
+        sleep 1 && open "http://localhost:$PORT/index.html" &
     fi
 
     echo "Server log:"
     echo "---"
-    python -m http.server 8000
+    python -m http.server "$PORT"
 
 else
     echo "❌ Python not found!"
     echo ""
     echo "Please install Python or use another server method:"
-    echo "  - Node.js: npx http-server -p 8000"
-    echo "  - PHP: php -S localhost:8000"
-    echo ""
-    echo "See LOCAL_DEVELOPMENT.md for more options."
+    echo "  - Node.js: npx http-server -p $PORT"
+    echo "  - PHP: php -S localhost:$PORT"
     exit 1
 fi
