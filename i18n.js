@@ -266,6 +266,15 @@ const i18n = {
                 footerSupport: 'Support',
                 footerCopyright: '© 2025 CheckPay. All rights reserved.',
                 footerTagline: 'Empowering financial inclusion through technology.'
+            },
+            chatbot: {
+                title: 'CheckPay Assistant',
+                online: 'Online',
+                placeholder: 'Type a message...',
+                greeting: "Hi! I'm the CheckPay assistant. I can help you with questions about check clearing, virtual cards, bill payments, identity verification, and more. How can I help you?",
+                errorMessage: 'Sorry, something went wrong. Please try again.',
+                rateLimited: "You're sending messages too quickly. Please wait a moment.",
+                inputLabel: 'Chat message'
             }
         },
 
@@ -528,6 +537,15 @@ const i18n = {
                 footerSupport: 'Soporte',
                 footerCopyright: '\u00a9 2025 CheckPay. Todos los derechos reservados.',
                 footerTagline: 'Impulsando la inclusi\u00f3n financiera a trav\u00e9s de la tecnolog\u00eda.'
+            },
+            chatbot: {
+                title: 'Asistente CheckPay',
+                online: 'En l\u00ednea',
+                placeholder: 'Escribe un mensaje...',
+                greeting: '\u00a1Hola! Soy el asistente de CheckPay. Puedo ayudarte con preguntas sobre dep\u00f3sito de cheques, tarjetas virtuales, pago de facturas, verificaci\u00f3n de identidad y m\u00e1s. \u00bfC\u00f3mo puedo ayudarte?',
+                errorMessage: 'Lo sentimos, algo sali\u00f3 mal. Por favor, int\u00e9ntalo de nuevo.',
+                rateLimited: 'Est\u00e1s enviando mensajes muy r\u00e1pido. Por favor espera un momento.',
+                inputLabel: 'Mensaje de chat'
             }
         },
 
@@ -790,6 +808,15 @@ const i18n = {
                 footerSupport: 'Suporta',
                 footerCopyright: '\u00a9 2025 CheckPay. Lahat ng karapatan ay nakalaan.',
                 footerTagline: 'Nagpapalakas ng financial inclusion sa pamamagitan ng teknolohiya.'
+            },
+            chatbot: {
+                title: 'CheckPay Assistant',
+                online: 'Online',
+                placeholder: 'Mag-type ng mensahe...',
+                greeting: 'Kumusta! Ako ang CheckPay assistant. Makakatulong ako sa mga tanong tungkol sa pag-clear ng checks, virtual cards, pagbabayad ng bills, identity verification, at iba pa. Paano kita matutulungan?',
+                errorMessage: 'Sorry, may nangyaring mali. Pakisubukan muli.',
+                rateLimited: 'Masyadong mabilis ang pagpapadala mo ng mga mensahe. Maghintay muna.',
+                inputLabel: 'Mensahe sa chat'
             }
         },
 
@@ -1049,9 +1076,18 @@ const i18n = {
                 ctaFreeToStart: '\u00d2f\u1eb9 l\u00e1ti b\u1eb9r\u1eb9 \u2022 K\u00f2 s\u00ed ow\u00f3 \u00ecpam\u1ecd \u2022 Atil\u1eb9yin 24/7',
                 footerPrivacy: '\u00ccl\u00e0n\u00e0 Aabo',
                 footerTerms: 'Aw\u1ecdn Of\u00ecn I\u1e63\u1eb9',
-                footerSupport: 'Atil\u1eb9yin',
-                footerCopyright: '\u00a9 2025 CheckPay. Gbogbo \u1eb9t\u1ecd w\u00e0.',
-                footerTagline: 'Nmu \u00ecfowos\u00ed ow\u00f3 r\u1ecd p\u1eb9lu \u00ecm\u1ecd-\u1eb9r\u1ecd.'
+                footerSupport: 'Atilẹyin',
+                footerCopyright: '© 2025 CheckPay. Gbogbo ẹtọ wà.',
+                footerTagline: 'Nmu ìfowosí owó rọ pẹlu ìmọ-ẹrọ.'
+            },
+            chatbot: {
+                title: 'Olùrànlọ́wọ́ CheckPay',
+                online: 'Lórí ayélujára',
+                placeholder: 'Tẹ ìfiránṣẹ́...',
+                greeting: 'Pẹ̀lẹ́ o! Mo jẹ́ olùrànlọ́wọ́ CheckPay. Mo lè ràn ọ́ lọ́wọ́ pẹ̀lú àwọn ìbéèrè nípa ṣíṣe ṣẹ́kì, káàdì fojú, sísanwó ìwé-owó, ìdánimọ̀, àti díẹ̀ síi. Báwo ni mo ṣe lè ràn ọ́ lọ́wọ́?',
+                errorMessage: 'Má bìnú, nǹkan kan ṣẹlẹ̀. Jọ̀wọ́ gbìyànjú lẹ́ẹ̀kan síi.',
+                rateLimited: 'O ń fi ìfiránṣẹ́ ránṣẹ́ ní ìyára jù. Jọ̀wọ́ dúró díẹ̀.',
+                inputLabel: 'Ìfiránṣẹ́ ìfọ̀rọ̀wánilẹ́nuwò'
             }
         }
     },
@@ -1118,6 +1154,16 @@ const i18n = {
                 } else {
                     element.textContent = translation;
                 }
+            }
+        });
+
+        // Update elements with data-i18n-placeholder
+        const placeholderElements = document.querySelectorAll('[data-i18n-placeholder]');
+        placeholderElements.forEach(element => {
+            const key = element.getAttribute('data-i18n-placeholder');
+            const translation = this.t(key);
+            if (translation) {
+                element.placeholder = translation;
             }
         });
 
