@@ -20,6 +20,12 @@ const CheckPayApp = {
         } else {
             this.showScreen('welcome-screen');
         }
+
+        // Check for ?view=terms or ?view=privacy URL param
+        const viewParam = urlParams.get('view');
+        if (viewParam === 'terms' || viewParam === 'privacy') {
+            setTimeout(() => this.openTermsModal(viewParam), 300);
+        }
     },
 
     // Setup all event listeners
@@ -69,6 +75,9 @@ const CheckPayApp = {
 
         // Language modal
         this.setupLanguageModal();
+
+        // Terms & Conditions modal
+        this.setupTermsModal();
     },
 
     // Show a specific screen
@@ -848,6 +857,9 @@ const CheckPayApp = {
                 btn.classList.add('active');
                 const check = btn.querySelector('.lang-check');
                 if (check) check.style.display = 'inline-block';
+
+                // Update T&C checkbox labels for new language
+                CheckPayApp.updateTermsCheckboxLabels();
             });
         });
 
@@ -979,6 +991,158 @@ const CheckPayApp = {
             messageEl.textContent = message;
             modal.classList.add('active');
         }
+    },
+
+    // ==========================================
+    // Terms & Conditions Modal
+    // ==========================================
+
+    _termsDocType: 'terms',
+    _termsOriginalLang: 'en',
+    _termsViewingLang: 'en',
+
+    setupTermsModal: function() {
+        // Close handlers
+        document.getElementById('terms-modal-close-x')?.addEventListener('click', () => {
+            this.closeTermsModal();
+        });
+        document.getElementById('terms-modal-close')?.addEventListener('click', () => {
+            this.closeTermsModal();
+        });
+        document.getElementById('terms-modal')?.addEventListener('click', (e) => {
+            if (e.target.id === 'terms-modal') {
+                this.closeTermsModal();
+            }
+        });
+
+        // View English / View in language toggle
+        document.getElementById('terms-view-english')?.addEventListener('click', () => {
+            this.toggleTermsLanguage();
+        });
+
+        // Update checkbox labels and wire links
+        this.updateTermsCheckboxLabels();
+    },
+
+    openTermsModal: function(docType) {
+        docType = docType || 'terms';
+        this._termsDocType = docType;
+        this._termsOriginalLang = (typeof i18n !== 'undefined') ? i18n.currentLanguage : 'en';
+        this._termsViewingLang = this._termsOriginalLang;
+
+        if (typeof termsContent === 'undefined') return;
+
+        this.renderTermsContent(this._termsViewingLang);
+        document.getElementById('terms-modal').classList.add('active');
+    },
+
+    renderTermsContent: function(lang) {
+        if (typeof termsContent === 'undefined') return;
+
+        const data = termsContent[lang] || termsContent.en;
+        const isEnglish = (lang === 'en');
+
+        // Title
+        document.getElementById('terms-modal-title').textContent = data.title;
+
+        // Disclaimer banner
+        const disclaimerEl = document.getElementById('terms-disclaimer');
+        const disclaimerText = document.getElementById('terms-disclaimer-text');
+        const viewToggleBtn = document.getElementById('terms-view-english');
+
+        if (!isEnglish && data.disclaimer) {
+            disclaimerEl.style.display = 'flex';
+            disclaimerText.textContent = data.disclaimer;
+            viewToggleBtn.textContent = (typeof i18n !== 'undefined' && i18n.t('terms.viewInEnglish'))
+                ? i18n.t('terms.viewInEnglish')
+                : 'View English (legally binding)';
+        } else if (isEnglish && this._termsOriginalLang !== 'en') {
+            disclaimerEl.style.display = 'flex';
+            disclaimerText.textContent = (typeof i18n !== 'undefined' && i18n.t('terms.legallyBindingNote'))
+                ? i18n.t('terms.legallyBindingNote')
+                : 'You are viewing the legally binding English version.';
+            const langNames = { es: 'Español', ph: 'Filipino', yo: 'Yorùbá' };
+            const viewInLabel = (typeof i18n !== 'undefined' && i18n.t('terms.viewInLanguage'))
+                ? i18n.t('terms.viewInLanguage')
+                : 'View in ';
+            viewToggleBtn.textContent = viewInLabel + (langNames[this._termsOriginalLang] || '');
+        } else {
+            disclaimerEl.style.display = 'none';
+        }
+
+        // Body
+        const body = document.getElementById('terms-modal-body');
+        const updatedLabel = (typeof i18n !== 'undefined' && i18n.t('terms.lastUpdated'))
+            ? i18n.t('terms.lastUpdated')
+            : 'Last updated';
+        let html = '<p class="terms-last-updated">' + updatedLabel + ': ' + data.lastUpdated + '</p>';
+
+        data.sections.forEach(function(section) {
+            html += '<div class="terms-section">';
+            html += '<h4 class="terms-section-heading">' + section.number + '. ' + section.heading + '</h4>';
+            html += '<div class="terms-section-body">' + section.body + '</div>';
+            html += '</div>';
+        });
+
+        // Acceptance note at bottom
+        const acceptNote = (typeof i18n !== 'undefined' && i18n.t('terms.acceptanceNote'))
+            ? i18n.t('terms.acceptanceNote')
+            : 'BY ENROLLING IN OR USING THE SERVICES, YOU ACKNOWLEDGE THAT YOU HAVE READ, UNDERSTOOD, AND AGREE TO BE BOUND BY THESE TERMS AND CONDITIONS.';
+        html += '<div class="terms-acceptance-note">' + acceptNote + '</div>';
+
+        body.innerHTML = html;
+        body.scrollTop = 0;
+    },
+
+    toggleTermsLanguage: function() {
+        if (this._termsViewingLang === 'en' && this._termsOriginalLang !== 'en') {
+            this._termsViewingLang = this._termsOriginalLang;
+        } else {
+            this._termsViewingLang = 'en';
+        }
+        this.renderTermsContent(this._termsViewingLang);
+    },
+
+    closeTermsModal: function() {
+        document.getElementById('terms-modal').classList.remove('active');
+    },
+
+    updateTermsCheckboxLabels: function() {
+        const t = function(key) {
+            return (typeof i18n !== 'undefined' && i18n.t) ? i18n.t(key) : null;
+        };
+
+        // KYC-A checkbox
+        const kycLabel = document.querySelector('#kyc-tc-checkbox')?.parentElement?.querySelector('span');
+        if (kycLabel) {
+            kycLabel.innerHTML = (t('terms.iAgreeTo') || 'I agree to the ') +
+                '<a href="#" class="tc-link" data-terms="terms">' + (t('terms.termsAndConditions') || 'Terms & Conditions') + '</a>' +
+                (t('terms.and') || ' and ') +
+                '<a href="#" class="tc-link" data-terms="privacy">' + (t('terms.privacyPolicy') || 'Privacy Policy') + '</a>';
+        }
+
+        // Check clearing checkbox
+        const checkLabel = document.querySelector('#check-tc-checkbox')?.parentElement?.querySelector('span');
+        if (checkLabel) {
+            checkLabel.innerHTML = (t('terms.iAgreeTo') || 'I agree to the ') +
+                '<a href="#" class="tc-link" data-terms="terms">' + (t('terms.depositTerms') || 'Deposit Terms') + '</a>' +
+                (t('terms.andAuthorize') || ' and authorize check clearing');
+        }
+
+        // Re-wire links after rebuilding innerHTML
+        this.wireTermsLinks();
+    },
+
+    wireTermsLinks: function() {
+        var self = this;
+        document.querySelectorAll('.tc-link').forEach(function(link) {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation(); // Prevent checkbox toggle
+                var docType = link.getAttribute('data-terms') || 'terms';
+                self.openTermsModal(docType);
+            });
+        });
     }
 };
 

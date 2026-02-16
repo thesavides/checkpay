@@ -9,7 +9,7 @@ const i18n = {
     locales: {
         en: {
             welcome: {
-                tagline: 'Clear your payroll check, get your card instantly',
+                tagline: 'Clear your payroll check. Access your money digitally. T&Cs apply.',
                 selectLanguage: 'Select Language',
                 getStarted: 'Get an Account',
                 signIn: 'Already have an account? Sign In',
@@ -161,6 +161,7 @@ const i18n = {
                 support: 'Support',
                 helpCenter: 'Help Center',
                 contactSupport: 'Contact Support',
+                legal: 'Legal',
                 signOut: 'Sign Out'
             },
             nav: {
@@ -189,10 +190,10 @@ const i18n = {
                 navFaq: 'FAQ',
                 signIn: 'Sign In',
                 getStarted: 'Get Started',
-                heroTitle1: 'Clear Your Payroll Check,',
-                heroTitle2: 'Card Instantly',
-                heroGetYour: 'Get Your ',
-                heroDescription: 'No bank account needed. Upload your paycheck, verify your identity, and receive a virtual debit card in minutes. Start spending or paying bills immediately.',
+                heroTitle1: 'Clear Your Payroll Check.',
+                heroTitle2: 'Digitally.',
+                heroGetYour: 'Access Your Money ',
+                heroDescription: 'Upload your employer-issued payroll check, verify your identity, and access your funds once they\'re cleared. Get a virtual debit card to pay bills or spend online \u2014 no cash required. T&Cs apply.',
                 learnMore: 'Learn More',
                 statTime: 'Processing Time',
                 statLanguages: 'Languages',
@@ -275,12 +276,25 @@ const i18n = {
                 errorMessage: 'Sorry, something went wrong. Please try again.',
                 rateLimited: "You're sending messages too quickly. Please wait a moment.",
                 inputLabel: 'Chat message'
+            },
+            terms: {
+                iAgreeTo: 'I agree to the ',
+                termsAndConditions: 'Terms & Conditions',
+                privacyPolicy: 'Privacy Policy',
+                depositTerms: 'Deposit Terms',
+                and: ' and ',
+                andAuthorize: ' and authorize check clearing',
+                viewInEnglish: 'View English (legally binding)',
+                viewInLanguage: 'View in ',
+                legallyBindingNote: 'You are viewing the legally binding English version.',
+                lastUpdated: 'Last updated',
+                acceptanceNote: 'BY ENROLLING IN OR USING THE SERVICES, YOU ACKNOWLEDGE THAT YOU HAVE READ, UNDERSTOOD, AND AGREE TO BE BOUND BY THESE TERMS AND CONDITIONS.'
             }
         },
 
         es: {
             welcome: {
-                tagline: 'Deposita tu cheque de nómina, obtén tu tarjeta al instante',
+                tagline: 'Deposita tu cheque de nómina. Accede a tu dinero digitalmente. Aplican T&Cs.',
                 selectLanguage: 'Seleccionar Idioma',
                 getStarted: 'Obtener una Cuenta',
                 signIn: '\u00bfYa tienes cuenta? Iniciar Sesi\u00f3n',
@@ -432,6 +446,7 @@ const i18n = {
                 support: 'Soporte',
                 helpCenter: 'Centro de Ayuda',
                 contactSupport: 'Contactar Soporte',
+                legal: 'Legal',
                 signOut: 'Cerrar Sesi\u00f3n'
             },
             nav: {
@@ -460,10 +475,10 @@ const i18n = {
                 navFaq: 'Preguntas',
                 signIn: 'Iniciar Sesi\u00f3n',
                 getStarted: 'Comenzar',
-                heroTitle1: 'Deposita Tu Cheque de N\u00f3mina,',
-                heroTitle2: 'Tarjeta al Instante',
-                heroGetYour: 'Obt\u00e9n Tu ',
-                heroDescription: 'No necesitas cuenta bancaria. Sube tu cheque de n\u00f3mina, verifica tu identidad y recibe una tarjeta de d\u00e9bito virtual en minutos. Empieza a gastar o pagar facturas de inmediato.',
+                heroTitle1: 'Deposita Tu Cheque de N\u00f3mina.',
+                heroTitle2: 'Digitalmente.',
+                heroGetYour: 'Accede a Tu Dinero ',
+                heroDescription: 'Sube el cheque de n\u00f3mina de tu empleador, verifica tu identidad y accede a tus fondos una vez que se procesen. Obt\u00e9n una tarjeta de d\u00e9bito virtual para pagar facturas o comprar en l\u00ednea \u2014 sin necesidad de efectivo. Aplican T\u00e9rminos y Condiciones.',
                 learnMore: 'Saber M\u00e1s',
                 statTime: 'Tiempo de Proceso',
                 statLanguages: 'Idiomas',
@@ -546,12 +561,25 @@ const i18n = {
                 errorMessage: 'Lo sentimos, algo sali\u00f3 mal. Por favor, int\u00e9ntalo de nuevo.',
                 rateLimited: 'Est\u00e1s enviando mensajes muy r\u00e1pido. Por favor espera un momento.',
                 inputLabel: 'Mensaje de chat'
+            },
+            terms: {
+                iAgreeTo: 'Acepto los ',
+                termsAndConditions: 'Términos y Condiciones',
+                privacyPolicy: 'Política de Privacidad',
+                depositTerms: 'Términos de Depósito',
+                and: ' y la ',
+                andAuthorize: ' y autorizo el procesamiento del cheque',
+                viewInEnglish: 'Ver en inglés (legalmente vinculante)',
+                viewInLanguage: 'Ver en ',
+                legallyBindingNote: 'Está viendo la versión en inglés legalmente vinculante.',
+                lastUpdated: 'Última actualización',
+                acceptanceNote: 'AL REGISTRARSE O USAR LOS SERVICIOS, USTED RECONOCE QUE HA LEÍDO, COMPRENDIDO Y ACEPTA ESTAR SUJETO A ESTOS TÉRMINOS Y CONDICIONES.'
             }
         },
 
         ph: {
             welcome: {
-                tagline: 'I-clear ang iyong payroll check, kumuha ng card agad',
+                tagline: 'I-clear ang iyong payroll check. I-access ang iyong pera digitally. May T&Cs.',
                 selectLanguage: 'Pumili ng Wika',
                 getStarted: 'Kumuha ng Account',
                 signIn: 'May account ka na? Mag-sign In',
@@ -703,6 +731,7 @@ const i18n = {
                 support: 'Suporta',
                 helpCenter: 'Help Center',
                 contactSupport: 'Makipag-ugnayan sa Suporta',
+                legal: 'Legal',
                 signOut: 'Mag-sign Out'
             },
             nav: {
@@ -731,10 +760,10 @@ const i18n = {
                 navFaq: 'FAQ',
                 signIn: 'Mag-sign In',
                 getStarted: 'Magsimula',
-                heroTitle1: 'I-clear ang Iyong Payroll Check,',
-                heroTitle2: 'Card Agad',
-                heroGetYour: 'Kumuha ng ',
-                heroDescription: 'Hindi kailangan ng bank account. I-upload ang iyong paycheck, i-verify ang iyong identity, at makakuha ng virtual debit card sa loob ng ilang minuto. Magsimulang gumastos o magbayad ng bills agad.',
+                heroTitle1: 'I-clear ang Iyong Payroll Check.',
+                heroTitle2: 'Digitally.',
+                heroGetYour: 'I-access ang Iyong Pera ',
+                heroDescription: 'I-upload ang payroll check mula sa iyong employer, i-verify ang iyong identity, at i-access ang iyong funds kapag na-clear na. Kumuha ng virtual debit card para magbayad ng bills o mag-spend online \u2014 walang cash na kailangan. May T&Cs.',
                 learnMore: 'Alamin Pa',
                 statTime: 'Oras ng Pagproseso',
                 statLanguages: 'Mga Wika',
@@ -817,12 +846,25 @@ const i18n = {
                 errorMessage: 'Sorry, may nangyaring mali. Pakisubukan muli.',
                 rateLimited: 'Masyadong mabilis ang pagpapadala mo ng mga mensahe. Maghintay muna.',
                 inputLabel: 'Mensahe sa chat'
+            },
+            terms: {
+                iAgreeTo: 'Sumasang-ayon ako sa ',
+                termsAndConditions: 'Mga Tuntunin at Kundisyon',
+                privacyPolicy: 'Patakaran sa Privacy',
+                depositTerms: 'Mga Tuntunin ng Deposito',
+                and: ' at ',
+                andAuthorize: ' at inaawtorisahan ang pag-clear ng tseke',
+                viewInEnglish: 'Tingnan sa English (legally binding)',
+                viewInLanguage: 'Tingnan sa ',
+                legallyBindingNote: 'Tinitingnan mo ang legally binding na English version.',
+                lastUpdated: 'Huling na-update',
+                acceptanceNote: 'SA PAGPAPA-ENROLL O PAGGAMIT NG MGA SERBISYO, KINIKILALA MO NA NABASA, NAUNAWAAN, AT SUMASANG-AYON KA NA SUMUNOD SA MGA TUNTUNIN AT KUNDISYON NA ITO.'
             }
         },
 
         yo: {
             welcome: {
-                tagline: 'Gba owó ṣẹki oṣù rẹ, gba kaadi rẹ lẹṣẹkẹṣẹ',
+                tagline: 'Gba owó ṣẹki oṣù rẹ. Wọlé sí owó rẹ lórí ayélujára. Àwọn Ofín àti Ipo loo.',
                 selectLanguage: 'Yan Ede',
                 getStarted: 'Gba Akaun',
                 signIn: 'Ni akaun t\u1eb9l\u1eb9? W\u1ecdl\u00e9',
@@ -974,6 +1016,7 @@ const i18n = {
                 support: 'Atil\u1eb9yin',
                 helpCenter: 'Ile-i\u1e63\u1eb9 Iranl\u1ecdw\u1ecd',
                 contactSupport: 'Kan si Atil\u1eb9yin',
+                legal: 'Of\u00edn',
                 signOut: 'Jade'
             },
             nav: {
@@ -1002,10 +1045,10 @@ const i18n = {
                 navFaq: '\u00ccb\u00e8\u00e8r\u00e8',
                 signIn: 'W\u1ecdl\u00e9',
                 getStarted: 'B\u1eb9r\u1eb9',
-                heroTitle1: 'Gba Ow\u00f3 \u1e62\u1eb9ki O\u1e63\u00f9 R\u1eb9,',
-                heroTitle2: 'Kaadi L\u1eb9\u1e63\u1eb9k\u1eb9\u1e63\u1eb9',
-                heroGetYour: 'Gba ',
-                heroDescription: 'K\u00f2 n\u00edl\u00f2 akaun banki. Gbe \u1e63\u1eb9ki o\u1e63\u00f9 r\u1eb9 s\u00edl\u1eb9, j\u1eb9r\u00eds\u00ed idanim\u1ecd r\u1eb9, k\u00ed o gba kaadi d\u1eb9b\u00edti foj\u00fa l\u00e1\u00e0r\u00edn i\u1e63\u1eb9j\u00fa d\u00ed\u1eb9. B\u1eb9r\u1eb9 l\u00e1ti n\u00e1w\u00f3 t\u00e0b\u00ed san \u00edw\u00e9-ow\u00f3 l\u1eb9\u1e63\u1eb9k\u1eb9\u1e63\u1eb9.',
+                heroTitle1: 'Gba Ow\u00f3 \u1e62\u1eb9ki O\u1e63\u00f9 R\u1eb9.',
+                heroTitle2: 'L\u00f3ri Ayel\u00faj\u00e1ra.',
+                heroGetYour: 'Wol\u00e9 S\u00ed Ow\u00f3 R\u1eb9 ',
+                heroDescription: 'Gbe \u1e63\u1eb9ki o\u1e63\u00f9 l\u00e1ti \u1ecdd\u1ecd agbanf\u1eb9\u1e63\u1eb9 r\u1eb9 s\u00edl\u1eb9, j\u1eb9r\u00eds\u00ed idanim\u1ecd r\u1eb9, k\u00ed o wol\u00e9 s\u00ed ow\u00f3 r\u1eb9 l\u1eb9\u0301yin t\u00ed \u00f3 b\u00e1 ti y\u00e1. Gba kaadi d\u1eb9b\u00edti foj\u00fa l\u00e1ti san \u00edw\u00e9-ow\u00f3 t\u00e0b\u00ed n\u00e1w\u00f3 l\u00f3ri ay\u00e9luj\u00e1ra \u2014 k\u00f2 s\u00ed ow\u00f3 k\u00e1\u00e0\u1e63\u00f9 t\u00ed a n\u00edl\u00f2. \u00c0w\u1ecdn Of\u00edn \u00e0ti Ipo loo.',
                 learnMore: 'K\u1eb9 Sii',
                 statTime: '\u00c0k\u00f3k\u00f2 \u1e62i\u1e63\u1eb9',
                 statLanguages: 'Aw\u1ecdn Ed\u00e8',
@@ -1088,6 +1131,19 @@ const i18n = {
                 errorMessage: 'Má bìnú, nǹkan kan ṣẹlẹ̀. Jọ̀wọ́ gbìyànjú lẹ́ẹ̀kan síi.',
                 rateLimited: 'O ń fi ìfiránṣẹ́ ránṣẹ́ ní ìyára jù. Jọ̀wọ́ dúró díẹ̀.',
                 inputLabel: 'Ìfiránṣẹ́ ìfọ̀rọ̀wánilẹ́nuwò'
+            },
+            terms: {
+                iAgreeTo: 'Mo gba ',
+                termsAndConditions: 'Àwọn Òfin àti Ìpèsè',
+                privacyPolicy: 'Ìlànà Àṣírí',
+                depositTerms: 'Àwọn Òfin Ìfikúnlé',
+                and: ' àti ',
+                andAuthorize: ' àti ìfàṣẹ sísanwó ṣẹ́kì',
+                viewInEnglish: 'Wo ní Èdè Gẹ̀ẹ́sì (tó ní agbára òfin)',
+                viewInLanguage: 'Wo ní ',
+                legallyBindingNote: 'O ń wo ẹ̀yà Gẹ̀ẹ́sì tó ní agbára òfin.',
+                lastUpdated: 'Ìmúdójúìwọ̀n ìgbẹ̀yìn',
+                acceptanceNote: 'NÍPASẸ̀ FÍFORÚKỌSÍLẸ̀ TÀBÍ LÍLO ÀWỌN IṢẸ́ NÁÀ, O JẸ́RÌÍSÍ PÉ O TI KA, LÓYE, ÀTIPÉ O GBÀ LÁTI DÌ MÚ SÍNÚ ÀWỌN ÒFIN ÀTI ÌPÈSÈ WỌ̀NYÍ.'
             }
         }
     },

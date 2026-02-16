@@ -42,7 +42,7 @@
                         <span class="material-icons">account_balance_wallet</span>
                     </div>
                     <h1 class="app-title">CheckPay</h1>
-                    <p class="app-tagline" data-i18n="welcome.tagline">Clear your payroll check, get your card instantly</p>
+                    <p class="app-tagline" data-i18n="welcome.tagline">Clear your payroll check. Access your money digitally. T&Cs apply.</p>
                 </div>
 
                 <button class="btn btn-primary btn-large" id="get-started-btn" data-i18n="welcome.getStarted">
@@ -77,6 +77,10 @@
                         <span class="material-icons" style="font-size: 18px; vertical-align: middle; margin-right: 4px;">language</span>
                         Language
                     </button>
+                    <a href="#" class="btn-text home-link tc-link" data-terms="terms">
+                        <span class="material-icons" style="font-size: 18px; vertical-align: middle; margin-right: 4px;">description</span>
+                        <span data-i18n="terms.termsAndConditions">Terms & Conditions</span>
+                    </a>
                 </div>
             </div>
         </div>
@@ -1109,6 +1113,24 @@
                     </button>
                 </div>
 
+                <div class="settings-section">
+                    <h4 data-i18n="profile.legal">Legal</h4>
+                    <button class="settings-item tc-link" data-terms="terms">
+                        <div class="settings-item-content">
+                            <span class="material-icons">description</span>
+                            <span data-i18n="terms.termsAndConditions">Terms & Conditions</span>
+                        </div>
+                        <span class="material-icons">chevron_right</span>
+                    </button>
+                    <button class="settings-item tc-link" data-terms="privacy">
+                        <div class="settings-item-content">
+                            <span class="material-icons">privacy_tip</span>
+                            <span data-i18n="terms.privacyPolicy">Privacy Policy</span>
+                        </div>
+                        <span class="material-icons">chevron_right</span>
+                    </button>
+                </div>
+
                 <button class="btn btn-secondary" id="sign-out-btn" data-i18n="profile.signOut">
                     Sign Out
                 </button>
@@ -1220,9 +1242,33 @@
                 <button class="btn btn-primary" id="language-modal-close" data-i18n="common.close">Close</button>
             </div>
         </div>
+
+        <!-- Terms & Conditions Modal -->
+        <div id="terms-modal" class="modal terms-modal">
+            <div class="terms-modal-content">
+                <div class="terms-modal-header">
+                    <h3 id="terms-modal-title">Terms &amp; Conditions</h3>
+                    <button class="btn-icon" id="terms-modal-close-x" aria-label="Close">
+                        <span class="material-icons">close</span>
+                    </button>
+                </div>
+                <div class="terms-disclaimer-banner" id="terms-disclaimer" style="display: none;">
+                    <span class="material-icons">info</span>
+                    <p id="terms-disclaimer-text"></p>
+                    <button class="btn-text" id="terms-view-english"></button>
+                </div>
+                <div class="terms-modal-body" id="terms-modal-body">
+                    <!-- Sections rendered by JS from terms.js -->
+                </div>
+                <div class="terms-modal-footer">
+                    <button class="btn btn-primary" id="terms-modal-close" data-i18n="common.close">Close</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="i18n.js"></script>
+    <script src="terms.js"></script>
     <script src="app.js"></script>
     <script src="chatbot.js"></script>
 </body>
