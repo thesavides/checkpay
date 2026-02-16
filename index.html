@@ -909,19 +909,19 @@
         <p data-i18n="landing.langSectionSubtitle">CheckPay speaks your language. Choose from English, Spanish, Filipino, or Yoruba for a fully localized experience.</p>
         
         <div class="language-grid">
-            <div class="language-item">
+            <div class="language-item" data-lang="en" style="cursor: pointer;">
                 <div class="language-flag">🇬🇧</div>
                 <div class="language-name">English</div>
             </div>
-            <div class="language-item">
+            <div class="language-item" data-lang="es" style="cursor: pointer;">
                 <div class="language-flag">🇪🇸</div>
                 <div class="language-name">Español</div>
             </div>
-            <div class="language-item">
+            <div class="language-item" data-lang="ph" style="cursor: pointer;">
                 <div class="language-flag">🇵🇭</div>
                 <div class="language-name">Filipino</div>
             </div>
-            <div class="language-item">
+            <div class="language-item" data-lang="yo" style="cursor: pointer;">
                 <div class="language-flag">🇳🇬</div>
                 <div class="language-name">Yorùbá</div>
             </div>
@@ -1071,6 +1071,14 @@
         // Language selector — save to localStorage and update UI
         selector.addEventListener('change', (e) => {
             i18n.setLanguage(e.target.value);
+        });
+
+        // Language cards in "Available in Your Language" section
+        document.querySelectorAll('.language-item[data-lang]').forEach(card => {
+            card.addEventListener('click', () => {
+                i18n.setLanguage(card.dataset.lang);
+                selector.value = card.dataset.lang;
+            });
         });
     </script>
 </body>
