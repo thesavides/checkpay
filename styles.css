@@ -2121,3 +2121,9 @@ input:checked + .toggle-slider:before {
     text-decoration: underline;
     font-weight: 500;
 }
+
+.settings-item.tc-link {
+    color: inherit;
+    text-decoration: none;
+    font-weight: inherit;
+}
