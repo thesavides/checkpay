@@ -35,10 +35,16 @@ const CheckPayApp = {
             this.showScreen('kyc-screen');
         });
 
-        // Welcome screen language button
-        document.getElementById('welcome-language-btn')?.addEventListener('click', () => {
-            this.openLanguageModal();
-        });
+        // Welcome screen language dropdown
+        var welcomeLangSelect = document.getElementById('welcome-language-select');
+        if (welcomeLangSelect) {
+            welcomeLangSelect.value = i18n.currentLanguage;
+            welcomeLangSelect.addEventListener('change', function() {
+                i18n.setLanguage(welcomeLangSelect.value);
+                i18n.updateUI();
+                CheckPayApp.updateTermsCheckboxLabels();
+            });
+        }
 
         // Sign in link (demo shortcut — skips KYC)
         document.getElementById('sign-in-link')?.addEventListener('click', () => {
@@ -860,6 +866,10 @@ const CheckPayApp = {
 
                 // Update T&C checkbox labels for new language
                 CheckPayApp.updateTermsCheckboxLabels();
+
+                // Sync welcome language dropdown
+                var wls = document.getElementById('welcome-language-select');
+                if (wls) wls.value = btn.dataset.lang;
             });
         });
 

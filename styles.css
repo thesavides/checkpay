@@ -280,8 +280,53 @@ body {
 .welcome-footer-links {
     display: flex;
     justify-content: center;
-    gap: 24px;
+    align-items: center;
+    gap: 16px;
     margin-top: 24px;
+}
+
+.welcome-language-select {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    color: var(--text-primary);
+    background: var(--white);
+    cursor: pointer;
+    outline: none;
+}
+
+.welcome-language-select:focus {
+    border-color: var(--primary-color);
+}
+
+.btn-small {
+    padding: 8px 16px;
+    font-size: 13px;
+}
+
+.welcome-footer-legal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.welcome-legal-link {
+    font-size: 13px;
+    color: var(--text-secondary) !important;
+    text-decoration: none !important;
+    font-weight: 400 !important;
+}
+
+.welcome-legal-link:hover {
+    text-decoration: underline !important;
+}
+
+.welcome-legal-divider {
+    color: #ccc;
+    font-size: 13px;
 }
 
 .btn-remove {
