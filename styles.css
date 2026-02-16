@@ -1699,6 +1699,19 @@ input:checked + .toggle-slider:before {
     color: var(--white);
 }
 
+.balance-header-logo {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.balance-header-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+}
+
 .balance-header-item {
     display: flex;
     flex-direction: column;
