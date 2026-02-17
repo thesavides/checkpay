@@ -6,17 +6,25 @@ A multilingual check-to-card wallet web app targeting ITIN-based users (immigran
 ## Tech Stack
 - **Vanilla HTML/CSS/JS** — no frameworks, no build step
 - **Static site** — served directly, no compilation needed
-- **Cloudflare Pages** — hosting & auto-deploy
+- **Cloudflare Pages** — hosting & auto-deploy (custom domain: checkpay.ukuva.com)
+- **Cloudflare Pages Functions** — serverless API proxy for chatbot
+- **Claude API (Anthropic)** — powers the in-app chatbot
 - **GitHub** — source control
 
 ## Project Files
 ```
 /Users/chrissavides/checkpay/
-├── index.html                  # Marketing/landing page (self-contained CSS & JS, FAQ, responsive)
-├── app.html                    # Main app (all screens: welcome, KYC-A, dashboard, check clearing w/ KYC-B, card, bill pay, profile)
-├── app.js                      # App logic & state management (~1003 lines)
-├── styles.css                  # App styles (used by app.html, ~1968 lines)
-├── i18n.js                     # Internationalization — English, Spanish, Filipino, Yoruba (~859 lines)
+├── index.html                  # Marketing/landing page (self-contained CSS & JS, FAQ, responsive, ~1109 lines)
+├── app.html                    # Main app (all screens: welcome, KYC-A, dashboard, check clearing w/ KYC-B, card, bill pay, profile, ~1287 lines)
+├── app.js                      # App logic & state management (~1187 lines)
+├── styles.css                  # App styles (used by app.html, ~2196 lines)
+├── i18n.js                     # Internationalization — English, Spanish, Filipino, Yoruba (~1301 lines)
+├── terms.js                    # Terms & Conditions content in 4 languages (~450 lines)
+├── chatbot.js                  # Claude-powered FAQ chatbot widget (~288 lines)
+├── chatbot.css                 # Chatbot widget styles (~307 lines)
+├── functions/
+│   └── api/
+│       └── chat.js             # Cloudflare Pages Function — Claude API proxy for chatbot (~221 lines)
 ├── favicon.svg                 # App favicon (teal wallet icon)
 ├── clearpath-icon.svg          # ClearPath Bank favicon (blue bank icon — clearing partner)
 ├── horizon-icon.svg            # Horizon Card Bank favicon (orange card icon — card issuer)
@@ -83,14 +91,14 @@ KYC is driven by the sponsor bank and issuing bank requirements. In production, 
 3. After deposit clears ("Back to Dashboard"): $1,234.56 available, $850.00 pending, card activated, transactions loaded
 
 ### Screens & Features (in app.html)
-1. **Welcome Screen** — "Get an Account" button, "Already have an account? Sign In" shortcut, auto-detected language, "Back to Home" link, language selector
+1. **Welcome Screen** — "Get an Account" button, "Already have an account? Sign In" shortcut, auto-detected language, inline language dropdown selector, "Back to Home" button, T&C/Privacy legal links footer
 2. **KYC-A Screen (Account Verification)** — 4-step flow:
    - Step 1: Personal Info form (full name, DOB, ITIN, address, city, state, ZIP) + T&C checkbox
    - Step 2: Government ID upload (passport/ID photo)
    - Step 3: Selfie capture (liveness verification)
    - Step 4: Provisioning animation (verify identity → create virtual card → activate wallet)
 3. **Dashboard** — balance card with bank disclaimer, virtual card preview with issuer badge, quick actions (clear check, view card, pay bill), recent transactions
-4. **Persistent Balance Header** — fixed bar showing Available + Pending + "Funds held by Horizon Card Bank" disclaimer
+4. **Persistent Balance Header** — fixed bar with CheckPay icon (top-left), Available + Pending balances, "Funds held by Horizon Card Bank" disclaimer
 5. **Clear Check** — 4-step flow:
    - Step 1: Capture check front
    - Step 2: Capture check back
@@ -100,9 +108,11 @@ KYC is driven by the sponsor bank and issuing bank requirements. In production, 
 7. **Request Physical Card** — modal with postal address verification form (street, apt, city, state, ZIP)
 8. **Bill Pay** — 4-step enhanced flow: select state/utility/biller → enter details → review → Stripe-style checkout → confirmation
 9. **Transactions** — filterable list (all/pending/completed/failed)
-10. **Profile & Settings** — personal info, language modal, notifications, security, support, sign out (→ landing page)
-11. **Language Modal** — accessible from Profile and welcome screen, shows 4 languages with checkmark
+10. **Profile & Settings** — personal info, language modal, notifications, security, legal (T&C + Privacy links), support, sign out (→ landing page)
+11. **Language Modal** — accessible from Profile, shows 4 languages with checkmark (welcome screen uses inline dropdown instead)
 12. **Success Modal** — reusable success confirmation
+13. **Terms & Conditions Modal** — full-screen scrollable overlay with 21 legal sections, 4-language support, English legally binding with translated convenience copies, orange disclaimer banner for non-English with "View English" CTA, deep-linkable via `?view=terms` or `?view=privacy` URL params
+14. **Chatbot Widget** — Claude-powered FAQ chatbot, floating button (bottom-right), multilingual, context-aware with CheckPay knowledge, powered by Cloudflare Pages Function proxy to Claude API
 
 ### Bank Partner Disclaimers (6 locations)
 | Location | Disclaimer | Bank |
@@ -128,14 +138,15 @@ KYC is driven by the sponsor bank and issuing bank requirements. In production, 
 ## Landing Page (index.html)
 
 ### Structure
-- **Navigation** — CheckPay logo, Features, How It Works, FAQ links, language selector, Sign In (→ `app.html?mode=signin`), Get Started (→ `app.html`)
-- **Hero** — "Clear Your Payroll Check, Get Your Card Instantly" + CTA buttons + stats (2-3 min, 4 languages, 24/7)
-- **Phone Mockup** — interactive dashboard preview with balance, card, quick actions
+- **Navigation** — CheckPay DEMO logo (grey "DEMO" label), Features, How It Works, FAQ links, language selector, Sign In (→ `app.html?mode=signin`), Get Started (→ `app.html`)
+- **Hero** — "Clear Your Payroll Check. Access Your Money Digitally." + CTA buttons + stats (2-3 min, 4 languages, 24/7) + "T&Cs apply" note
+- **Phone Mockup** — static dashboard preview with balance, card, quick actions (non-clickable, cursor: default), "Example only" labels (i18n-translated) on balance card and virtual card
 - **Features Grid** — 6 cards: Payroll Check Clearing, Virtual Debit Card, Secure KYC Verification, Bill Payments, Mobile Top-Up, Multi-Language Support
 - **How It Works** — 4 steps: Verify Identity → Upload Check → Receive Card → Start Transacting
-- **Languages** — 4-language grid (English, Spanish, Filipino, Yoruba)
+- **Languages** — 4-language grid (English, Spanish, Filipino, Yoruba) — clickable as language selectors
 - **FAQ** — 12-question accordion covering: What is CheckPay, SSN requirements, account creation, identity verification, immigration concerns, deposit confirmation, surveillance, funds timing, fees, money safety, cash withdrawal, bank partners
 - **CTA Section** — "Sign up, create your account, scan a check, and get paid."
+- **Chatbot** — floating Claude-powered FAQ widget (bottom-right)
 
 ### Responsive Breakpoints
 - **968px** — single-column hero, hide text nav links, reduce button sizes
@@ -143,8 +154,9 @@ KYC is driven by the sponsor bank and issuing bank requirements. In production, 
 - **480px** — further reduced nav (smaller logo, tighter gaps, compact buttons)
 
 ### Metadata
-- Title: "CheckPay - Sign Up, Scan a Check, Get Paid"
-- Open Graph tags for social sharing
+- Title: "CheckPay - Clear Your Payroll Check. Access Your Money Digitally."
+- Description: "Upload your employer-issued payroll check, verify your identity, and access your funds digitally. Get a virtual debit card to pay bills or spend online — no bank account needed."
+- Open Graph tags for social sharing (og:title, og:description, og:url, og:type)
 - Theme color: #009688 (teal)
 - SVG favicon
 
@@ -163,6 +175,10 @@ KYC is driven by the sponsor bank and issuing bank requirements. In production, 
 - `i18n.updateUI()` updates all `[data-i18n]` elements in DOM
 - Auto-detects language from `navigator.language` on first visit (es→es, fil/tl→ph, yo→yo, default en)
 - Stored in `localStorage` as `checkpay-language`
+- Language persists across pages (landing page ↔ app) via shared `localStorage` key
+- Landing page has full i18n support (language selector in nav + clickable language cards)
+- T&C legal content stored separately in `terms.js` (different change cadence from UI strings)
+- Some checkbox labels use dynamic JS (`updateTermsCheckboxLabels()`) because `data-i18n` with `textContent` would destroy embedded `<a>` tags
 
 ### Translation Quality Status
 | Language | Rating | Notes |
@@ -174,7 +190,6 @@ KYC is driven by the sponsor bank and issuing bank requirements. In production, 
 ### Known i18n Gaps
 - Bill pay flow has some hardcoded English labels (step names "Biller", "Details", "Review", "Pay" and form labels)
 - Bank disclaimer text is hardcoded English (not yet in i18n system)
-- T&C checkbox text is hardcoded English
 - Some unused translation keys exist in `i18n.js` (harmless)
 
 ## Git & Deployment
@@ -183,8 +198,25 @@ KYC is driven by the sponsor bank and issuing bank requirements. In production, 
 - **GitHub:** `git@github.com:thesavides/checkpay.git` (SSH)
 - **Branch:** `main`
 
-### Commit History
+### Commit History (recent → oldest)
 ```
+668114b Translate 'Example only' labels in phone mockup via i18n
+1a3e4fa Add 'Example only' labels to mockup and remove action hover effects
+d069bfc Redesign welcome screen footer: dropdown language, button, legal links
+6aef015 Improve T&C language disclaimer banner styling
+e1ceaf1 Increase CheckPay icon size in app balance header
+5c00e4d Add DEMO label to landing page logo and CheckPay icon to app header
+4b54109 Fix T&C and Privacy links styling in profile settings
+595d924 Add T&C modal, update hero copy, and add legal links
+bb67116 Add Claude-powered chatbot widget with multilingual support
+ea179f5 Redirect checkpay.pages.dev to checkpay.ukuva.com
+b349246 Show language selector on mobile responsive views
+d2dc6b2 Make language cards clickable as language selectors
+a87aa3e Add full i18n support to landing page with cross-page language persistence
+05448b6 Add client-side HTTP to HTTPS redirect for Squarespace DNS setup
+3f7472f Replace 'cash a check' with 'clear a check' across all languages and docs
+22bf563 Fix balance header overlap: increase content offset from 64px to 80px
+3d25f2e Add updated handoff document and user journey documentation
 b15df09 Add bank partner disclaimers, favicons, T&C checkboxes, and bank FAQ
 6fe97d4 Dynamic balance: pending updates on check submit, clears to available on deposit
 0b675c5 Fix user journeys: Sign In routes to dashboard, two auth states, mobile nav

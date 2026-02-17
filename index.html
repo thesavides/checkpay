@@ -4,10 +4,11 @@
     <script>if(location.hostname==='checkpay.pages.dev')location.replace('https://checkpay.ukuva.com'+location.pathname+location.search+location.hash);else if(location.protocol==='http:'&&location.hostname!=='localhost')location.replace('https://'+location.host+location.pathname+location.search+location.hash);</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CheckPay - Sign Up, Scan a Check, Get Paid</title>
-    <meta name="description" content="Sign up, create your account, scan a check, and get paid. No bank account or SSN required. Virtual debit card in minutes.">
-    <meta property="og:title" content="CheckPay - Sign Up, Scan a Check, Get Paid">
-    <meta property="og:description" content="Clear your payroll check from your phone, get a virtual debit card instantly. No bank account needed. Supports ITIN-based verification.">
+    <title>CheckPay - Clear Your Payroll Check. Access Your Money Digitally.</title>
+    <meta name="description" content="Upload your employer-issued payroll check, verify your identity, and access your funds digitally. Get a virtual debit card to pay bills or spend online — no bank account needed.">
+    <meta property="og:title" content="CheckPay - Clear Your Payroll Check. Access Your Money Digitally.">
+    <meta property="og:description" content="Upload your employer-issued payroll check, verify your identity, and access your funds digitally. Get a virtual debit card to pay bills or spend online — no bank account needed.">
+    <meta property="og:url" content="https://checkpay.ukuva.com">
     <meta property="og:type" content="website">
     <meta name="theme-color" content="#009688">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -594,8 +595,7 @@
             }
 
             .nav-links .cta-button {
-                padding: 0.5rem 1rem;
-                font-size: 0.85rem;
+                display: none;
             }
 
             .phone-mockup {
@@ -695,10 +695,6 @@
                 border-width: 1.5px;
             }
 
-            .nav-links .cta-button {
-                padding: 0.4rem 0.8rem;
-                font-size: 0.8rem;
-            }
         }
 
         /* Animations */
@@ -740,8 +736,8 @@
                 <a href="#how-it-works" data-i18n="landing.navHowItWorks">How It Works</a>
                 <a href="#faq" data-i18n="landing.navFaq">FAQ</a>
                 <select class="language-select" id="language-selector">
-                    <option value="en">🇬🇧 English</option>
-                    <option value="es">🇪🇸 Español</option>
+                    <option value="en">🇺🇸 English</option>
+                    <option value="es">🇲🇽 Español</option>
                     <option value="ph">🇵🇭 Filipino</option>
                     <option value="yo">🇳🇬 Yorùbá</option>
                 </select>
@@ -922,11 +918,11 @@
         
         <div class="language-grid">
             <div class="language-item" data-lang="en" style="cursor: pointer;">
-                <div class="language-flag">🇬🇧</div>
+                <div class="language-flag">🇺🇸</div>
                 <div class="language-name">English</div>
             </div>
             <div class="language-item" data-lang="es" style="cursor: pointer;">
-                <div class="language-flag">🇪🇸</div>
+                <div class="language-flag">🇲🇽</div>
                 <div class="language-name">Español</div>
             </div>
             <div class="language-item" data-lang="ph" style="cursor: pointer;">
@@ -1092,6 +1088,16 @@
                 selector.value = card.dataset.lang;
             });
         });
+
+        // Mobile: abbreviate language selector options
+        const langFull = {en: '🇺🇸 English', es: '🇲🇽 Español', ph: '🇵🇭 Filipino', yo: '🇳🇬 Yorùbá'};
+        const langShort = {en: '🇺🇸 EN', es: '🇲🇽 ES', ph: '🇵🇭 PH', yo: '🇳🇬 YO'};
+        function updateLangLabels() {
+            const labels = window.innerWidth <= 968 ? langShort : langFull;
+            Array.from(selector.options).forEach(opt => { opt.textContent = labels[opt.value]; });
+        }
+        updateLangLabels();
+        window.addEventListener('resize', updateLangLabels);
     </script>
     <script src="chatbot.js"></script>
 </body>

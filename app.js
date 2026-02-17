@@ -44,6 +44,16 @@ const CheckPayApp = {
                 i18n.updateUI();
                 CheckPayApp.updateTermsCheckboxLabels();
             });
+
+            // Mobile: abbreviate language selector options
+            var langFull = {en: '\u{1F1FA}\u{1F1F8} English', es: '\u{1F1F2}\u{1F1FD} Español', ph: '\u{1F1F5}\u{1F1ED} Filipino', yo: '\u{1F1F3}\u{1F1EC} Yorùbá'};
+            var langShort = {en: '\u{1F1FA}\u{1F1F8} EN', es: '\u{1F1F2}\u{1F1FD} ES', ph: '\u{1F1F5}\u{1F1ED} PH', yo: '\u{1F1F3}\u{1F1EC} YO'};
+            function updateWelcomeLangLabels() {
+                var labels = window.innerWidth <= 968 ? langShort : langFull;
+                Array.from(welcomeLangSelect.options).forEach(function(opt) { opt.textContent = labels[opt.value]; });
+            }
+            updateWelcomeLangLabels();
+            window.addEventListener('resize', updateWelcomeLangLabels);
         }
 
         // Sign in link (demo shortcut — skips KYC)
