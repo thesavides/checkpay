@@ -2160,8 +2160,10 @@ input:checked + .toggle-slider:before {
 }
 
 .timeline-time {
-    font-size: 12px;
+    font-size: 11px;
     color: var(--text-secondary);
+    white-space: nowrap;
+    text-align: right;
 }
 
 .deposit-amount-card {

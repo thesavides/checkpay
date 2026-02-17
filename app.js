@@ -518,19 +518,28 @@ const CheckPayApp = {
         document.getElementById('header-pending-balance').textContent = '$850.00';
 
         const now = new Date();
-        const formatTime = (d) => d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        // Format: "Feb 17, 2:10 PM EST"
+        const formatTime = (d) => {
+            const month = d.toLocaleDateString([], { month: 'short' });
+            const day = d.getDate();
+            const time = d.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+            const tz = d.toLocaleTimeString([], { timeZoneName: 'short' }).split(' ').pop();
+            return month + ' ' + day + ', ' + time + ' ' + tz;
+        };
 
         // Set submitted time
         const submittedTime = document.getElementById('timeline-submitted-time');
         if (submittedTime) submittedTime.textContent = formatTime(now);
 
-        // Progress through stages
-        const stages = [
-            { id: 'timeline-review', delay: 2000 },
-            { id: 'timeline-accepted', delay: 4000 },
-            { id: 'timeline-pending', delay: 6000 },
-            { id: 'timeline-cleared', delay: 8000 }
+        // Simulate realistic clearing timeline spanning hours/days
+        // Each stage gets a progressively later demo timestamp
+        const stageOffsets = [
+            { id: 'timeline-review', delay: 2000, hoursOffset: 0.5 },
+            { id: 'timeline-accepted', delay: 4000, hoursOffset: 4 },
+            { id: 'timeline-pending', delay: 6000, hoursOffset: 24 },
+            { id: 'timeline-cleared', delay: 8000, hoursOffset: 48 }
         ];
+        const stages = stageOffsets;
 
         stages.forEach(({ id, delay }, index) => {
             setTimeout(() => {
@@ -546,7 +555,8 @@ const CheckPayApp = {
 
                 // Activate this stage
                 item.classList.add('active');
-                if (timeEl) timeEl.textContent = formatTime(new Date());
+                var stageTime = new Date(now.getTime() + (stageOffsets[index].hoursOffset * 60 * 60 * 1000));
+                if (timeEl) timeEl.textContent = formatTime(stageTime);
 
                 // On last stage, complete it and show done button
                 if (index === stages.length - 1) {
