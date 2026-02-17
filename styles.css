@@ -1909,11 +1909,11 @@ input:checked + .toggle-slider:before {
 
 /* Push content down when balance header is visible */
 .app-container.has-balance-header .screen {
-    padding-top: 80px;
+    padding-top: 96px;
 }
 
 .app-container.has-balance-header .screen .screen-header {
-    top: 80px;
+    top: 96px;
 }
 
 /* Reassurance Banner */
