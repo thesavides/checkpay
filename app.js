@@ -394,11 +394,31 @@ const CheckPayApp = {
             document.getElementById('check-selfie-input').value = '';
         });
 
-        // Verify continue -> Confirm step
+        // Verify continue -> Confirm step (with first-deposit Reg E gate)
         document.getElementById('check-verify-continue')?.addEventListener('click', () => {
+            if (!this._depositDisclosureAccepted) {
+                // First deposit: show Reg E disclosure modal before confirm step
+                document.getElementById('deposit-disclosure-modal').classList.add('active');
+            } else {
+                document.getElementById('check-verify').style.display = 'none';
+                document.getElementById('check-confirm').style.display = 'block';
+                document.getElementById('check-step-4').classList.add('active');
+            }
+        });
+
+        // Deposit disclosure modal: "I Acknowledge & Continue"
+        document.getElementById('deposit-disclosure-agree')?.addEventListener('click', () => {
+            this._depositDisclosureAccepted = true;
+            document.getElementById('deposit-disclosure-modal').classList.remove('active');
             document.getElementById('check-verify').style.display = 'none';
             document.getElementById('check-confirm').style.display = 'block';
             document.getElementById('check-step-4').classList.add('active');
+        });
+
+        // Deposit disclosure modal: link to full deposit terms
+        document.getElementById('disclosure-full-terms-link')?.addEventListener('click', (e) => {
+            e.preventDefault();
+            this.openTermsModal('deposit');
         });
 
         // Step 4: Submit check
@@ -1029,6 +1049,9 @@ const CheckPayApp = {
         document.getElementById('terms-modal-close')?.addEventListener('click', () => {
             this.closeTermsModal();
         });
+        document.getElementById('terms-save-print')?.addEventListener('click', () => {
+            window.print();
+        });
         document.getElementById('terms-modal')?.addEventListener('click', (e) => {
             if (e.target.id === 'terms-modal') {
                 this.closeTermsModal();
@@ -1056,10 +1079,18 @@ const CheckPayApp = {
         document.getElementById('terms-modal').classList.add('active');
     },
 
+    _getTermsSource: function() {
+        if (this._termsDocType === 'deposit' && typeof depositTermsContent !== 'undefined') {
+            return depositTermsContent;
+        }
+        return termsContent;
+    },
+
     renderTermsContent: function(lang) {
         if (typeof termsContent === 'undefined') return;
 
-        const data = termsContent[lang] || termsContent.en;
+        var source = this._getTermsSource();
+        const data = source[lang] || source.en;
         const isEnglish = (lang === 'en');
 
         // Title
@@ -1145,7 +1176,7 @@ const CheckPayApp = {
         const checkLabel = document.querySelector('#check-tc-checkbox')?.parentElement?.querySelector('span');
         if (checkLabel) {
             checkLabel.innerHTML = (t('terms.iAgreeTo') || 'I agree to the ') +
-                '<a href="#" class="tc-link" data-terms="terms">' + (t('terms.depositTerms') || 'Deposit Terms') + '</a>' +
+                '<a href="#" class="tc-link" data-terms="deposit">' + (t('terms.depositTerms') || 'Deposit Terms') + '</a>' +
                 (t('terms.andAuthorize') || ' and authorize check clearing');
         }
 

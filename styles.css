@@ -1409,6 +1409,118 @@ input:checked + .toggle-slider:before {
     width: 100%;
 }
 
+.terms-modal-footer .btn-outline {
+    width: auto;
+    background: transparent;
+    border: 1.5px solid var(--border-color, #e0e0e0);
+    color: var(--text-secondary, #666);
+    font-size: 0.85rem;
+    padding: 8px 14px;
+}
+
+.terms-modal-footer .btn-outline:hover {
+    background: #f5f5f5;
+}
+
+/* EFT Notice on check confirm */
+.eft-notice {
+    font-size: 0.8rem;
+    color: #666;
+    line-height: 1.5;
+    margin-top: 8px;
+    padding: 0 4px;
+}
+
+/* Deposit Disclosure Modal */
+.deposit-disclosure-intro {
+    font-size: 0.95rem;
+    color: #333;
+    line-height: 1.6;
+    margin-bottom: 16px;
+}
+
+.disclosure-summary-card {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 12px;
+    border-left: 3px solid var(--primary-color, #009688);
+}
+
+.disclosure-summary-card h4 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.disclosure-summary-card p {
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.disclosure-summary-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.disclosure-summary-card ul li {
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.6;
+    padding-left: 20px;
+    position: relative;
+    margin-bottom: 4px;
+}
+
+.disclosure-summary-card ul li::before {
+    content: '\2713';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color, #009688);
+    font-weight: 700;
+}
+
+.deposit-disclosure-link-text {
+    font-size: 0.9rem;
+    color: #555;
+    margin-top: 16px;
+    text-align: center;
+}
+
+.deposit-disclosure-link-text a {
+    color: var(--primary-color, #009688);
+    font-weight: 600;
+}
+
+/* Print styles for terms modal */
+@media print {
+    body > *:not(.terms-modal) {
+        display: none !important;
+    }
+    .terms-modal {
+        position: static !important;
+        background: white !important;
+    }
+    .terms-modal-content {
+        max-height: none !important;
+        height: auto !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+    }
+    .terms-modal-body {
+        max-height: none !important;
+        overflow: visible !important;
+    }
+    .terms-modal-footer,
+    .terms-modal-header .btn-icon {
+        display: none !important;
+    }
+}
+
 /* Bill Pay Multi-Step */
 .billpay-step-content {
     animation: fadeIn 0.3s ease-in;

@@ -80,7 +80,8 @@ const i18n = {
                 processingMessage: 'This usually takes 2-3 minutes',
                 stepValidating: 'Validating check images',
                 stepVerifying: 'Verifying funds',
-                stepDepositing: 'Depositing to account'
+                stepDepositing: 'Depositing to account',
+                eftNotice: 'Your check will be processed as an electronic fund transfer to your account; see Deposit Terms for your rights and protections.'
             },
             checkVerify: {
                 title: 'Secure Deposit Confirmation',
@@ -101,7 +102,19 @@ const i18n = {
                 pending: 'Pending (Clearing)',
                 cleared: 'Cleared',
                 clearedMessage: 'Your check has been deposited. Funds are now available!',
-                backToDashboard: 'Back to Dashboard'
+                backToDashboard: 'Back to Dashboard',
+                disclosureTitle: 'Electronic Fund Transfer Disclosure',
+                disclosureIntro: 'Before you submit your first check deposit, please review the following important information about your rights and protections under federal law.',
+                disclosureEftHeading: 'Your deposit is an Electronic Fund Transfer',
+                disclosureEftBody: 'When you deposit a check through CheckPay, it is processed as an electronic fund transfer (EFT) to your account. This is governed by the Electronic Fund Transfer Act and Regulation E, which protect you.',
+                disclosureRightsHeading: 'Your rights include',
+                disclosureRight1: 'Right to documentation of every transfer (electronic receipts)',
+                disclosureRight2: 'Right to resolve errors within 60 days',
+                disclosureRight3: 'Limited liability for unauthorized transfers ($50 if reported within 2 business days)',
+                disclosureRight4: 'Right to save or print the full Deposit Terms for your records',
+                disclosureContactHeading: 'To report errors or unauthorized transfers',
+                disclosureFullTerms: 'Read the full',
+                disclosureAgree: 'I Acknowledge & Continue'
             },
             card: {
                 title: 'My Card',
@@ -289,7 +302,8 @@ const i18n = {
                 viewInLanguage: 'View in ',
                 legallyBindingNote: 'You are viewing the legally binding English version.',
                 lastUpdated: 'Last updated',
-                acceptanceNote: 'BY ENROLLING IN OR USING THE SERVICES, YOU ACKNOWLEDGE THAT YOU HAVE READ, UNDERSTOOD, AND AGREE TO BE BOUND BY THESE TERMS AND CONDITIONS.'
+                acceptanceNote: 'BY ENROLLING IN OR USING THE SERVICES, YOU ACKNOWLEDGE THAT YOU HAVE READ, UNDERSTOOD, AND AGREE TO BE BOUND BY THESE TERMS AND CONDITIONS.',
+                savePrint: 'Save / Print'
             }
         },
 
@@ -366,7 +380,8 @@ const i18n = {
                 processingMessage: 'Esto suele tomar 2-3 minutos',
                 stepValidating: 'Validando im\u00e1genes del cheque',
                 stepVerifying: 'Verificando fondos',
-                stepDepositing: 'Depositando en cuenta'
+                stepDepositing: 'Depositando en cuenta',
+                eftNotice: 'Tu cheque ser\u00e1 procesado como una transferencia electr\u00f3nica de fondos a tu cuenta; consulta los T\u00e9rminos de Dep\u00f3sito para tus derechos y protecciones.'
             },
             checkVerify: {
                 title: 'Confirmaci\u00f3n Segura de Dep\u00f3sito',
@@ -387,7 +402,19 @@ const i18n = {
                 pending: 'Pendiente (Compensando)',
                 cleared: 'Compensado',
                 clearedMessage: '\u00a1Tu cheque ha sido depositado. Los fondos ya est\u00e1n disponibles!',
-                backToDashboard: 'Volver al Inicio'
+                backToDashboard: 'Volver al Inicio',
+                disclosureTitle: 'Divulgaci\u00f3n de Transferencia Electr\u00f3nica de Fondos',
+                disclosureIntro: 'Antes de enviar tu primer dep\u00f3sito de cheque, revisa la siguiente informaci\u00f3n importante sobre tus derechos y protecciones bajo la ley federal.',
+                disclosureEftHeading: 'Tu dep\u00f3sito es una Transferencia Electr\u00f3nica de Fondos',
+                disclosureEftBody: 'Cuando depositas un cheque a trav\u00e9s de CheckPay, se procesa como una transferencia electr\u00f3nica de fondos (TEF) a tu cuenta. Esto est\u00e1 regido por la Ley de Transferencia Electr\u00f3nica de Fondos y la Regulaci\u00f3n E, que te protegen.',
+                disclosureRightsHeading: 'Tus derechos incluyen',
+                disclosureRight1: 'Derecho a documentaci\u00f3n de cada transferencia (recibos electr\u00f3nicos)',
+                disclosureRight2: 'Derecho a resolver errores dentro de 60 d\u00edas',
+                disclosureRight3: 'Responsabilidad limitada por transferencias no autorizadas ($50 si se reporta dentro de 2 d\u00edas h\u00e1biles)',
+                disclosureRight4: 'Derecho a guardar o imprimir los T\u00e9rminos de Dep\u00f3sito completos',
+                disclosureContactHeading: 'Para reportar errores o transferencias no autorizadas',
+                disclosureFullTerms: 'Lee los',
+                disclosureAgree: 'Acepto y Continuar'
             },
             card: {
                 title: 'Mi Tarjeta',
@@ -575,7 +602,8 @@ const i18n = {
                 viewInLanguage: 'Ver en ',
                 legallyBindingNote: 'Está viendo la versión en inglés legalmente vinculante.',
                 lastUpdated: 'Última actualización',
-                acceptanceNote: 'AL REGISTRARSE O USAR LOS SERVICIOS, USTED RECONOCE QUE HA LEÍDO, COMPRENDIDO Y ACEPTA ESTAR SUJETO A ESTOS TÉRMINOS Y CONDICIONES.'
+                acceptanceNote: 'AL REGISTRARSE O USAR LOS SERVICIOS, USTED RECONOCE QUE HA LEÍDO, COMPRENDIDO Y ACEPTA ESTAR SUJETO A ESTOS TÉRMINOS Y CONDICIONES.',
+                savePrint: 'Guardar / Imprimir'
             }
         },
 
@@ -652,7 +680,8 @@ const i18n = {
                 processingMessage: 'Karaniwang tumatagal ito ng 2-3 minuto',
                 stepValidating: 'Vina-validate ang mga larawan ng tseke',
                 stepVerifying: 'Vine-verify ang mga pondo',
-                stepDepositing: 'Dinideposito sa account'
+                stepDepositing: 'Dinideposito sa account',
+                eftNotice: 'Ang iyong tseke ay ipoproseso bilang electronic fund transfer sa iyong account; tingnan ang Mga Tuntunin ng Deposito para sa iyong mga karapatan at proteksyon.'
             },
             checkVerify: {
                 title: 'Secure na Kumpirmasyon ng Deposito',
@@ -673,7 +702,19 @@ const i18n = {
                 pending: 'Nakabinbin (Kini-clear)',
                 cleared: 'Na-clear',
                 clearedMessage: 'Naideposito na ang iyong tseke. Available na ang mga pondo!',
-                backToDashboard: 'Bumalik sa Dashboard'
+                backToDashboard: 'Bumalik sa Dashboard',
+                disclosureTitle: 'Electronic Fund Transfer Disclosure',
+                disclosureIntro: 'Bago mo isumite ang iyong unang check deposit, pakisuri ang sumusunod na mahalagang impormasyon tungkol sa iyong mga karapatan at proteksyon sa ilalim ng pederal na batas.',
+                disclosureEftHeading: 'Ang iyong deposito ay isang Electronic Fund Transfer',
+                disclosureEftBody: 'Kapag nagdeposito ka ng check sa pamamagitan ng CheckPay, ito ay pinoproseso bilang electronic fund transfer (EFT) sa iyong account. Pinoprotektahan ka nito ng Electronic Fund Transfer Act at Regulation E.',
+                disclosureRightsHeading: 'Kasama sa iyong mga karapatan',
+                disclosureRight1: 'Karapatan sa dokumentasyon ng bawat transfer (electronic receipt)',
+                disclosureRight2: 'Karapatan na resolbahin ang mga error sa loob ng 60 araw',
+                disclosureRight3: 'Limitadong pananagutan para sa unauthorized transfer ($50 kung ni-report sa loob ng 2 business day)',
+                disclosureRight4: 'Karapatan na i-save o i-print ang buong Mga Tuntunin ng Deposito',
+                disclosureContactHeading: 'Para mag-report ng error o unauthorized transfer',
+                disclosureFullTerms: 'Basahin ang buong',
+                disclosureAgree: 'Tinatanggap Ko at Magpatuloy'
             },
             card: {
                 title: 'Ang Aking Card',
@@ -861,7 +902,8 @@ const i18n = {
                 viewInLanguage: 'Tingnan sa ',
                 legallyBindingNote: 'Tinitingnan mo ang legally binding na English version.',
                 lastUpdated: 'Huling na-update',
-                acceptanceNote: 'SA PAGPAPA-ENROLL O PAGGAMIT NG MGA SERBISYO, KINIKILALA MO NA NABASA, NAUNAWAAN, AT SUMASANG-AYON KA NA SUMUNOD SA MGA TUNTUNIN AT KUNDISYON NA ITO.'
+                acceptanceNote: 'SA PAGPAPA-ENROLL O PAGGAMIT NG MGA SERBISYO, KINIKILALA MO NA NABASA, NAUNAWAAN, AT SUMASANG-AYON KA NA SUMUNOD SA MGA TUNTUNIN AT KUNDISYON NA ITO.',
+                savePrint: 'I-save / I-print'
             }
         },
 
@@ -938,7 +980,8 @@ const i18n = {
                 processingMessage: 'Eyi maa ngba i\u1e63\u1eb9ju 2-3',
                 stepValidating: 'N\u1e63e idanim\u1ecd aworan \u1e63\u1eb9ki',
                 stepVerifying: 'N\u1e63ay\u1eb9wo owo',
-                stepDepositing: 'Nfi sinu akaun'
+                stepDepositing: 'Nfi sinu akaun',
+                eftNotice: 'A \u00f3 \u1e63e \u1e63\u1eb9ki r\u1eb9 g\u1eb9g\u1eb9 bi igbanwol\u00e9 ow\u00f3 il\u1eb9-\u00e8r\u00fa s\u00ed akaun r\u1eb9; wo \u00c0w\u1ecdn \u00d2fin \u00ccfik\u00fanl\u1eb9 fun \u1eb9t\u1ecd ati aabo r\u1eb9.'
             },
             checkVerify: {
                 title: 'Ijeri\u1e63i Ifipam\u1ecd Aabo',
@@ -959,7 +1002,19 @@ const i18n = {
                 pending: 'Nduro (Nsisan)',
                 cleared: 'Ti pari',
                 clearedMessage: 'A ti fi \u1e63\u1eb9ki r\u1eb9 pam\u1ecd. Owo ti wa!',
-                backToDashboard: 'Pada si Ile'
+                backToDashboard: 'Pada si Ile',
+                disclosureTitle: '\u00ccf\u00eci H\u00e0n \u00ccgb\u00e0nw\u00f3l\u00e9 Ow\u00f3 Il\u1eb9-\u00c8r\u00fa',
+                disclosureIntro: '\u1e62\u00e1\u00e0j\u00fa k\u00ed o t\u00f3 fi \u00ecfik\u00fanl\u1eb9 \u1e63\u1eb9ki \u00e0k\u1ecd\u0301k\u1ecd\u0301 r\u1eb9 s\u00edl\u1eb9, j\u1ecd\u0300w\u1ecd\u0301 \u1e63ay\u1eb9wo al\u00e1y\u00e9 pat\u00e0k\u00ec y\u00ec\u00ed n\u00edpa \u1eb9t\u1ecd \u00e0ti \u00e0\u00e0b\u00f2 r\u1eb9 l\u00e1b\u1eb9 \u00f2fin apapo.',
+                disclosureEftHeading: '\u00ccfik\u00fanl\u1eb9 r\u1eb9 j\u1eb9 \u00ccgb\u00e0nw\u00f3l\u00e9 Ow\u00f3 Il\u1eb9-\u00c8r\u00fa',
+                disclosureEftBody: 'N\u00edgb\u00e0 t\u00ed o fi \u1e63\u1eb9ki s\u00edl\u1eb9 nip\u00e0s\u1eb9 CheckPay, a m\u00e1a \u1e63e \u00e9 g\u1eb9g\u1eb9 b\u00ed \u00ecgb\u00e0nw\u00f3l\u00e9 ow\u00f3 il\u1eb9-\u00e8r\u00fa (EFT) s\u00ed ak\u00e0\u00f9nt\u00ec r\u1eb9. \u00d2fin Electronic Fund Transfer Act \u00e0ti Regulation E n\u00ed \u00f3 n d\u00e0\u00e0b\u00f2b\u00f2 \u1ecd.',
+                disclosureRightsHeading: '\u1eb8t\u1ecd r\u1eb9 p\u1eb9l\u00fa',
+                disclosureRight1: '\u1eb8t\u1ecd s\u00ed \u00ecw\u00e9 al\u00e1y\u00e9 f\u00fan gbogbo \u00ecgb\u00e0nw\u00f3l\u00e9 (ir\u00e9s\u00edt\u00ec il\u1eb9-\u00e8r\u00fa)',
+                disclosureRight2: '\u1eb8t\u1ecd l\u00e1t\u00ec yanj\u00fa \u00e0\u1e63\u00ecs\u1eb9 l\u00e1\u00e0rin \u1ecd\u0300j\u1ecd\u0301 60',
+                disclosureRight3: 'Ojuse t\u00ed \u00f3 n\u00ed opin f\u00fan \u00ecgb\u00e0nw\u00f3l\u00e9 a\u00edl\u00f3fin\u00ecn\u00fa ($50 t\u00ed o b\u00e1 jab\u1ecd l\u00e1\u00e0rin \u1ecd\u0300j\u1ecd\u0301 iṣ\u1eb9 2)',
+                disclosureRight4: '\u1eb8t\u1ecd l\u00e1t\u00ec fi pam\u1ecd\u0301 tabi t\u1eb9w\u00e9 \u00c0w\u1ecdn \u00d2fin \u00ccfik\u00fanl\u1eb9 n\u00ed kikun',
+                disclosureContactHeading: 'L\u00e1t\u00ec jab\u1ecd \u00e0\u1e63\u00ecs\u1eb9 tabi \u00ecgb\u00e0nw\u00f3l\u00e9 a\u00edl\u00f3fin\u00ecn\u00fa',
+                disclosureFullTerms: 'Ka gbogbo',
+                disclosureAgree: 'Mo Gba \u00e0ti T\u1eb9\u0300siwaj\u00fa'
             },
             card: {
                 title: 'Kaadi Mi',
@@ -1147,7 +1202,8 @@ const i18n = {
                 viewInLanguage: 'Wo ní ',
                 legallyBindingNote: 'O ń wo ẹ̀yà Gẹ̀ẹ́sì tó ní agbára òfin.',
                 lastUpdated: 'Ìmúdójúìwọ̀n ìgbẹ̀yìn',
-                acceptanceNote: 'NÍPASẸ̀ FÍFORÚKỌSÍLẸ̀ TÀBÍ LÍLO ÀWỌN IṢẸ́ NÁÀ, O JẸ́RÌÍSÍ PÉ O TI KA, LÓYE, ÀTIPÉ O GBÀ LÁTI DÌ MÚ SÍNÚ ÀWỌN ÒFIN ÀTI ÌPÈSÈ WỌ̀NYÍ.'
+                acceptanceNote: 'NÍPASẸ̀ FÍFORÚKỌSÍLẸ̀ TÀBÍ LÍLO ÀWỌN IṢẸ́ NÁÀ, O JẸ́RÌÍSÍ PÉ O TI KA, LÓYE, ÀTIPÉ O GBÀ LÁTI DÌ MÚ SÍNÚ ÀWỌN ÒFIN ÀTI ÌPÈSÈ WỌ̀NYÍ.',
+                savePrint: 'Fi pam\u1ecd\u0301 / T\u1eb9w\u00e9'
             }
         }
     },

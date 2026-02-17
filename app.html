@@ -502,6 +502,8 @@
                         <img src="clearpath-icon.svg" class="bank-icon" alt=""> Your check will be processed by ClearPath Bank
                     </div>
 
+                    <p class="eft-notice" data-i18n="check.eftNotice">Your check will be processed as an electronic fund transfer to your account; see Deposit Terms for your rights and protections.</p>
+
                     <div class="reassurance-banner" style="margin-top: 12px;">
                         <span class="material-icons">shield</span>
                         <p data-i18n="check.saferMessage">Safer than standing in line. Your deposit is protected.</p>
@@ -1253,6 +1255,46 @@
             </div>
         </div>
 
+        <!-- Reg E Deposit Disclosure Modal (first-deposit gate) -->
+        <div id="deposit-disclosure-modal" class="modal terms-modal">
+            <div class="terms-modal-content">
+                <div class="terms-modal-header">
+                    <h3 data-i18n="deposit.disclosureTitle">Electronic Fund Transfer Disclosure</h3>
+                </div>
+                <div class="terms-modal-body" id="deposit-disclosure-body">
+                    <p class="deposit-disclosure-intro" data-i18n="deposit.disclosureIntro">Before you submit your first check deposit, please review the following important information about your rights and protections under federal law.</p>
+
+                    <div class="disclosure-summary-card">
+                        <h4 data-i18n="deposit.disclosureEftHeading">Your deposit is an Electronic Fund Transfer</h4>
+                        <p data-i18n="deposit.disclosureEftBody">When you deposit a check through CheckPay, it is processed as an electronic fund transfer (EFT) to your account. This is governed by the Electronic Fund Transfer Act and Regulation E, which protect you.</p>
+                    </div>
+
+                    <div class="disclosure-summary-card">
+                        <h4 data-i18n="deposit.disclosureRightsHeading">Your rights include</h4>
+                        <ul>
+                            <li data-i18n="deposit.disclosureRight1">Right to documentation of every transfer (electronic receipts)</li>
+                            <li data-i18n="deposit.disclosureRight2">Right to resolve errors within 60 days</li>
+                            <li data-i18n="deposit.disclosureRight3">Limited liability for unauthorized transfers ($50 if reported within 2 business days)</li>
+                            <li data-i18n="deposit.disclosureRight4">Right to save or print the full Deposit Terms for your records</li>
+                        </ul>
+                    </div>
+
+                    <div class="disclosure-summary-card">
+                        <h4 data-i18n="deposit.disclosureContactHeading">To report errors or unauthorized transfers</h4>
+                        <p>Email: support@checkpay.com<br>Phone: 1&#8209;800&#8209;CHECKPAY (24/7)</p>
+                    </div>
+
+                    <p class="deposit-disclosure-link-text">
+                        <span data-i18n="deposit.disclosureFullTerms">Read the full</span>
+                        <a href="#" class="tc-link" data-terms="deposit" id="disclosure-full-terms-link" data-i18n="terms.depositTerms">Deposit Terms</a>
+                    </p>
+                </div>
+                <div class="terms-modal-footer" style="display: flex; gap: 8px;">
+                    <button class="btn btn-primary" id="deposit-disclosure-agree" data-i18n="deposit.disclosureAgree">I Acknowledge &amp; Continue</button>
+                </div>
+            </div>
+        </div>
+
         <!-- Terms & Conditions Modal -->
         <div id="terms-modal" class="modal terms-modal">
             <div class="terms-modal-content">
@@ -1272,8 +1314,12 @@
                 <div class="terms-modal-body" id="terms-modal-body">
                     <!-- Sections rendered by JS from terms.js -->
                 </div>
-                <div class="terms-modal-footer">
-                    <button class="btn btn-primary" id="terms-modal-close" data-i18n="common.close">Close</button>
+                <div class="terms-modal-footer" style="display: flex; gap: 8px;">
+                    <button class="btn btn-outline" id="terms-save-print" style="flex: 0 0 auto;">
+                        <span class="material-icons" style="font-size: 18px; vertical-align: middle; margin-right: 4px;">print</span>
+                        <span data-i18n="terms.savePrint">Save / Print</span>
+                    </button>
+                    <button class="btn btn-primary" id="terms-modal-close" data-i18n="common.close" style="flex: 1;">Close</button>
                 </div>
             </div>
         </div>

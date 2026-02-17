@@ -448,3 +448,254 @@ const termsContent = {
         ]
     }
 };
+
+const depositTermsContent = {
+    en: {
+        title: 'Electronic Fund Transfer Deposit Terms',
+        lastUpdated: 'February 2025',
+        disclaimer: null,
+        sections: [
+            {
+                number: 1,
+                heading: 'ELECTRONIC FUND TRANSFER DISCLOSURE',
+                body: 'When you deposit a check through CheckPay, the check is converted into an electronic fund transfer ("EFT") to your account. This disclosure is provided to you in accordance with the Electronic Fund Transfer Act (15 U.S.C. § 1693 et seq.) and Regulation E (12 C.F.R. Part 1005).\n\nBy submitting a check deposit, you authorize CheckPay and our clearing bank partner, ClearPath Bank, to process the check as an electronic fund transfer and credit the net proceeds to your account held by Horizon Card Bank.'
+            },
+            {
+                number: 2,
+                heading: 'YOUR RIGHTS AND PROTECTIONS',
+                body: 'Under federal law, you have the following rights regarding electronic fund transfers on your account:\n\n\u2022 Right to documentation of transfers (receipts and periodic statements).\n\u2022 Right to stop certain pre-authorized transfers.\n\u2022 Right to resolve errors on your account.\n\u2022 Protection from unauthorized transfers, with limited liability if you report promptly.'
+            },
+            {
+                number: 3,
+                heading: 'ERROR RESOLUTION',
+                body: 'If you believe an error has occurred on your account, contact us within 60 days of the date the error appeared on your statement or receipt. You can reach us at:\n\nCheckPay, Inc.\nEmail: support@checkpay.com\nPhone: 1\u2011800\u2011CHECKPAY (available 24/7)\n\nWhen reporting an error, provide:\n\u2022 Your name and account number.\n\u2022 A description of the error and why you believe it is an error.\n\u2022 The dollar amount involved.\n\u2022 The date of the transaction.\n\nWe will investigate within 10 business days (20 business days for new accounts) and report the results to you within 3 business days after completing our investigation. If we need more time, we may take up to 45 calendar days (90 days for new accounts, point\u2011of\u2011sale transactions, or foreign\u2011initiated transfers), but we will provisionally credit your account within 10 business days if applicable.'
+            },
+            {
+                number: 4,
+                heading: 'LIABILITY FOR UNAUTHORIZED TRANSFERS',
+                body: 'If you report an unauthorized transfer:\n\n\u2022 Within 2 business days of learning of the loss or theft: your liability is limited to $50.\n\u2022 After 2 business days but within 60 days of your statement: your liability may be up to $500.\n\u2022 After 60 days of your statement: you could lose all the money that was taken after the 60\u2011day period.\n\nReport lost or stolen credentials immediately to minimize your liability. Contact us at support@checkpay.com or 1\u2011800\u2011CHECKPAY.'
+            },
+            {
+                number: 5,
+                heading: 'BUSINESS DAYS',
+                body: 'Our business days are Monday through Friday, excluding federal holidays. Transactions submitted after 5:00 PM ET or on weekends/holidays will be processed on the next business day.'
+            },
+            {
+                number: 6,
+                heading: 'FEES FOR CHECK DEPOSITS',
+                body: 'The following fees apply to check deposit transactions:\n\n\u2022 Standard processing fee: $5.00 per check.\n\u2022 Returned check fee: $25.00 (if a deposited check is returned unpaid).\n\u2022 Insufficient funds fee: $10.00 (if your account cannot cover a reversal).\n\nAll fees are disclosed before you confirm the transaction. There are no hidden charges.'
+            },
+            {
+                number: 7,
+                heading: 'FUNDS AVAILABILITY',
+                body: 'After a check deposit is submitted and accepted:\n\n\u2022 Payroll and government checks: typically 1\u20112 business days.\n\u2022 Personal and other checks: 2\u20115 business days.\n\u2022 New accounts or high\u2011risk deposits: up to 7 business days.\n\nDeposited amounts appear as "Pending" in your balance until cleared. Once cleared, funds move to "Available" and can be spent or transferred.'
+            },
+            {
+                number: 8,
+                heading: 'YOUR RIGHT TO RECEIVE DOCUMENTATION',
+                body: 'You will receive an electronic receipt for each check deposit, including the check amount, fee, net amount, date, and reference number. Transaction history is accessible in the app at all times. You may save or print this disclosure and any transaction receipt for your records.'
+            },
+            {
+                number: 9,
+                heading: 'STOP PAYMENT RIGHTS',
+                body: 'Once a check deposit has been submitted for clearing, it cannot be stopped or reversed by you. If you believe there is an error, use the error resolution process described in Section 3.'
+            },
+            {
+                number: 10,
+                heading: 'BANK PARTNERS',
+                body: 'Your check is processed and cleared by ClearPath Bank (the clearing bank). Once cleared, funds are held in your account at Horizon Card Bank (the issuing bank), who also issues your virtual and physical debit cards. Both banks are regulated U.S. financial institutions.\n\nCheckPay, Inc. is not a bank and does not hold your funds.'
+            },
+            {
+                number: 11,
+                heading: 'CONTACT INFORMATION',
+                body: 'For questions, error reports, or to report unauthorized transfers:\n\nCheckPay, Inc.\nEmail: support@checkpay.com\nLegal: legal@checkpay.com\nPhone: 1\u2011800\u2011CHECKPAY (24/7)'
+            }
+        ]
+    },
+    es: {
+        title: 'ESPA\u00d1OL \u2014 T\u00e9rminos de Dep\u00f3sito de Transferencia Electr\u00f3nica de Fondos',
+        lastUpdated: 'Febrero 2025',
+        disclaimer: 'Esta es una traducci\u00f3n proporcionada para su conveniencia. La versi\u00f3n legalmente vinculante est\u00e1 en ingl\u00e9s.',
+        sections: [
+            {
+                number: 1,
+                heading: 'DIVULGACI\u00d3N DE TRANSFERENCIA ELECTR\u00d3NICA DE FONDOS',
+                body: 'Cuando deposita un cheque a trav\u00e9s de CheckPay, el cheque se convierte en una transferencia electr\u00f3nica de fondos ("TEF") a su cuenta. Esta divulgaci\u00f3n se le proporciona de conformidad con la Ley de Transferencia Electr\u00f3nica de Fondos y la Regulaci\u00f3n E.\n\nAl enviar un dep\u00f3sito de cheque, usted autoriza a CheckPay y a nuestro banco socio de compensaci\u00f3n, ClearPath Bank, a procesar el cheque como una transferencia electr\u00f3nica de fondos y acreditar los ingresos netos a su cuenta mantenida por Horizon Card Bank.'
+            },
+            {
+                number: 2,
+                heading: 'SUS DERECHOS Y PROTECCIONES',
+                body: 'Bajo la ley federal, usted tiene los siguientes derechos respecto a las transferencias electr\u00f3nicas de fondos en su cuenta:\n\n\u2022 Derecho a documentaci\u00f3n de transferencias (recibos y estados de cuenta peri\u00f3dicos).\n\u2022 Derecho a detener ciertas transferencias preautorizadas.\n\u2022 Derecho a resolver errores en su cuenta.\n\u2022 Protecci\u00f3n contra transferencias no autorizadas, con responsabilidad limitada si reporta con prontitud.'
+            },
+            {
+                number: 3,
+                heading: 'RESOLUCI\u00d3N DE ERRORES',
+                body: 'Si cree que ha ocurrido un error en su cuenta, cont\u00e1ctenos dentro de 60 d\u00edas de la fecha en que apareci\u00f3 el error en su estado de cuenta o recibo.\n\nCheckPay, Inc.\nCorreo electr\u00f3nico: support@checkpay.com\nTel\u00e9fono: 1\u2011800\u2011CHECKPAY (disponible 24/7)\n\nAl reportar un error, proporcione: su nombre y n\u00famero de cuenta, una descripci\u00f3n del error, el monto en d\u00f3lares y la fecha de la transacci\u00f3n.\n\nInvestigaremos dentro de 10 d\u00edas h\u00e1biles y le informaremos los resultados dentro de 3 d\u00edas h\u00e1biles despu\u00e9s de completar nuestra investigaci\u00f3n.'
+            },
+            {
+                number: 4,
+                heading: 'RESPONSABILIDAD POR TRANSFERENCIAS NO AUTORIZADAS',
+                body: 'Si reporta una transferencia no autorizada:\n\n\u2022 Dentro de 2 d\u00edas h\u00e1biles: su responsabilidad se limita a $50.\n\u2022 Despu\u00e9s de 2 d\u00edas h\u00e1biles pero dentro de 60 d\u00edas: su responsabilidad puede ser hasta $500.\n\u2022 Despu\u00e9s de 60 d\u00edas: podr\u00eda perder todo el dinero tomado despu\u00e9s del per\u00edodo de 60 d\u00edas.\n\nReporte credenciales perdidas o robadas inmediatamente.'
+            },
+            {
+                number: 5,
+                heading: 'D\u00cdAS H\u00c1BILES',
+                body: 'Nuestros d\u00edas h\u00e1biles son de lunes a viernes, excluyendo d\u00edas festivos federales. Las transacciones enviadas despu\u00e9s de las 5:00 PM ET o en fines de semana/d\u00edas festivos se procesar\u00e1n el siguiente d\u00eda h\u00e1bil.'
+            },
+            {
+                number: 6,
+                heading: 'TARIFAS PARA DEP\u00d3SITOS DE CHEQUES',
+                body: '\u2022 Tarifa de procesamiento est\u00e1ndar: $5.00 por cheque.\n\u2022 Tarifa por cheque devuelto: $25.00.\n\u2022 Tarifa por fondos insuficientes: $10.00.\n\nTodas las tarifas se divulgan antes de confirmar la transacci\u00f3n.'
+            },
+            {
+                number: 7,
+                heading: 'DISPONIBILIDAD DE FONDOS',
+                body: 'Despu\u00e9s de enviar un dep\u00f3sito de cheque:\n\n\u2022 Cheques de n\u00f3mina y gobierno: t\u00edpicamente 1\u20112 d\u00edas h\u00e1biles.\n\u2022 Cheques personales y otros: 2\u20115 d\u00edas h\u00e1biles.\n\u2022 Cuentas nuevas o dep\u00f3sitos de alto riesgo: hasta 7 d\u00edas h\u00e1biles.'
+            },
+            {
+                number: 8,
+                heading: 'SU DERECHO A RECIBIR DOCUMENTACI\u00d3N',
+                body: 'Recibir\u00e1 un recibo electr\u00f3nico para cada dep\u00f3sito de cheque. El historial de transacciones est\u00e1 accesible en la aplicaci\u00f3n en todo momento. Puede guardar o imprimir esta divulgaci\u00f3n y cualquier recibo de transacci\u00f3n.'
+            },
+            {
+                number: 9,
+                heading: 'DERECHOS DE SUSPENSI\u00d3N DE PAGO',
+                body: 'Una vez que se ha enviado un dep\u00f3sito de cheque para compensaci\u00f3n, usted no puede detenerlo ni revertirlo. Si cree que hay un error, use el proceso de resoluci\u00f3n de errores descrito en la Secci\u00f3n 3.'
+            },
+            {
+                number: 10,
+                heading: 'SOCIOS BANCARIOS',
+                body: 'Su cheque es procesado y compensado por ClearPath Bank. Los fondos compensados se mantienen en su cuenta en Horizon Card Bank. Ambos bancos son instituciones financieras reguladas de EE. UU. CheckPay, Inc. no es un banco y no mantiene sus fondos.'
+            },
+            {
+                number: 11,
+                heading: 'INFORMACI\u00d3N DE CONTACTO',
+                body: 'Para preguntas, reportes de errores o para reportar transferencias no autorizadas:\n\nCheckPay, Inc.\nCorreo electr\u00f3nico: support@checkpay.com\nLegal: legal@checkpay.com\nTel\u00e9fono: 1\u2011800\u2011CHECKPAY (24/7)'
+            }
+        ]
+    },
+    ph: {
+        title: 'FILIPINO \u2014 Mga Tuntunin ng Deposito ng Electronic Fund Transfer',
+        lastUpdated: 'Pebrero 2025',
+        disclaimer: 'Ito ay isang pagsasalin para sa iyong kaginhawahan. Ang legal na bersyon ay nasa Ingles.',
+        sections: [
+            {
+                number: 1,
+                heading: 'ELECTRONIC FUND TRANSFER DISCLOSURE',
+                body: 'Kapag nagdeposito ka ng check sa pamamagitan ng CheckPay, ang check ay kino-convert sa isang electronic fund transfer ("EFT") sa iyong account. Ang disclosure na ito ay ibinibigay sa iyo alinsunod sa Electronic Fund Transfer Act at Regulation E.\n\nSa pagsusumite ng check deposit, inaawtorisahan mo ang CheckPay at ang aming clearing bank partner, ClearPath Bank, na i-process ang check bilang electronic fund transfer at i-credit ang net proceeds sa iyong account na hawak ng Horizon Card Bank.'
+            },
+            {
+                number: 2,
+                heading: 'ANG IYONG MGA KARAPATAN AT PROTEKSYON',
+                body: 'Sa ilalim ng pederal na batas, mayroon kang mga sumusunod na karapatan:\n\n\u2022 Karapatan sa dokumentasyon ng mga transfer (mga resibo at periodic statement).\n\u2022 Karapatan na itigil ang ilang pre-authorized transfer.\n\u2022 Karapatan na resolbahin ang mga error sa iyong account.\n\u2022 Proteksyon mula sa unauthorized transfer, na may limitadong pananagutan kung agad kang mag-report.'
+            },
+            {
+                number: 3,
+                heading: 'RESOLUSYON NG ERROR',
+                body: 'Kung naniniwala kang may naganap na error sa iyong account, makipag-ugnayan sa amin sa loob ng 60 araw.\n\nCheckPay, Inc.\nEmail: support@checkpay.com\nTelefono: 1\u2011800\u2011CHECKPAY (24/7)\n\nKapag nag-report ng error, ibigay ang: iyong pangalan at account number, paglalarawan ng error, halaga, at petsa ng transaksyon.\n\nIimbestigahan namin sa loob ng 10 business day at ipapaalam ang resulta sa loob ng 3 business day pagkatapos.'
+            },
+            {
+                number: 4,
+                heading: 'PANANAGUTAN PARA SA MGA UNAUTHORIZED TRANSFER',
+                body: 'Kung mag-report ka ng unauthorized transfer:\n\n\u2022 Sa loob ng 2 business day: ang iyong pananagutan ay limitado sa $50.\n\u2022 Pagkatapos ng 2 business day ngunit sa loob ng 60 araw: maaaring umabot sa $500.\n\u2022 Pagkatapos ng 60 araw: maaari mong mawala ang lahat ng perang kinuha pagkatapos ng 60-araw na panahon.\n\nAgad na i-report ang nawala o ninakaw na credentials.'
+            },
+            {
+                number: 5,
+                heading: 'MGA BUSINESS DAY',
+                body: 'Ang aming mga business day ay Lunes hanggang Biyernes, maliban sa mga pederal na holiday. Ang mga transaksyong isinumite pagkatapos ng 5:00 PM ET o sa weekend/holiday ay ipoproseso sa susunod na business day.'
+            },
+            {
+                number: 6,
+                heading: 'MGA BAYARIN PARA SA CHECK DEPOSIT',
+                body: '\u2022 Standard processing fee: $5.00 bawat check.\n\u2022 Returned check fee: $25.00.\n\u2022 Insufficient funds fee: $10.00.\n\nLahat ng bayarin ay ipinapakita bago mo kumpirmahin ang transaksyon.'
+            },
+            {
+                number: 7,
+                heading: 'AVAILABILITY NG PONDO',
+                body: 'Pagkatapos magsumite ng check deposit:\n\n\u2022 Payroll at government check: karaniwan 1\u20112 business day.\n\u2022 Personal at iba pang check: 2\u20115 business day.\n\u2022 Bagong account o high-risk deposit: hanggang 7 business day.'
+            },
+            {
+                number: 8,
+                heading: 'KARAPATAN MONG MAKATANGGAP NG DOKUMENTASYON',
+                body: 'Makakatanggap ka ng electronic receipt para sa bawat check deposit. Ang transaction history ay naa-access sa app anumang oras. Maaari mong i-save o i-print ang disclosure na ito at anumang resibo.'
+            },
+            {
+                number: 9,
+                heading: 'MGA KARAPATAN SA STOP PAYMENT',
+                body: 'Kapag naisumite na ang isang check deposit para sa clearing, hindi na ito maaaring itigil o bawiin. Kung naniniwala kang may error, gamitin ang proseso ng error resolution sa Seksyon 3.'
+            },
+            {
+                number: 10,
+                heading: 'MGA KASOSYO SA BANGKO',
+                body: 'Ang iyong check ay pinoproseso at kiniklir ng ClearPath Bank. Ang mga na-clear na pondo ay hawak sa iyong account sa Horizon Card Bank. Parehong regulated na U.S. financial institution. Ang CheckPay, Inc. ay hindi isang bangko at hindi humahawak ng iyong mga pondo.'
+            },
+            {
+                number: 11,
+                heading: 'IMPORMASYON SA PAKIKIPAG-UGNAYAN',
+                body: 'Para sa mga tanong, report ng error, o para mag-report ng unauthorized transfer:\n\nCheckPay, Inc.\nEmail: support@checkpay.com\nLegal: legal@checkpay.com\nTelefono: 1\u2011800\u2011CHECKPAY (24/7)'
+            }
+        ]
+    },
+    yo: {
+        title: 'YOR\u00d9B\u00c1 \u2014 \u00c0w\u1ecdn \u00d2fin \u00ccfik\u00fanl\u1eb9\u0301 \u00ccgb\u00e0nw\u00f3l\u00e9 Ow\u00f3 Il\u1eb9\u0300\u2011\u00e8r\u00fa',
+        lastUpdated: '\u1ecc\u1e63\u00f9 Kin\u00edn\u00ed 2025',
+        disclaimer: '\u00c8y\u00ed j\u1eb9\u0301 \u00ect\u00fam\u1ecd\u0300 f\u00fan \u00ecranlọw\u1ecd\u0301 r\u1eb9. \u1eb8\u0300ya t\u00ed \u00f3 j\u1eb9\u0301 \u00f2fin n\u00ed ti \u00e8d\u00e8 G\u1eb9\u0300\u1eb9\u0301s\u00ec.',
+        sections: [
+            {
+                number: 1,
+                heading: '\u00ccF\u00cc H\u00c0N \u00ccGB\u00c0NW\u00d3L\u00c9 OW\u00d3 IL\u1eb8\u0300-\u00c8R\u00da',
+                body: 'N\u00edgb\u00e0 t\u00ed o b\u00e1 fi \u1e63\u1eb9\u0301k\u00ec s\u00ed\u00edl\u1eb9\u0300 nip\u00e0s\u1eb9\u0300 CheckPay, a m\u00e1a y\u00ed \u1e63\u1eb9\u0301k\u00ec n\u00e1\u00e0 pad\u00e0 s\u00ed \u00ecgb\u00e0nw\u00f3l\u00e9 ow\u00f3 il\u1eb9\u0300-\u00e8r\u00fa ("EFT") s\u00ed ak\u00e0\u00f9nt\u00ec r\u1eb9. A p\u00e8s\u1eb9\u0300 \u00ecf\u00eci h\u00e0n y\u00ec\u00ed f\u00fan \u1ecd g\u1eb9\u0301g\u1eb9\u0301 b\u00ed \u00d2fin Electronic Fund Transfer Act \u00e0ti Regulation E.\n\nN\u00edpa f\u00ed\u00ed f\u00ec \u00ecfik\u00fanl\u1eb9\u0301 \u1e63\u1eb9\u0301k\u00ec s\u00ed\u00edl\u1eb9\u0300, o f\u00fan CheckPay \u00e0ti ClearPath Bank \u00e0\u1e63\u1eb9 l\u00e1t\u00ec \u1e63e \u1e63\u1eb9\u0301k\u00ec n\u00e1\u00e0 g\u1eb9\u0301g\u1eb9\u0301 b\u00ed \u00ecgb\u00e0nw\u00f3l\u00e9 ow\u00f3 il\u1eb9\u0300-\u00e8r\u00fa k\u00ed o s\u00ec fi ow\u00f3 s\u00ed ak\u00e0\u00f9nt\u00ec r\u1eb9 t\u00ed Horizon Card Bank \u00f1 m\u00fa.'
+            },
+            {
+                number: 2,
+                heading: '\u00c0W\u1eccN \u1eb8T\u1ecc\u0301 \u00c0TI \u00c0\u00c0B\u00d2 R\u1eb8',
+                body: 'L\u00e1b\u1eb9\u0301 \u00f2fin apapo, o n\u00ed \u00e0w\u1ecdn \u1eb9t\u1ecd\u0301 w\u1ecd\u0300ny\u00ed:\n\n\u2022 \u1eb8t\u1ecd\u0301 s\u00ed \u00ecw\u00e9 iṣowo (\u00e0w\u1ecdn ir\u00e9s\u00edt\u00ec \u00e0ti \u00e0w\u1ecdn al\u00e1y\u00e8 \u00e0k\u00f3k\u00f2).\n\u2022 \u1eb8t\u1ecd\u0301 l\u00e1t\u00ec da \u00e0w\u1ecdn \u00ecgb\u00e0nw\u00f3l\u00e9 t\u00ed a ti f\u00e0\u1e63\u1eb9 t\u1eb9\u0301l\u1eb9\u0300 duro.\n\u2022 \u1eb8t\u1ecd\u0301 l\u00e1t\u00ec yanj\u00fa \u00e0\u1e63\u00ecs\u1eb9 l\u00f3r\u00ed ak\u00e0\u00f9nt\u00ec r\u1eb9.\n\u2022 \u00c0\u00e0b\u00f2 l\u1ecd\u0301w\u1ecd\u0301 \u00ecgb\u00e0nw\u00f3l\u00e9 a\u00edl\u00f3fin\u00ecn\u00fa, p\u1eb9\u0300l\u00fa ojuse d\u00ed\u00e8 t\u00ed o b\u00e1 jab\u1ecd\u0300 l\u00e1ipẹ.'
+            },
+            {
+                number: 3,
+                heading: '\u00ccYANJ\u00da \u00c0\u1e62\u00ccS\u1eb8',
+                body: 'T\u00ed o b\u00e1 gbagb\u1ecd\u0301 p\u00e9 \u00e0\u1e63\u00ecs\u1eb9 ti \u1e63\u1eb9l\u1eb9\u0300, k\u00e0n s\u00ed wa l\u00e1\u00e0rin \u1ecd\u0300j\u1ecd\u0301 60.\n\nCheckPay, Inc.\n\u00ccme\u00e8l\u00ec: support@checkpay.com\nFo\u00f2n\u00f9: 1\u2011800\u2011CHECKPAY (24/7)\n\nP\u00e8s\u1eb9\u0300: or\u00fako r\u1eb9 \u00e0ti n\u1ecd\u0301mb\u00e0 ak\u00e0\u00f9nt\u00ec, \u00e0l\u00e1y\u00e9 \u00e0\u1e63\u00ecs\u1eb9, ow\u00f3 t\u00ed o k\u00e0n, \u00e0ti \u1ecd\u0300j\u1ecd\u0301 iṣowo. A \u00f3 \u1e63\u1eb9\u0300w\u00e1d\u00ec\u00ed l\u00e1\u00e0rin \u1ecd\u0300j\u1ecd\u0301 iṣ\u1eb9\u0301 10 \u00e0 s\u00ec jab\u1ecd\u0300 f\u00fan \u1ecd l\u00e1\u00e0rin \u1ecd\u0300j\u1ecd\u0301 3 l\u1eb9\u0301y\u00ecn n\u00e1\u00e0.'
+            },
+            {
+                number: 4,
+                heading: 'OJUSE F\u00daN \u00c0W\u1eccN \u00ccGB\u00c0NW\u00d3L\u00c9 A\u00cdL\u00d3FIN\u00ccN\u00da',
+                body: 'T\u00ed o b\u00e1 jab\u1ecd\u0300:\n\n\u2022 L\u00e1\u00e0rin \u1ecd\u0300j\u1ecd\u0301 iṣ\u1eb9\u0301 2: ojuse r\u1eb9 ni $50 p\u00e9r\u00e9.\n\u2022 L\u1eb9\u0301y\u00ecn \u1ecd\u0300j\u1ecd\u0301 2 \u1e63\u00f9gb\u1ecd\u0301n l\u00e1\u00e0rin \u1ecd\u0300j\u1ecd\u0301 60: l\u00e9 j\u1eb9\u0301 $500.\n\u2022 L\u1eb9\u0301y\u00ecn \u1ecd\u0300j\u1ecd\u0301 60: o l\u00e8 padb\u1eb9\u0300 gb\u00f3gb\u00f3 ow\u00f3 t\u00ed a m\u00fa l\u1eb9\u0301y\u00ecn \u1ecd\u0300j\u1ecd\u0301 60.\n\nJab\u1ecd\u0300 l\u00e1ipẹ l\u00e1t\u00ec d\u00ednk\u00fa ojuse r\u1eb9.'
+            },
+            {
+                number: 5,
+                heading: '\u00c0W\u1eccN \u1eccJ\u1ecc\u0301 I\u1e62\u1eb8\u0301',
+                body: '\u00c0w\u1ecdn \u1ecd\u0300j\u1ecd\u0301 iṣ\u1eb9\u0301 wa ni \u1ecc\u0300j\u1ecd\u0301 Aj\u00e9 s\u00ed \u1ecc\u0300j\u1ecd\u0301 \u1eb8t\u00ec, l\u00e1\u00ecfi \u00e0w\u1ecdn \u1ecd\u0300j\u1ecd\u0301 \u00ecsinmi apapo. Iṣowo t\u00ed a fi s\u00ed\u00edl\u1eb9\u0300 l\u1eb9\u0301y\u00ecn 5:00 PM ET tabi ni \u00e0\u00eck\u00fa/\u1ecd\u0300j\u1ecd\u0301 \u00ecsinmi ni a \u00f3 \u1e63e ni \u1ecd\u0300j\u1ecd\u0301 iṣ\u1eb9\u0301 t\u00f3 k\u00e0n.'
+            },
+            {
+                number: 6,
+                heading: '\u00c0W\u1eccN OW\u00d3 F\u00daN \u00ccFIK\u00daNL\u1eb8\u0301 \u1e62\u1eb8\u0301K\u00cc',
+                body: '\u2022 Standard processing fee: $5.00 f\u00fan \u1e63\u1eb9\u0301k\u00ec k\u1ecd\u0300\u1ecd\u0300kan.\n\u2022 Returned check fee: $25.00.\n\u2022 Insufficient funds fee: $10.00.\n\nGbogbo ow\u00f3 ni a fi h\u00e0n \u1e63\u00e1\u00e0j\u00fa k\u00ed o t\u00f3 fi \u00ecdaniloju iṣowo.'
+            },
+            {
+                number: 7,
+                heading: 'W\u00cdW\u00c0 OW\u00d3',
+                body: 'L\u1eb9\u0301y\u00ecn f\u00edfi \u00ecfik\u00fanl\u1eb9\u0301 \u1e63\u1eb9\u0301k\u00ec s\u00ed\u00edl\u1eb9\u0300:\n\n\u2022 \u1e62\u1eb9\u0301k\u00ec ow\u00f3-\u00ecs\u1eb9\u0301 \u00e0ti \u00ecjọba: \u1ecd\u0300j\u1ecd\u0301 iṣ\u1eb9\u0301 1\u20112.\n\u2022 \u1e62\u1eb9\u0301k\u00ec \u00e0r\u00e0 \u1eb9ni \u00e0ti \u00e0w\u1ecdn m\u00edi\u00ec: \u1ecd\u0300j\u1ecd\u0301 iṣ\u1eb9\u0301 2\u20115.\n\u2022 Ak\u00e0\u00f9nt\u00ec t\u00fatun tabi \u00ecfik\u00fanl\u1eb9\u0301 eewu giga: l\u00e9 j\u1eb9\u0301 \u1ecd\u0300j\u1ecd\u0301 iṣ\u1eb9\u0301 7.'
+            },
+            {
+                number: 8,
+                heading: '\u1eb8T\u1ecc\u0301 R\u1eb8 L\u00c1T\u00cc GBA \u00ccW\u00c9',
+                body: 'Iw\u1ecd \u00f3 gba ir\u00e9s\u00edt\u00ec il\u1eb9\u0300-\u00e8r\u00fa f\u00fan \u00ecfik\u00fanl\u1eb9\u0301 \u1e63\u1eb9\u0301k\u00ec k\u1ecd\u0300\u1ecd\u0300kan. It\u00e0n iṣowo w\u00e0 l\u00e1ti r\u00ed n\u00ednb\u00ed app n\u00edgb\u00e0gb\u00f3gb\u00f3. O l\u00e8 fi pam\u1ecd\u0301 tabi t\u1eb9\u0300w\u00e9 \u00ecf\u00eci h\u00e0n y\u00ec\u00ed \u00e0ti eyikeyi ir\u00e9s\u00edt\u00ec.'
+            },
+            {
+                number: 9,
+                heading: '\u1eb8T\u1ecc\u0301 L\u00c1T\u00cc D\u00c1 \u00ccSAN D\u00daR\u00d3',
+                body: 'L\u1eb9\u0301y\u00ecn t\u00ed a ti fi \u00ecfik\u00fanl\u1eb9\u0301 \u1e63\u1eb9\u0301k\u00ec s\u00ed\u00edl\u1eb9\u0300 f\u00fan sis\u1eb9\u0301, o k\u00f2 l\u00e8 d\u00e1a duro tabi yi pad\u00e0. T\u00ed o b\u00e1 gbagb\u1ecd\u0301 p\u00e9 \u00e0\u1e63\u00ecs\u1eb9 w\u00e0, lo \u00ecl\u00e0n\u00e0 \u00ecyanj\u00fa \u00e0\u1e63\u00ecs\u1eb9 n\u00ed Ab\u00e1l\u00e8 3.'
+            },
+            {
+                number: 10,
+                heading: '\u00c0W\u1eccN ALAB\u00c0\u1e62\u00ccS\u1eb8\u0300P\u1eb8\u0300 IL\u00c9 \u00ccF\u00d3W\u00d3P\u00c0M\u1ecc\u0301',
+                body: 'A n \u1e63e \u1e63\u1eb9\u0301k\u00ec r\u1eb9 nip\u00e0s\u1eb9\u0300 ClearPath Bank. Ow\u00f3 t\u00ed o ti s\u1eb9\u0301 ni a m\u00fa n\u00ed ak\u00e0\u00f9nt\u00ec r\u1eb9 n\u00ed Horizon Card Bank. M\u00e9j\u00e8\u00e8j\u00ec j\u1eb9\u0301 il\u00e9 \u00ecf\u00f3w\u00f3pam\u1ecd\u0301 U.S. t\u00ed a ṣ\u00e0koso. CheckPay, Inc. k\u00ec\u00ed \u1e63e il\u00e9 \u00ecf\u00f3w\u00f3pam\u1ecd\u0301 b\u1eb9\u0300\u1eb9\u0300 k\u00f2 s\u00ec m\u00fa ow\u00f3 r\u1eb9.'
+            },
+            {
+                number: 11,
+                heading: 'ALAYE \u00ccB\u00c0\u1e62\u1eb8\u0300P\u1eb8\u0300',
+                body: 'F\u00fan \u00e0w\u1ecdn ib\u00e9\u00e8r\u00e8, jab\u1ecd\u0300 \u00e0\u1e63\u00ecs\u1eb9, tabi l\u00e1t\u00ec jab\u1ecd\u0300 \u00ecgb\u00e0nw\u00f3l\u00e9 a\u00edl\u00f3fin\u00ecn\u00fa:\n\nCheckPay, Inc.\n\u00ccme\u00e8l\u00ec: support@checkpay.com\nOf\u00ecn: legal@checkpay.com\nFo\u00f2n\u00f9: 1\u2011800\u2011CHECKPAY (24/7)'
+            }
+        ]
+    }
+};
