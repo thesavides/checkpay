@@ -94,8 +94,9 @@ const i18n = {
                 endorseDetail: 'Sign the back of your check and write "For mobile deposit only - CheckPay"'
             },
             deposit: {
-                title: 'Deposit Status',
-                subtitle: 'Track your check as it processes',
+                title: 'Check Clearing Status',
+                subtitle: 'Track your check as it clears',
+                pendingMessage: 'Your check is being processed. Check back for updates.',
                 submitted: 'Submitted',
                 underReview: 'Under Review',
                 accepted: 'Accepted',
@@ -138,6 +139,7 @@ const i18n = {
                 completed: 'Completed',
                 failed: 'Failed',
                 checkDeposit: 'Check Deposit',
+                checkClearing: 'Check Clearing',
                 billPayment: 'Bill Payment',
                 accountTopup: 'Account Top-up'
             },
@@ -394,8 +396,9 @@ const i18n = {
                 endorseDetail: 'Firma el reverso de tu cheque y escribe "Solo para dep\u00f3sito m\u00f3vil - CheckPay"'
             },
             deposit: {
-                title: 'Estado del Dep\u00f3sito',
-                subtitle: 'Sigue tu cheque mientras se procesa',
+                title: 'Estado de Compensaci\u00f3n del Cheque',
+                subtitle: 'Sigue tu cheque mientras se compensa',
+                pendingMessage: 'Tu cheque est\u00e1 siendo procesado. Vuelve a consultar para actualizaciones.',
                 submitted: 'Enviado',
                 underReview: 'En Revisi\u00f3n',
                 accepted: 'Aceptado',
@@ -438,6 +441,7 @@ const i18n = {
                 completed: 'Completadas',
                 failed: 'Fallidas',
                 checkDeposit: 'Dep\u00f3sito de Cheque',
+                checkClearing: 'Compensaci\u00f3n de Cheque',
                 billPayment: 'Pago de Factura',
                 accountTopup: 'Recarga de Cuenta'
             },
@@ -694,8 +698,9 @@ const i18n = {
                 endorseDetail: 'Pirmahan ang likod ng iyong tseke at isulat "For mobile deposit only - CheckPay"'
             },
             deposit: {
-                title: 'Status ng Deposito',
-                subtitle: 'Subaybayan ang iyong tseke habang pinoproseso',
+                title: 'Status ng Check Clearing',
+                subtitle: 'Subaybayan ang iyong tseke habang kino-clear',
+                pendingMessage: 'Pinoproseso pa ang iyong tseke. Bumalik para sa updates.',
                 submitted: 'Naisumite',
                 underReview: 'Sinusuri',
                 accepted: 'Tinanggap',
@@ -738,6 +743,7 @@ const i18n = {
                 completed: 'Nakumpleto',
                 failed: 'Nabigo',
                 checkDeposit: 'Deposito ng Tseke',
+                checkClearing: 'Check Clearing',
                 billPayment: 'Pagbabayad ng Bill',
                 accountTopup: 'Pag-top-up ng Account'
             },
@@ -994,8 +1000,9 @@ const i18n = {
                 endorseDetail: 'Fi owo si \u1eb9hin \u1e63\u1eb9ki r\u1eb9 ki o k\u1ecd "Fun ifipam\u1ecd foonu nikan - CheckPay"'
             },
             deposit: {
-                title: 'Ipo Ifipam\u1ecd',
-                subtitle: 'T\u1eb9le \u1e63\u1eb9ki r\u1eb9 bi a \u1e63e n\u1e63i\u1e63\u1eb9',
+                title: 'Ipo \u1e62i\u1e63\u1eb9 \u1e62\u1eb9ki',
+                subtitle: 'T\u1eb9le \u1e63\u1eb9ki r\u1eb9 bi \u00f3 \u1e63e n\u1e63i\u1e63\u1eb9',
+                pendingMessage: 'A n\u1e63i\u1e63\u1eb9 \u1e63\u1eb9ki r\u1eb9. Pad\u00e0 w\u00e1 wo f\u00fan \u00e0w\u1ecdn \u00ecm\u00fad\u00e0j\u00fa.',
                 submitted: 'Ti Fi Ran\u1e63\u1eb9',
                 underReview: 'Ab\u1eb9wo',
                 accepted: 'Ti Gba',
@@ -1038,6 +1045,7 @@ const i18n = {
                 completed: 'Ti pari',
                 failed: 'Ti kuna',
                 checkDeposit: 'Ifipam\u1ecd \u1e62\u1eb9ki',
+                checkClearing: '\u1e62i\u1e63\u1eb9 \u1e62\u1eb9ki',
                 billPayment: 'Sisanwo Iwe-owo',
                 accountTopup: 'Fikun Akaun'
             },

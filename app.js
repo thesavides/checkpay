@@ -428,14 +428,21 @@ const CheckPayApp = {
 
         // Deposit timeline done button
         document.getElementById('deposit-done-btn')?.addEventListener('click', () => {
-            // Move funds from pending to available
-            this.setupDashboard('returning');
-            this.showScreen('dashboard-screen');
-            this.showSuccessModal(
-                i18n.t('deposit.clearedTitle') || 'Check Deposited',
-                i18n.t('deposit.clearedMessage') || 'Your check has been deposited. Funds are now available!'
-            );
-            this.resetCheckFlow();
+            if (this._viewingPendingDeposit) {
+                // Viewing pending deposit — just go back to dashboard without changing state
+                this._viewingPendingDeposit = false;
+                this.showScreen('dashboard-screen');
+                this.resetCheckFlow();
+            } else {
+                // Normal check deposit flow — move funds from pending to available
+                this.setupDashboard('returning');
+                this.showScreen('dashboard-screen');
+                this.showSuccessModal(
+                    i18n.t('deposit.clearedTitle') || 'Check Deposited',
+                    i18n.t('deposit.clearedMessage') || 'Your check has been deposited. Funds are now available!'
+                );
+                this.resetCheckFlow();
+            }
         });
     },
 
@@ -504,6 +511,14 @@ const CheckPayApp = {
         document.querySelectorAll('#check-processing .timeline-time').forEach(el => { el.textContent = ''; });
         const doneBtn = document.getElementById('deposit-done-btn');
         if (doneBtn) doneBtn.style.display = 'none';
+
+        // Restore subtitle to default (may have been changed by pending deposit view)
+        const subtitle = document.querySelector('#check-processing .deposit-subtitle');
+        if (subtitle) subtitle.textContent = i18n.t('deposit.subtitle') || 'Track your check as it clears';
+
+        // Restore progress bar visibility
+        const progressBar = document.getElementById('check-progress');
+        if (progressBar) progressBar.style.display = '';
     },
 
     // Process check — deposit timeline animation
@@ -569,6 +584,83 @@ const CheckPayApp = {
                 }
             }, delay);
         });
+    },
+
+    // ==========================================
+    // Pending Deposit View
+    // ==========================================
+
+    _viewingPendingDeposit: false,
+
+    showPendingDeposit: function() {
+        this._viewingPendingDeposit = true;
+        this.resetCheckFlow();
+        this.showScreen('check-screen');
+
+        // Hide all check flow steps and progress bar
+        document.getElementById('check-front-capture').style.display = 'none';
+        document.getElementById('check-back-capture').style.display = 'none';
+        document.getElementById('check-verify').style.display = 'none';
+        document.getElementById('check-confirm').style.display = 'none';
+        const progressBar = document.getElementById('check-progress');
+        if (progressBar) progressBar.style.display = 'none';
+
+        // Show timeline
+        document.getElementById('check-processing').style.display = 'block';
+
+        // Set timeline to realistic in-progress state
+        const now = new Date();
+        const formatTime = (d) => {
+            const month = d.toLocaleDateString([], { month: 'short' });
+            const day = d.getDate();
+            const time = d.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+            const tz = d.toLocaleTimeString([], { timeZoneName: 'short' }).split(' ').pop();
+            return month + ' ' + day + ', ' + time + ' ' + tz;
+        };
+
+        // Submitted yesterday
+        const submittedDate = new Date(now.getTime() - 24 * 60 * 60 * 1000);
+        // Under Review 30 min after submission
+        const reviewDate = new Date(submittedDate.getTime() + 30 * 60 * 1000);
+        // Accepted this morning
+        const acceptedDate = new Date(now.getTime() - 4 * 60 * 60 * 1000);
+
+        // Reset all timeline items
+        document.querySelectorAll('#check-processing .timeline-item').forEach(item => {
+            item.classList.remove('active', 'completed');
+        });
+
+        // Submitted = completed
+        const submitted = document.getElementById('timeline-submitted');
+        if (submitted) submitted.classList.add('completed');
+        const submittedTime = document.getElementById('timeline-submitted-time');
+        if (submittedTime) submittedTime.textContent = formatTime(submittedDate);
+
+        // Under Review = completed
+        const review = document.getElementById('timeline-review');
+        if (review) review.classList.add('completed');
+        const reviewTime = document.getElementById('timeline-review-time');
+        if (reviewTime) reviewTime.textContent = formatTime(reviewDate);
+
+        // Accepted = active (current stage)
+        const accepted = document.getElementById('timeline-accepted');
+        if (accepted) accepted.classList.add('active');
+        const acceptedTime = document.getElementById('timeline-accepted-time');
+        if (acceptedTime) acceptedTime.textContent = formatTime(acceptedDate);
+
+        // Pending and Cleared = no state (not yet reached)
+        const pendingTime = document.getElementById('timeline-pending-time');
+        if (pendingTime) pendingTime.textContent = '';
+        const clearedTime = document.getElementById('timeline-cleared-time');
+        if (clearedTime) clearedTime.textContent = '';
+
+        // Show Back to Dashboard button (always visible for pending view)
+        const doneBtn = document.getElementById('deposit-done-btn');
+        if (doneBtn) doneBtn.style.display = 'block';
+
+        // Update subtitle to pending message
+        const subtitle = document.querySelector('#check-processing .deposit-subtitle');
+        if (subtitle) subtitle.textContent = i18n.t('deposit.pendingMessage') || 'Your check is being processed. Check back for updates.';
     },
 
     // ==========================================
@@ -989,9 +1081,9 @@ const CheckPayApp = {
 
     loadMockTransactions: function() {
         const transactions = [
-            { type: 'check', title: 'Check Deposit', date: new Date(Date.now() - 86400000), amount: 850.00, status: 'completed' },
+            { type: 'check', title: i18n.t('transactions.checkClearing') || 'Check Clearing', date: new Date(Date.now() - 86400000), amount: 850.00, status: 'pending', action: 'viewCheckStatus' },
             { type: 'bill', title: 'Electric Bill', date: new Date(Date.now() - 172800000), amount: -125.50, status: 'completed' },
-            { type: 'topup', title: 'Account Top-up', date: new Date(Date.now() - 259200000), amount: 500.00, status: 'pending' },
+            { type: 'check', title: i18n.t('transactions.checkDeposit') || 'Check Deposit', date: new Date(Date.now() - 259200000), amount: 500.00, status: 'completed' },
             { type: 'bill', title: 'Internet Bill', date: new Date(Date.now() - 345600000), amount: -89.99, status: 'completed' }
         ];
 
@@ -1006,7 +1098,7 @@ const CheckPayApp = {
         const transactionsToShow = limit ? transactions.slice(0, limit) : transactions;
 
         container.innerHTML = transactionsToShow.map(tx => `
-            <div class="transaction-item">
+            <div class="transaction-item${tx.action ? ' tx-actionable' : ''}" ${tx.action ? 'data-action="' + tx.action + '"' : ''}>
                 <div class="transaction-icon ${tx.type}">
                     <span class="material-icons">${this.getTransactionIcon(tx.type)}</span>
                 </div>
@@ -1018,8 +1110,14 @@ const CheckPayApp = {
                 <div class="transaction-amount ${tx.amount > 0 ? 'positive' : 'negative'}">
                     ${tx.amount > 0 ? '+' : ''}${i18n.formatCurrency(Math.abs(tx.amount))}
                 </div>
+                ${tx.action ? '<span class="material-icons tx-chevron">chevron_right</span>' : ''}
             </div>
         `).join('');
+
+        // Attach click handlers for actionable transactions
+        container.querySelectorAll('.transaction-item[data-action="viewCheckStatus"]').forEach(item => {
+            item.addEventListener('click', () => this.showPendingDeposit());
+        });
     },
 
     getTransactionIcon: function(type) {
