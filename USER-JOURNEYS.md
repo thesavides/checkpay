@@ -36,53 +36,57 @@ The sponsor bank is the regulatory entity that drives KYC requirements for both 
 ### Entry Point
 Landing page (index.html) → Click **"Get Started"** → app.html (welcome screen)
 
-### Flow
+### Overt UX (Primary Flow)
 
 ```
 Landing Page                    Welcome Screen
-[Get Started] ─────────────────► [Get an Account]
+[Get Started] ─────────────────► [Get an Account]          ← primary CTA
                                   [Already have an account? Sign In]
-                                  [Back to Home] [Language]
                                         |
                                         ▼
                                 ┌─── KYC-A ───┐
                                 |  Step 1/4    |
                                 |  Personal    |
-                                |  Info        |──── Production: Data collected for
-                                |  + T&C ☑     |     both sponsor bank and issuing
-                                └──────┬───────┘     bank KYC (split synchronous)
+                                |  Info + T&C  |
+                                └──────┬───────┘
                                        |
                                        ▼
                                 ┌─── KYC-A ───┐
                                 |  Step 2/4    |
-                                |  Government  |──── Production: Document verification
-                                |  ID Upload   |     via KYC provider per sponsor bank
-                                └──────┬───────┘     and issuing bank requirements
+                                |  Government  |
+                                |  ID Upload   |
+                                └──────┬───────┘
                                        |
                                        ▼
                                 ┌─── KYC-A ───┐
                                 |  Step 3/4    |
-                                |  Selfie      |──── Production: Liveness detection
-                                |  Capture     |     + facial match to ID
+                                |  Selfie      |
+                                |  Capture     |
                                 └──────┬───────┘
                                        |
                                        ▼
                                 ┌─── KYC-A ───┐
                                 |  Step 4/4    |
-                                |  Provisioning|──── 3-phase animation:
-                                |  Animation   |     1. Verify identity
-                                └──────┬───────┘     2. Create virtual card
-                                       |             3. Activate wallet
+                                |  Provisioning|
+                                |  Animation   |
+                                └──────┬───────┘
+                                       |
                                        ▼
                                 ┌─ Dashboard ──┐
                                 | Balance: $0   |
                                 | Card: Pending |
                                 | Txns: Empty   |
-                                | "Funds held   |
-                                |  by Horizon   |
-                                |  Card Bank"   |
                                 └───────────────┘
 ```
+
+### Secondary Functions (Welcome Screen)
+
+| Function | Location | Behavior |
+|----------|----------|----------|
+| **Back to Home** | Footer left | Returns to index.html |
+| **Language selector** | Footer center | Inline `<select>` dropdown; persists via `localStorage` |
+| **Terms & Conditions** | Footer right | Opens full-screen terms modal (T&C content) |
+| **Privacy Policy** | Footer right | Opens full-screen terms modal (Privacy content) |
 
 ### Dashboard State After Signup
 | Element | Value |
@@ -93,10 +97,10 @@ Landing Page                    Welcome Screen
 | Card Preview | Masked (••••), "Pending" badge, "Pending Activation" |
 | Transactions | "No transactions yet. Clear a check to get started." |
 
-### KYC-A Details
+### KYC-A Step Details
 
 **Step 1 — Personal Information**
-- Fields: Full name, Date of birth, ITIN (with privacy hint), Street address, City, State, ZIP
+- Fields: Full name, Date of birth, ITIN, Street address, City, State, ZIP
 - T&C checkbox: "I agree to the Terms & Conditions and Privacy Policy"
 - No field validation (demo mode)
 
@@ -105,8 +109,7 @@ Landing Page                    Welcome Screen
 - Reassurance: "Your documents are encrypted end-to-end"
 
 **Step 3 — Selfie Capture**
-- Liveness verification photo
-- Used for facial match against government ID
+- Liveness verification photo used for facial match against government ID
 
 **Step 4 — Provisioning Animation**
 - 3-phase sequential animation (~6 seconds total):
@@ -131,7 +134,7 @@ Landing Page                    Welcome Screen
 ### Entry Point
 Landing page (index.html) → Click **"Sign In"** → app.html?mode=signin (dashboard)
 
-### Flow
+### Overt UX (Primary Flow)
 
 ```
 Landing Page                    Dashboard (Authenticated)
@@ -139,7 +142,6 @@ Landing Page                    Dashboard (Authenticated)
 (href: app.html?mode=signin)      Pending: $850.00
                                    Card: Active (••••4532)
                                    Txns: Check Deposit, Electric Bill, etc.
-                                   "Funds held by Horizon Card Bank"
 ```
 
 ### Dashboard State After Sign-In
@@ -151,14 +153,9 @@ Landing Page                    Dashboard (Authenticated)
 | Card Preview | ••••4532, "CHRIS SQUIRE", Expires 12/26 |
 | Transactions | Check Deposit (+$850), Electric Bill (-$125.50), Account Top-up (+$500), Internet Bill (-$89.99) |
 
-### How It Works (Demo)
-- Landing page "Sign In" link includes `?mode=signin` URL parameter
-- `app.js` init() reads URL parameter and calls `setupDashboard('returning')`
-- Sets `isAuthenticated = true` with demo data (Chris Squire, ITIN last 4: 7890)
-- Skips welcome screen entirely — goes straight to dashboard
-
-### Alternative Entry
-The welcome screen also has an **"Already have an account? Sign In"** button that triggers the same returning-user dashboard state.
+### Secondary Functions
+- Welcome screen also has **"Already have an account? Sign In"** button — triggers the same returning-user dashboard state
+- `app.js` reads `?mode=signin` URL parameter, calls `setupDashboard('returning')`, sets `isAuthenticated = true`
 
 ---
 
@@ -167,42 +164,60 @@ The welcome screen also has an **"Already have an account? Sign In"** button tha
 ### Entry Point
 Dashboard → Click **"Clear a Check"** quick action
 
-### Flow
+### Overt UX (Primary Flow)
 
 ```
 Dashboard
-[Clear a Check] ──────────────────► Check Flow Step 1/4
+[Clear a Check] ─────────────────► Check Flow Step 1/4
                                    ┌──────────────────┐
                                    | Capture Check     |
-                                   | FRONT             |──── Production: RDC partner
-                                   | [Upload Photo]    |     (e.g. Ingo Money) receives
-                                   └────────┬──────────┘     check image
+                                   | FRONT             |
+                                   | [Upload Photo]    |
+                                   └────────┬──────────┘
                                             |
                                             ▼
                                    ┌──────────────────┐
                                    | Capture Check     |
-                                   | BACK              |──── Production: RDC validates
-                                   | [Upload Photo]    |     endorsement, MICR line,
-                                   └────────┬──────────┘     check authenticity
+                                   | BACK              |
+                                   | [Upload Photo]    |
+                                   └────────┬──────────┘
                                             |
                                             ▼
                                    ┌──────────────────┐
                                    | KYC-B: Secure     |
-                                   | Deposit           |──── Production: Per-deposit
-                                   | Confirmation      |     verification per sponsor
-                                   |  - Selfie         |     bank + RDC requirements
+                                   | Deposit           |
+                                   | Confirmation      |
+                                   |  - Selfie         |
                                    |  - ITIN last 4    |
                                    |  - "Payable to me"|
                                    |  - Endorsement    |
                                    └────────┬──────────┘
                                             |
-                                            ▼
-                                   ┌──────────────────┐
+                        ┌───────────────────┼──────────────────────────────────┐
+                        │ FIRST DEPOSIT ONLY│                                  │
+                        ▼                   │ SUBSEQUENT DEPOSITS              │
+              ┌──────────────────┐          │                                  │
+              | Reg E Disclosure |          │                                  │
+              | Modal            |          │                                  │
+              | (EFT rights,     |          │                                  │
+              |  error process,  |          │                                  │
+              |  contact info)   |          │                                  │
+              | [I Acknowledge   |          │                                  │
+              |  & Continue]     |          │                                  │
+              └────────┬─────────┘          │                                  │
+                        └───────────────────┘                                  │
+                                            ▼                                  │
+                                   ┌──────────────────┐ ◄────────────────────┘
                                    | Confirm & Submit  |
                                    |  Amount: $850.00  |
                                    |  Fee: $5.00       |
                                    |  You receive:     |
                                    |    $845.00        |
+                                   |                   |
+                                   | EFT notice        |
+                                   | "Your check will  |
+                                   |  be processed as  |
+                                   |  an EFT..."       |
                                    |                   |
                                    | "Processed by     |
                                    |  ClearPath Bank"  |
@@ -213,7 +228,8 @@ Dashboard
                                             |
                                             ▼
                                    ┌──────────────────┐
-                                   | Deposit Timeline  |
+                                   | Check Clearing    |
+                                   | Status            |
                                    |                   |
                                    | ✓ Submitted       |
                                    | ✓ Under Review    |
@@ -221,16 +237,8 @@ Dashboard
                                    | ✓ Pending         |
                                    | ✓ Cleared         |
                                    |                   |
-                                   | "Processed by     |
-                                   | ClearPath Bank •  |
-                                   | Card issued by    |
-                                   | Horizon Card Bank"|
-                                   |                   |
                                    | [Back to Dashboard]
                                    └────────┬──────────┘
-                                            |
-                                   Balance updated:
-                                   Pending → Available
                                             |
                                             ▼
                                    ┌──────────────────┐
@@ -238,10 +246,19 @@ Dashboard
                                    | Balance: $1,234.56|
                                    | Card: ACTIVATED   |
                                    | Txns: History     |
-                                   | Modal: "Check     |
-                                   |  Deposited"       |
                                    └──────────────────┘
 ```
+
+### Secondary Functions (Check Flow)
+
+| Function | Location | Behavior |
+|----------|----------|----------|
+| **Reg E Disclosure Modal** | Gates confirm step on first deposit | Full-screen modal with EFT rights summary; requires explicit "I Acknowledge & Continue" before proceeding. Not shown on repeat deposits. |
+| **EFT notice** | Check confirm screen | Inline text: "Your check will be processed as an electronic fund transfer to your account; see Deposit Terms for your rights and protections." |
+| **Deposit Terms link** | EFT notice + T&C checkbox | Opens dedicated Deposit Terms modal (11 Reg E sections; distinct from general T&C) |
+| **Save / Print** | Deposit Terms modal footer | Triggers `window.print()` for record-keeping |
+| **ClearPath Bank disclaimer** | Check confirm + timeline | Shows clearing bank at both touchpoints |
+| **Dual bank disclaimer** | Deposit timeline | "Processed by ClearPath Bank • Card issued by Horizon Card Bank" |
 
 ### Balance State Changes During Check Flow
 | Stage | Available | Pending | Trigger |
@@ -261,6 +278,18 @@ KYC-B is a per-deposit verification embedded within the check clearing flow. Unl
 
 **Messaging:** "Required by the clearing bank to protect your deposit" / "This replaces standing in line at a check clearing store"
 
+### Reg E First-Deposit Disclosure Gate
+Shown once — before the confirm step on the user's first check deposit. Not shown on subsequent deposits.
+
+**Content (summarized):**
+- Your deposit is an Electronic Fund Transfer governed by Reg E
+- Right to documentation of every transfer
+- Right to resolve errors within 60 days
+- Limited liability for unauthorized transfers ($50 if reported within 2 business days)
+- Right to save or print the full Deposit Terms
+
+**Action:** "I Acknowledge & Continue" — proceeds to check confirm step
+
 ### Check Confirm Details (Step 4)
 | Field | Value |
 |-------|-------|
@@ -268,8 +297,9 @@ KYC-B is a per-deposit verification embedded within the check clearing flow. Unl
 | Processing Time | 2-3 minutes |
 | Processing Fee | $5.00 |
 | You'll Receive | $845.00 |
+| EFT Notice | Inline text + link to Deposit Terms |
 | Bank Disclaimer | "Your check will be processed by ClearPath Bank" |
-| T&C | "I agree to the Deposit Terms and authorize check clearing" |
+| Deposit Terms | "I agree to the Deposit Terms and authorize check clearing" (links to dedicated deposit terms, not general T&C) |
 
 ### Deposit Timeline Stages
 | Stage | Timing (Demo) | Production Equivalent |
@@ -280,37 +310,81 @@ KYC-B is a per-deposit verification embedded within the check clearing flow. Unl
 | Pending (Clearing) | +6 seconds | Check enters clearing process via sponsor bank |
 | Cleared | +8 seconds | Funds cleared, transferred to issuing bank account |
 
+Each stage shows a timestamp with date and timezone (e.g. "Feb 18, 2:04 PM EST").
+
 ### Production Integration Points
 | Step | Partner | Integration |
 |------|---------|-------------|
 | Check front/back capture | RDC Provider (e.g. Ingo Money) | Image capture, quality validation, MICR reading |
 | KYC-B verification | KYC Provider + Sponsor Bank | Per-deposit identity confirmation per sponsor bank requirements |
+| Reg E disclosure | Compliance / Legal | One-time acknowledgement stored per user |
 | Check submission | RDC Provider | Check submission for processing and clearing |
 | Timeline tracking | RDC Provider | Status callbacks (submitted → review → accepted → pending → cleared) |
 | Funds availability | Sponsor Bank → Issuing Bank | Cleared funds transferred from sponsor bank to issuing bank account |
 
 ---
 
-## Journey 4: View Card Details
+## Journey 4: Pending Deposit Status (Returning User)
 
 ### Entry Point
-Dashboard → Click **"View Card"** quick action or bottom nav **"Card"** tab
+Dashboard (returning user) → **"Activity"** tab → Click **"Check Clearing"** pending transaction
 
-### Flow
+This journey is available to returning users who have a pending deposit already in flight. It lets them check clearing status without initiating a new deposit.
+
+### Overt UX (Primary Flow)
+
+```
+Dashboard (returning user)
+  Pending balance: $850.00
+        |
+        ▼
+[Activity tab] ─────────────────► Transactions Screen
+                                   ┌──────────────────┐
+                                   | Check Clearing    |
+                                   | $850.00 Pending ▶ | ← chevron indicates tappable
+                                   └────────┬──────────┘
+                                            |
+                                            ▼
+                                   ┌──────────────────┐
+                                   | Check Clearing    |
+                                   | Status            |
+                                   |                   |
+                                   | ✓ Submitted       |
+                                   | ✓ Under Review    |
+                                   | ● Accepted (active|
+                                   |   = in progress)  |
+                                   |   Pending         |
+                                   |   Cleared         |
+                                   |                   |
+                                   | [Back to Dashboard]
+                                   └──────────────────┘
+```
+
+### How It Works (Demo)
+- `showPendingDeposit()` renders the timeline with stages Submitted and Under Review completed, Accepted as the active (in-progress) step
+- Tapping the pending transaction in the Activity list navigates to this view
+- The chevron `›` icon on the transaction row signals it is actionable
+- "Back to Dashboard" returns the user to the dashboard without changing balance state
+
+---
+
+## Journey 5: View Card Details
+
+### Entry Point
+Dashboard → Click **"View Card"** quick action, or bottom nav **"Card"** tab
+
+### Overt UX (Primary Flow)
 
 ```
 Dashboard
 [View Card] ────────────────────► Card Screen
                                    ┌──────────────────────┐
-                                   | [Full Card Display]   |
                                    | •••• •••• •••• 4532   |
                                    | CHRIS SQUIRE  12/26   |
                                    | CVV: •••              |
                                    |                       |
                                    | "Issued by Horizon    |
                                    |  Card Bank"           |
-                                   | [Visit Horizon Card   |
-                                   |  Bank →]              |
                                    |                       |
                                    | [Apple Pay][Google Pay]|
                                    |                       |
@@ -323,17 +397,17 @@ Dashboard
                                    └──────────────────────┘
 ```
 
-### Card Screen Features
-| Feature | Description |
-|---------|-------------|
-| Reveal PAN | Toggle to show/hide full card number (auto-hides after 10s) |
-| Bank disclaimer | "Issued by Horizon Card Bank" with bank favicon |
-| Issuer link | "Visit Horizon Card Bank →" (placeholder link) |
-| Apple Pay / Google Pay | Add card to mobile wallets |
-| Freeze Card | Toggle to temporarily disable transactions |
-| Spending Limits | Shows $500/day limit |
-| Change PIN | Update card PIN |
-| Request Physical Card | Opens address verification modal |
+### Secondary Functions (Card Screen)
+
+| Function | Location | Behavior |
+|----------|----------|----------|
+| **Reveal PAN** | Card number row | Toggle shows full card number; auto-hides after 10 seconds |
+| **Bank disclaimer** | Below card | "Issued by Horizon Card Bank" with bank favicon |
+| **Visit Horizon Card Bank** | Below disclaimer | External link to issuing bank (placeholder `#`) |
+| **Freeze Card** | Controls | Toggle to temporarily disable transactions |
+| **Spending Limits** | Controls | Shows $500/day limit |
+| **Change PIN** | Controls | Update card PIN |
+| **Request Physical Card** | Controls | Opens address verification modal |
 
 ### Request Physical Card (Modal)
 - Triggered from card controls
@@ -352,12 +426,12 @@ Dashboard
 
 ---
 
-## Journey 5: Pay a Bill
+## Journey 6: Pay a Bill
 
 ### Entry Point
 Dashboard → Click **"Pay a Bill"** quick action
 
-### Flow
+### Overt UX (Primary Flow)
 
 ```
 Dashboard
@@ -374,7 +448,7 @@ Dashboard
                                   | Enter Details     |
                                   | Account #         |
                                   | Amount            |
-                                  | Pay date          |
+                                  | Reference #       |
                                   └────────┬──────────┘
                                            |
                                            ▼
@@ -387,15 +461,19 @@ Dashboard
                                            ▼
                                   ┌──────────────────┐
                                   | Stripe-style      |
-                                  | Checkout          |──── Production: TabaPay via
-                                  | Mini card preview |     Mastercard Bill Pay or
-                                  | [Pay $XX.XX]      |     Stripe for card payments
+                                  | Checkout          |
+                                  | Mini card preview |
+                                  | Pre-filled card   |
+                                  | details (demo)    |
+                                  | [Pay $XX.XX]      |
                                   └────────┬──────────┘
                                            |
                                            ▼
                                   ┌──────────────────┐
                                   | Confirmation      |
                                   | Payment submitted |
+                                  | Txn ID, Date,     |
+                                  | Status: Pending   |
                                   └──────────────────┘
 ```
 
@@ -409,12 +487,12 @@ Dashboard
 
 ---
 
-## Journey 6: Sign Out
+## Journey 7: Sign Out
 
 ### Entry Point
 Any authenticated screen → Bottom nav **"Profile"** → **"Sign Out"**
 
-### Flow
+### Overt UX
 
 ```
 Any Screen
@@ -427,10 +505,10 @@ Sign out performs a full page redirect to `index.html`. Since all app state is i
 
 ---
 
-## Journey 7: Change Language
+## Journey 8: Change Language
 
 ### Entry Points
-1. Welcome screen → **"Language"** button → Language modal
+1. Welcome screen → **Language** dropdown (inline `<select>` in footer)
 2. Any authenticated screen → Profile → **"Language"** → Language modal
 
 ### Available Languages
@@ -441,7 +519,38 @@ Sign out performs a full page redirect to `index.html`. Since all app state is i
 | Filipino | ph | fil / tl |
 | Yoruba | yo | yo |
 
-Language preference is saved in `localStorage` as `checkpay-language` and persists across page reloads.
+Language preference is saved in `localStorage` as `checkpay-language` and persists across page reloads and between landing page and app.
+
+### Note on Entry Point Difference
+- **Welcome screen** uses an inline `<select>` dropdown — no modal, takes effect immediately
+- **Profile screen** uses a modal with 4 language buttons and a checkmark on the active selection
+
+---
+
+## Terms & Conditions Modal (Secondary Function, Global)
+
+The T&C modal is a secondary function accessible from multiple surfaces. It is not a primary user journey step — it gates or annotates flows but is not the main path.
+
+### Entry Points
+| Surface | Trigger | Content |
+|---------|---------|---------|
+| Welcome screen footer | "Terms & Conditions" link | General T&C |
+| Welcome screen footer | "Privacy Policy" link | Privacy Policy |
+| KYC-A Step 1 | T&C checkbox links | General T&C / Privacy |
+| Profile → Legal | "Terms & Conditions" item | General T&C |
+| Profile → Legal | "Privacy Policy" item | Privacy Policy |
+| Check confirm | "Deposit Terms" checkbox link | Deposit Terms (Reg E) |
+| Check confirm | EFT notice link | Deposit Terms (Reg E) |
+| Reg E disclosure modal | "Deposit Terms" link | Deposit Terms (Reg E) |
+| URL deep-link | `?view=terms` | General T&C |
+| URL deep-link | `?view=privacy` | Privacy Policy |
+
+### Modal Behaviors
+- Full-screen scrollable overlay
+- Language disclaimer banner for non-English ("This is a translated convenience copy. English version is legally binding.") with "View English" CTA
+- **Save / Print** button triggers `window.print()` — print-specific CSS hides everything except modal body
+- Three distinct content sets: General T&C, Privacy Policy, Deposit Terms (11 Reg E sections)
+- English is the legally binding version; translated copies for Spanish, Filipino, Yoruba
 
 ---
 
@@ -473,41 +582,46 @@ Language preference is saved in `localStorage` as `checkpay-language` and persis
                          |             | $1,234.56     |
                          ▼             | Active card   |
                   ┌─────────────┐      | Transactions  |
-                  | Dashboard   |      └───┬───┬───┬───┘
-                  | (New User)  |          |   |   |
-                  | $0.00       |◄─────────┘   |   |
+                  | Dashboard   |      └──┬──┬───┬──┬──┘
+                  | (New User)  |         |  |   |  |
+                  | $0.00       |◄────────┘  |   |  |
                   | Pending card|    (same features)
-                  | No txns     |              |   |
-                  └───┬───┬───┬─┘              |   |
-                      |   |   |                |   |
-              ┌───────┘   |   └───────┐        |   |
-              ▼           ▼           ▼        |   |
-        ┌──────────┐ ┌─────────┐ ┌──────────┐  |   |
-        | Clear    | | View    | | Pay      |  |   |
-        | Check    | | Card    | | Bill     |  |   |
-        | (4 steps)| | + Link  | | (4 steps)|  |   |
-        |          | | + Phys. | |          |  |   |
-        |  KYC-B   | |  Card   | | Stripe   |  |   |
-        |  at      | |  Request| | Checkout |  |   |
-        |  Step 3  | |         | |          |  |   |
-        └────┬─────┘ └─────────┘ └──────────┘  |   |
-             |                                  |   |
-             | Deposit cleared                  |   |
-             | Balance updates                  |   |
-             | Card activates                   |   |
-             ▼                                  |   |
-        ┌──────────┐                            |   |
-        | Dashboard |◄──────────────────────────┘   |
-        | Updated   |                               |
-        | $1,234.56 |                               |
-        | Active    |                               |
-        └─────┬────┘                                |
-              |                                     |
-              ▼                                     |
-        ┌──────────┐                                |
-        | Profile  |────────────────────────────────┘
-        | Sign Out |──────► Landing Page (index.html)
-        └──────────┘
+                  | No txns     |            |   |  |
+                  └───┬───┬───┬─┘            |   |  |
+                      |   |   |              |   |  |
+              ┌───────┘   |   └───────┐      |   |  |
+              ▼           ▼           ▼      |   |  |
+        ┌──────────┐ ┌─────────┐ ┌──────────┐ |   |  |
+        | Clear    | | View    | | Pay      | |   |  |
+        | Check    | | Card    | | Bill     | |   |  |
+        | (4 steps)| |         | | (4 steps)| |   |  |
+        |          | | Reveal  | |          | |   |  |
+        | Reg E    | | PAN     | | Stripe   | |   |  |
+        | gate     | | Freeze  | | Checkout | |   |  |
+        | (1st     | | Limits  | |          | |   |  |
+        |  deposit)| | PIN     | |          | |   |  |
+        | KYC-B    | | Phys.   | |          | |   |  |
+        | at Step 3| | Card    | |          | |   |  |
+        └────┬─────┘ └─────────┘ └──────────┘ |   |  |
+             |                                 |   |  |
+             | Deposit cleared                 |   |  |
+             | Balance updates                 |   |  |
+             | Card activates                  |   |  |
+             ▼                                 |   |  |
+        ┌──────────┐    ┌────────────────┐     |   |  |
+        | Dashboard |◄──| Pending Deposit|◄────┘   |  |
+        | Updated   |   | Status         |          |  |
+        | $1,234.56 |   | (Activity tab) |          |  |
+        | Active    |   └────────────────┘          |  |
+        └─────┬────┘                                |  |
+              |                                     |  |
+              ▼                                     |  |
+        ┌──────────┐                                |  |
+        | Profile  |────────────────────────────────┘  |
+        | Sign Out |──────► Landing Page (index.html)  |
+        └──────────┘                                   |
+              ▲                                        |
+              └────────────────────────────────────────┘
 ```
 
 ---
@@ -537,6 +651,9 @@ Check clearing in production would be handled by an RDC partner like **Ingo Mone
 4. Check submitted to clearing network via sponsor bank
 5. Status callbacks drive the deposit timeline (Submitted → Under Review → Accepted → Pending → Cleared)
 6. Funds availability based on check type, amount, and user risk profile
+
+### Reg E Compliance
+The Deposit Terms modal contains 11 Reg E-compliant sections covering EFT disclosure, error resolution, unauthorized transfer liability, business day definitions, fee schedule, funds availability, documentation rights, and contact information. The first-deposit disclosure gate ensures the user has acknowledged their rights before submitting any check. Save/Print allows users to retain a copy per their Reg E rights.
 
 ### Bill Pay
 Bill payments in production use a dual-rail approach:
